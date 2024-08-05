@@ -28,14 +28,7 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      viewer.camera.flyTo({
-          destination: Cesium.Cartesian3.fromDegrees(138.2, 35.90, 10000),
-          orientation : {
-            heading : Cesium.Math.toRadians(0.0),
-            pitch : Cesium.Math.toRadians(-45.0),
-            roll : 0.0
-          }
-        });
+      
       var viewer = new Cesium.Viewer("cesiumContainer");
       var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'});
       tileset1.readyPromise.then(function(tileset1) {
@@ -44,8 +37,14 @@
           color: 'rgb(0, 0, 255)',
           markerSymbol: '?'
         });
-
-        
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(138.2, 35.90, 10000),
+            orientation : {
+              heading : Cesium.Math.toRadians(0.0),
+              pitch : Cesium.Math.toRadians(-45.0),
+              roll : 0.0
+          }
+        });
       }).otherwise(function(error) {
         console.log(error);
       });
