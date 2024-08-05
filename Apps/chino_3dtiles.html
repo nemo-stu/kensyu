@@ -29,8 +29,7 @@
     <div id="cesiumContainer"></div>
     <script>
       var viewer = new Cesium.Viewer("cesiumContainer");
-      var tileset1 = new Cesium.Cesium3DTileset.fromUrl("./sample/chino/tileset.json");
-      <!--　var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'}); -->
+      var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'});
       viewer.scene.primitives.add(tileset1);
         tileset1.style = new Cesium.Cesium3DTileStyle({
           color: 'rgb(0, 0, 255)',
