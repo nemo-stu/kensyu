@@ -28,7 +28,6 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      
       var viewer = new Cesium.Viewer("cesiumContainer");
       var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'});
       tileset1.readyPromise.then(function(tileset1) {
