@@ -30,6 +30,7 @@
     <script>
       var viewer = new Cesium.Viewer("cesiumContainer");
       var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'});
+      <H2>見出しサンプル　Head２</H2>
       tileset1.readyPromise.then(function(tileset1) {
         viewer.scene.primitives.add(tileset1);
         tileset1.style = new Cesium.Cesium3DTileStyle({
