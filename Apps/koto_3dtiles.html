@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <!-- Use correct character set. -->
     <meta charset="utf-8" />
@@ -29,7 +29,7 @@
     <div id="cesiumContainer"></div>
     <script>
       var viewer = new Cesium.Viewer("cesiumContainer");
-      var tileset1 = new Cesium.Cesium3DTileset.fromUrl('https://nemo-stu.github.io/kensyu/Apps/sample/koto/tileset.json');
+      var tileset1 = new Cesium.Cesium3DTileset.load('https://nemo-stu.github.io/kensyu/Apps/sample/koto/tileset.json');
       tileset1.readyPromise.then(function(tileset1) {
         viewer.scene.primitives.add(tileset1);
         tileset1.style = new Cesium.Cesium3DTileStyle({
