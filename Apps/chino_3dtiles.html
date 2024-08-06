@@ -32,6 +32,8 @@
       var tileset1 = new Cesium.Cesium3DTileset({ url: './sample/chino/tileset.json'});
       tileset1.readyPromise.then(function(tileset1) {
         viewer.scene.primitives.add(tileset1);
+      var tileset1 = new Cesium.Cesium3DTileset({ url: 'https://github.com/nemo-stu/kensyu/blob/main/Apps/sample/chino/tileset.json'});
+      viewer.scene.primitives.add(tileset1);
         tileset1.style = new Cesium.Cesium3DTileStyle({
           color: 'rgb(0, 0, 255)',
           markerSymbol: '?'
