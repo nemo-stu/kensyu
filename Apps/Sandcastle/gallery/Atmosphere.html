@@ -665,17 +665,13 @@
       </table>
     </div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer");
         const scene = viewer.scene;
         const globe = scene.globe;
         const skyAtmosphere = scene.skyAtmosphere;
-
-        scene.highDynamicRange = true;
-        globe.enableLighting = true;
-        globe.atmosphereLightIntensity = 20.0;
 
         viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(
           "2022-03-23T11:31:42.34200000000419095Z"
@@ -731,7 +727,7 @@
           // Globe settings
 
           enableTerrain: false,
-          enableLighting: true,
+          enableLighting: false,
           groundTranslucency: false,
 
           // Ground atmosphere settings
@@ -787,7 +783,7 @@
 
           // Scene settings
 
-          hdr: true,
+          hdr: false,
         };
 
         Cesium.knockout.track(viewModel);
@@ -796,11 +792,11 @@
 
         Cesium.knockout
           .getObservable(viewModel, "enableTerrain")
-          .subscribe(async function (newValue) {
+          .subscribe(function (newValue) {
             if (newValue) {
-              scene.setTerrain(Cesium.Terrain.fromWorldTerrain());
+              globe.terrainProvider = Cesium.createWorldTerrain();
             } else {
-              scene.terrainProvider = new Cesium.EllipsoidTerrainProvider();
+              globe.terrainProvider = new Cesium.EllipsoidTerrainProvider();
             }
           });
         Cesium.knockout
@@ -827,6 +823,11 @@
           .getObservable(viewModel, "dynamicLightingFromSun")
           .subscribe(function (newValue) {
             globe.dynamicAtmosphereLightingFromSun = newValue;
+          });
+        Cesium.knockout
+          .getObservable(viewModel, "density")
+          .subscribe(function (newValue) {
+            viewer.scene.fog.density = 2.0e-4 * newValue;
           });
         Cesium.knockout
           .getObservable(viewModel, "density")
@@ -1024,14 +1025,11 @@
         };
 
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

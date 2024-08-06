@@ -29,11 +29,11 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
           shadows: true,
         });
 
@@ -86,15 +86,13 @@
             uri: url,
             scale: scale,
           },
-        }); //Sandcastle_End
+        });
+        //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

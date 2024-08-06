@@ -1,5 +1,4 @@
 {
-    "id": "PropertyAttributesPointCloudMetadataSchemaId",
     "classes" : {
       "exampleMetadataClass" : {
         "name" : "Example metadata class",

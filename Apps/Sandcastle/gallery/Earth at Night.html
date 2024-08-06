@@ -32,14 +32,12 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         // The Earth at Night, also known as Black Marble 2017 and Night Lights
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          baseLayer: new Cesium.ImageryLayer.fromProviderAsync(
-            Cesium.IonImageryProvider.fromAssetId(3812)
-          ),
+          imageryProvider: new Cesium.IonImageryProvider({ assetId: 3812 }),
         });
 
         // The rest of the code is for dynamic lighting
@@ -49,10 +47,11 @@
 
         const imageryLayers = viewer.imageryLayers;
         const nightLayer = imageryLayers.get(0);
-        const dayLayer = Cesium.ImageryLayer.fromProviderAsync(
-          Cesium.IonImageryProvider.fromAssetId(3845)
+        const dayLayer = imageryLayers.addImageryProvider(
+          new Cesium.IonImageryProvider({
+            assetId: 3845,
+          })
         );
-        imageryLayers.add(dayLayer);
         imageryLayers.lowerToBottom(dayLayer);
 
         function updateLighting(dynamicLighting) {
@@ -75,14 +74,11 @@
           }
         );
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

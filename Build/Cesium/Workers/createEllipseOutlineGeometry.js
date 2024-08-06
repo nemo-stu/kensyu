@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -22,5 +22,4 @@
  * Portions licensed separately.
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
-
-import{a as i}from"./chunk-LVKOVZ5N.js";import"./chunk-AWPY57MX.js";import"./chunk-6GG6EJBW.js";import"./chunk-DBOVA5XH.js";import"./chunk-RHEGXTJ5.js";import"./chunk-CWBIOT2C.js";import"./chunk-PPN6SLYU.js";import"./chunk-SOWUYSYI.js";import"./chunk-I36V6CKP.js";import{a as t,d as c}from"./chunk-WG62ICZK.js";import"./chunk-EEN7GMYN.js";import"./chunk-SXYTVHGU.js";import"./chunk-RAWIUDJR.js";import"./chunk-KGKDCW56.js";import"./chunk-G4IO3CPJ.js";import{e as o}from"./chunk-GBRF7ES3.js";function a(r,n){return o(n)&&(r=i.unpack(r,n)),r._center=t.clone(r._center),r._ellipsoid=c.clone(r._ellipsoid),i.createGeometry(r)}var p=a;export{p as default};
+define(["./Matrix2-7dfd434a","./defaultValue-50f7432c","./EllipseOutlineGeometry-2023e636","./ComponentDatatype-9b23164a","./WebGLConstants-58abc51a","./RuntimeError-48e1f06d","./Transforms-f305a473","./combine-8462e002","./EllipseGeometryLibrary-f9538b0a","./GeometryAttribute-4d82fade","./GeometryAttributes-8bab1b25","./GeometryOffsetAttribute-490bc2c9","./IndexDatatype-ceed713e"],(function(e,t,r,i,n,a,l,o,s,c,u,d,f){"use strict";return function(i,n){return t.defined(n)&&(i=r.EllipseOutlineGeometry.unpack(i,n)),i._center=e.Cartesian3.clone(i._center),i._ellipsoid=e.Ellipsoid.clone(i._ellipsoid),r.EllipseOutlineGeometry.createGeometry(i)}}));

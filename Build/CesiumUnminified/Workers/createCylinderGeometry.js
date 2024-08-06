@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,36 +23,15 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  CylinderGeometry_default
-} from "./chunk-5O6JWQ4E.js";
-import "./chunk-YLYBLJ3Y.js";
-import "./chunk-GNHZH7HP.js";
-import "./chunk-LSSWVB2X.js";
-import "./chunk-EB7PNZTK.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import "./chunk-BAVI3ZS2.js";
-import "./chunk-TGY6H6N6.js";
-import {
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./CylinderGeometry-67cf2f61', './defaultValue-50f7432c', './Transforms-318b929f', './Matrix2-cae5ed62', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './combine-8462e002', './CylinderGeometryLibrary-c59008db', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './GeometryOffsetAttribute-490bc2c9', './IndexDatatype-3480a65d', './VertexFormat-29aad777'], (function (CylinderGeometry, defaultValue, Transforms, Matrix2, RuntimeError, ComponentDatatype, WebGLConstants, combine, CylinderGeometryLibrary, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, IndexDatatype, VertexFormat) { 'use strict';
 
-// packages/engine/Source/Workers/createCylinderGeometry.js
-function createCylinderGeometry(cylinderGeometry, offset) {
-  if (defined_default(offset)) {
-    cylinderGeometry = CylinderGeometry_default.unpack(cylinderGeometry, offset);
+  function createCylinderGeometry(cylinderGeometry, offset) {
+    if (defaultValue.defined(offset)) {
+      cylinderGeometry = CylinderGeometry.CylinderGeometry.unpack(cylinderGeometry, offset);
+    }
+    return CylinderGeometry.CylinderGeometry.createGeometry(cylinderGeometry);
   }
-  return CylinderGeometry_default.createGeometry(cylinderGeometry);
-}
-var createCylinderGeometry_default = createCylinderGeometry;
-export {
-  createCylinderGeometry_default as default
-};
+
+  return createCylinderGeometry;
+
+}));

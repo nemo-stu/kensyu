@@ -4,7 +4,6 @@
     "tilesetVersion": "1.2.3"
   },
   "schema": {
-    "id": "GroupMetadataSchemaId",
     "classes": {
       "residential": {
         "properties": {

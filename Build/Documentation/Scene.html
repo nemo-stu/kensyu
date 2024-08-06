@@ -42,11 +42,11 @@
     <div class="nameContainer">
     <h4 class="name" id="Scene">
         <a href="#Scene" class="doc-link"></a>
-        new Cesium.Scene<span class="signature">(options)</span>
+        new Cesium.Scene<span class="signature">(options, <span class="optional">depthPlaneEllipsoidOffset</span>)</span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L126">engine/Source/Scene/Scene.js 126</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L154">Scene/Scene.js 154</a>
 </div>
 
 
@@ -60,6 +60,43 @@
 <div class="description">
     The container for all 3D graphical objects and state in a Cesium virtual scene.  Generally,
 a scene is not created directly; instead, it is implicitly created by <a href="CesiumWidget.html"><code>CesiumWidget</code></a>.
+<p>
+<em><code>contextOptions</code> parameter details:</em>
+</p>
+<p>
+The default values are:
+<code>
+{
+  webgl : {
+    alpha : false,
+    depth : true,
+    stencil : false,
+    antialias : true,
+    powerPreference: 'high-performance',
+    premultipliedAlpha : true,
+    preserveDrawingBuffer : false,
+    failIfMajorPerformanceCaveat : false
+  },
+  allowTextureFilterAnisotropic : true
+}
+</code>
+</p>
+<p>
+The <code>webgl</code> property corresponds to the <a href="http://www.khronos.org/registry/webgl/specs/latest/#5.2">WebGLContextAttributes</a>
+object used to create the WebGL context.
+</p>
+<p>
+<code>webgl.alpha</code> defaults to false, which can improve performance compared to the standard WebGL default
+of true.  If an application needs to composite Cesium above other HTML elements using alpha-blending, set
+<code>webgl.alpha</code> to true.
+</p>
+<p>
+The other <code>webgl</code> properties match the WebGL defaults for <a href="http://www.khronos.org/registry/webgl/specs/latest/#5.2">WebGLContextAttributes</a>.
+</p>
+<p>
+<code>allowTextureFilterAnisotropic</code> defaults to true, which enables anisotropic texture filtering when the
+WebGL extension is supported.  Setting this to false will improve performance, but hurt visual quality, especially for horizon views.
+</p>
 </div>
 
 
@@ -84,6 +121,8 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
         <th>Type</th>
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -100,15 +139,24 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">Object</span>
 
 
             
             </td>
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last">
+            
+                
+                
+
+                
             
                 Object with the following properties:
                 
@@ -173,7 +221,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#ContextOptions">ContextOptions</a></span>
+<span class="param-type">Object</span>
 
 
             
@@ -194,7 +242,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
 
                 
             
-                Context and WebGL creation properties.</td>
+                Context and WebGL creation properties.  See details above.</td>
         </tr>
 
     
@@ -269,42 +317,6 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
 
         <tr>
             
-                <td class="name"><code>ellipsoid</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Ellipsoid.html">Ellipsoid</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="default">
-                
-                    <code class="language-javascript">Ellipsoid.default</code>
-                
-                </td>
-            
-
-            <td class="description last">
-            
-                
-                        <span class="optional">optional</span>
-                
-                
-
-                
-            
-                The default ellipsoid. If not specified, the default ellipsoid is used.</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>mapProjection</code></td>
             
 
@@ -320,7 +332,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             
                 <td class="default">
                 
-                    <code class="language-javascript">new GeographicProjection(options.ellipsoid)</code>
+                    <code class="language-javascript">new GeographicProjection()</code>
                 
                 </td>
             
@@ -347,7 +359,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -383,7 +395,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -419,7 +431,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -491,7 +503,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -527,7 +539,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -554,6 +566,12 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
         </tr>
 
     
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
 
         <tr>
             
@@ -563,7 +581,7 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -593,13 +611,13 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
 
         <tr>
             
-                <td class="name"><code>msaaSamples</code></td>
+                <td class="name"><code>options.msaaSamples</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -623,12 +641,6 @@ a scene is not created directly; instead, it is implicitly created by <a href="C
                 
             
                 If provided, this value controls the rate of multisample antialiasing. Typical multisampling rates are 2, 4, and sometimes 8 samples per pixel. Higher sampling rates of MSAA may impact performance in exchange for improved visual quality. This value only applies to WebGL2 contexts that support multisample render targets.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-            </td>
         </tr>
 
     
@@ -733,135 +745,13 @@ const scene = new Cesium.Scene({
         
             
 <div class="nameContainer">
-<h4 class="name" id=".defaultLogDepthBuffer">
-    <a href="#.defaultLogDepthBuffer" class="doc-link"></a>
-    <span class="type-signature attribute-static">static</span> Cesium.Scene.defaultLogDepthBuffer<span class="type-signature"></span>
-    
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L759">engine/Source/Scene/Scene.js 759</a>
-</div>
-
-
-</h4>
-
-</div>
-
-
-
-<div class="description">
-    Use this to set the default value for <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuffer</code></a> in newly constructed Scenes
-This property relies on fragmentDepth being supported.
-</div>
-
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-            
-<div class="nameContainer">
-<h4 class="name" id="atmosphere">
-    <a href="#atmosphere" class="doc-link"></a>
-    atmosphere<span class="type-signature"> : <a href="Atmosphere.html">Atmosphere</a></span>
-    
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L533">engine/Source/Scene/Scene.js 533</a>
-</div>
-
-
-</h4>
-
-</div>
-
-
-
-<div class="description">
-    Settings for atmosphere lighting effects affecting 3D Tiles and model rendering. This is not to be confused with
-<a href="Scene.html#skyAtmosphere"><code>Scene#skyAtmosphere</code></a> which is responsible for rendering the sky.
-</div>
-
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-            
-<div class="nameContainer">
 <h4 class="name" id="backgroundColor">
     <a href="#backgroundColor" class="doc-link"></a>
     backgroundColor<span class="type-signature"> : <a href="Color.html">Color</a></span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L318">engine/Source/Scene/Scene.js 318</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L352">Scene/Scene.js 352</a>
 </div>
 
 
@@ -929,7 +819,7 @@ This property relies on fragmentDepth being supported.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L999">engine/Source/Scene/Scene.js 999</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L975">Scene/Scene.js 975</a>
 </div>
 
 
@@ -985,11 +875,11 @@ This property relies on fragmentDepth being supported.
 <div class="nameContainer">
 <h4 class="name" id="cameraUnderground">
     <a href="#cameraUnderground" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> cameraUnderground<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> cameraUnderground<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1623">engine/Source/Scene/Scene.js 1623</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1594">Scene/Scene.js 1594</a>
 </div>
 
 
@@ -1052,7 +942,7 @@ This property relies on fragmentDepth being supported.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L791">engine/Source/Scene/Scene.js 791</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L780">Scene/Scene.js 780</a>
 </div>
 
 
@@ -1108,11 +998,11 @@ This property relies on fragmentDepth being supported.
 <div class="nameContainer">
 <h4 class="name" id="clampToHeightSupported">
     <a href="#clampToHeightSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> clampToHeightSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> clampToHeightSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L898">engine/Source/Scene/Scene.js 898</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L887">Scene/Scene.js 887</a>
 </div>
 
 
@@ -1175,11 +1065,11 @@ This property relies on fragmentDepth being supported.
 <div class="nameContainer">
 <h4 class="name" id="completeMorphOnUserInput">
     <a href="#completeMorphOnUserInput" class="doc-link"></a>
-    completeMorphOnUserInput<span class="type-signature"> : boolean</span>
+    completeMorphOnUserInput<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L251">engine/Source/Scene/Scene.js 251</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L285">Scene/Scene.js 285</a>
 </div>
 
 
@@ -1243,7 +1133,7 @@ scene transition animation on user input.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L416">engine/Source/Scene/Scene.js 416</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L432">Scene/Scene.js 432</a>
 </div>
 
 
@@ -1324,11 +1214,11 @@ scene.debugCommandFilter = function(command) {
 <div class="nameContainer">
 <h4 class="name" id="debugFrustumStatistics">
     <a href="#debugFrustumStatistics" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> debugFrustumStatistics<span class="type-signature"> : object</span>
+    <span class="type-signature attribute-readonly">readonly</span> debugFrustumStatistics<span class="type-signature"> : Object</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1343">engine/Source/Scene/Scene.js 1343</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1314">Scene/Scene.js 1314</a>
 </div>
 
 
@@ -1395,11 +1285,11 @@ three frustums.
 <div class="nameContainer">
 <h4 class="name" id="debugShowCommands">
     <a href="#debugShowCommands" class="doc-link"></a>
-    debugShowCommands<span class="type-signature"> : boolean</span>
+    debugShowCommands<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L430">engine/Source/Scene/Scene.js 430</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L446">Scene/Scene.js 446</a>
 </div>
 
 
@@ -1463,11 +1353,11 @@ command-dense and could benefit from batching.
 <div class="nameContainer">
 <h4 class="name" id="debugShowDepthFrustum">
     <a href="#debugShowDepthFrustum" class="doc-link"></a>
-    debugShowDepthFrustum<span class="type-signature"> : number</span>
+    debugShowDepthFrustum<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L471">engine/Source/Scene/Scene.js 471</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L487">Scene/Scene.js 487</a>
 </div>
 
 
@@ -1529,11 +1419,11 @@ Indicates which frustum will have depth information displayed.
 <div class="nameContainer">
 <h4 class="name" id="debugShowFramesPerSecond">
     <a href="#debugShowFramesPerSecond" class="doc-link"></a>
-    debugShowFramesPerSecond<span class="type-signature"> : boolean</span>
+    debugShowFramesPerSecond<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L459">engine/Source/Scene/Scene.js 459</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L475">Scene/Scene.js 475</a>
 </div>
 
 
@@ -1595,11 +1485,11 @@ Displays frames per second and time between frames.
 <div class="nameContainer">
 <h4 class="name" id="debugShowFrustumPlanes">
     <a href="#debugShowFrustumPlanes" class="doc-link"></a>
-    debugShowFrustumPlanes<span class="type-signature"> : boolean</span>
+    debugShowFrustumPlanes<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L483">engine/Source/Scene/Scene.js 483</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L499">Scene/Scene.js 499</a>
 </div>
 
 
@@ -1661,11 +1551,11 @@ When <code>true</code>, draws outlines to show the boundaries of the camera frus
 <div class="nameContainer">
 <h4 class="name" id="debugShowFrustums">
     <a href="#debugShowFrustums" class="doc-link"></a>
-    debugShowFrustums<span class="type-signature"> : boolean</span>
+    debugShowFrustums<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L447">engine/Source/Scene/Scene.js 447</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L463">Scene/Scene.js 463</a>
 </div>
 
 
@@ -1732,11 +1622,11 @@ yellow.
 <div class="nameContainer">
 <h4 class="name" id="drawingBufferHeight">
     <a href="#drawingBufferHeight" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> drawingBufferHeight<span class="type-signature"> : number</span>
+    <span class="type-signature attribute-readonly">readonly</span> drawingBufferHeight<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L806">engine/Source/Scene/Scene.js 806</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L795">Scene/Scene.js 795</a>
 </div>
 
 
@@ -1797,11 +1687,11 @@ yellow.
 <div class="nameContainer">
 <h4 class="name" id="drawingBufferWidth">
     <a href="#drawingBufferWidth" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> drawingBufferWidth<span class="type-signature"> : number</span>
+    <span class="type-signature attribute-readonly">readonly</span> drawingBufferWidth<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L821">engine/Source/Scene/Scene.js 821</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L810">Scene/Scene.js 810</a>
 </div>
 
 
@@ -1812,7 +1702,7 @@ yellow.
 
 
 <div class="description">
-    The drawingBufferWidth of the underlying GL context.
+    The drawingBufferHeight of the underlying GL context.
 </div>
 
 
@@ -1849,68 +1739,8 @@ yellow.
     
     <h5>See:</h5>
     <ul class="see-list">
-        <li><a href="https://www.khronos.org/registry/webgl/specs/1.0/#DOM-WebGLRenderingContext-drawingBufferWidth">drawingBufferWidth</a></li>
+        <li><a href="https://www.khronos.org/registry/webgl/specs/1.0/#DOM-WebGLRenderingContext-drawingBufferHeight">drawingBufferHeight</a></li>
     </ul>
-    
-
-    
-</dl>
-
-
-        
-            
-<div class="nameContainer">
-<h4 class="name" id="ellipsoid">
-    <a href="#ellipsoid" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> ellipsoid<span class="type-signature"> : <a href="Ellipsoid.html">Ellipsoid</a></span>
-    
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L941">engine/Source/Scene/Scene.js 941</a>
-</div>
-
-
-</h4>
-
-</div>
-
-
-
-<div class="description">
-    The ellipsoid.  If not specified, the default ellipsoid is used.
-</div>
-
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
     
 
     
@@ -1922,11 +1752,11 @@ yellow.
 <div class="nameContainer">
 <h4 class="name" id="eyeSeparation">
     <a href="#eyeSeparation" class="doc-link"></a>
-    eyeSeparation<span class="type-signature"> : number</span>
+    eyeSeparation<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L598">engine/Source/Scene/Scene.js 598</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L594">Scene/Scene.js 594</a>
 </div>
 
 
@@ -1982,11 +1812,11 @@ yellow.
 <div class="nameContainer">
 <h4 class="name" id="farToNearRatio">
     <a href="#farToNearRatio" class="doc-link"></a>
-    farToNearRatio<span class="type-signature"> : number</span>
+    farToNearRatio<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L346">engine/Source/Scene/Scene.js 346</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L380">Scene/Scene.js 380</a>
 </div>
 
 
@@ -2050,11 +1880,11 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
 <div class="nameContainer">
 <h4 class="name" id="focalLength">
     <a href="#focalLength" class="doc-link"></a>
-    focalLength<span class="type-signature"> : number</span>
+    focalLength<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L592">engine/Source/Scene/Scene.js 592</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L588">Scene/Scene.js 588</a>
 </div>
 
 
@@ -2114,7 +1944,7 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L542">engine/Source/Scene/Scene.js 542</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L548">Scene/Scene.js 548</a>
 </div>
 
 
@@ -2127,8 +1957,6 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
 <div class="description">
     Blends the atmosphere to geometry far from the camera for horizon views. Allows for additional
 performance improvements by rendering less geometry and dispatching less terrain requests.
-
-Disbaled by default if an ellipsoid other than WGS84 is used.
 </div>
 
 
@@ -2173,11 +2001,11 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
 <div class="nameContainer">
 <h4 class="name" id="gamma">
     <a href="#gamma" class="doc-link"></a>
-    gamma<span class="type-signature"> : number</span>
+    gamma<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1569">engine/Source/Scene/Scene.js 1569</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1540">Scene/Scene.js 1540</a>
 </div>
 
 
@@ -2240,7 +2068,7 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L953">engine/Source/Scene/Scene.js 953</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L929">Scene/Scene.js 929</a>
 </div>
 
 
@@ -2300,7 +2128,7 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L986">engine/Source/Scene/Scene.js 986</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L962">Scene/Scene.js 962</a>
 </div>
 
 
@@ -2356,11 +2184,11 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
 <div class="nameContainer">
 <h4 class="name" id="highDynamicRange">
     <a href="#highDynamicRange" class="doc-link"></a>
-    highDynamicRange<span class="type-signature"> : boolean</span>
+    highDynamicRange<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1584">engine/Source/Scene/Scene.js 1584</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1555">Scene/Scene.js 1555</a>
 </div>
 
 
@@ -2419,11 +2247,11 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
 <div class="nameContainer">
 <h4 class="name" id="highDynamicRangeSupported">
     <a href="#highDynamicRangeSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> highDynamicRangeSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> highDynamicRangeSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1606">engine/Source/Scene/Scene.js 1606</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1577">Scene/Scene.js 1577</a>
 </div>
 
 
@@ -2482,11 +2310,11 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
 <div class="nameContainer">
 <h4 class="name" id="id">
     <a href="#id" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> id<span class="type-signature"> : string</span>
+    <span class="type-signature attribute-readonly">readonly</span> id<span class="type-signature"> : String</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1381">engine/Source/Scene/Scene.js 1381</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1352">Scene/Scene.js 1352</a>
 </div>
 
 
@@ -2546,7 +2374,7 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1153">engine/Source/Scene/Scene.js 1153</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1129">Scene/Scene.js 1129</a>
 </div>
 
 
@@ -2602,11 +2430,11 @@ Disbaled by default if an ellipsoid other than WGS84 is used.
 <div class="nameContainer">
 <h4 class="name" id="invertClassification">
     <a href="#invertClassification" class="doc-link"></a>
-    invertClassification<span class="type-signature"> : boolean</span>
+    invertClassification<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L572">engine/Source/Scene/Scene.js 572</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L568">Scene/Scene.js 568</a>
 </div>
 
 
@@ -2670,7 +2498,7 @@ unclassified 3D Tile geometry will render with the color multiplied by <a href="
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L581">engine/Source/Scene/Scene.js 581</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L577">Scene/Scene.js 577</a>
 </div>
 
 
@@ -2731,11 +2559,11 @@ unclassified 3D Tile geometry will render with the color multiplied by <a href="
 <div class="nameContainer">
 <h4 class="name" id="invertClassificationSupported">
     <a href="#invertClassificationSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> invertClassificationSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> invertClassificationSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L913">engine/Source/Scene/Scene.js 913</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L902">Scene/Scene.js 902</a>
 </div>
 
 
@@ -2800,7 +2628,7 @@ unclassified 3D Tile geometry will render with the color multiplied by <a href="
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1308">engine/Source/Scene/Scene.js 1308</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1279">Scene/Scene.js 1279</a>
 </div>
 
 
@@ -2861,7 +2689,7 @@ rendered.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L747">engine/Source/Scene/Scene.js 747</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L742">Scene/Scene.js 742</a>
 </div>
 
 
@@ -2917,11 +2745,11 @@ rendered.
 <div class="nameContainer">
 <h4 class="name" id="logarithmicDepthBuffer">
     <a href="#logarithmicDepthBuffer" class="doc-link"></a>
-    logarithmicDepthBuffer<span class="type-signature"> : boolean</span>
+    logarithmicDepthBuffer<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1550">engine/Source/Scene/Scene.js 1550</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1521">Scene/Scene.js 1521</a>
 </div>
 
 
@@ -2978,11 +2806,11 @@ increasing performance. This property relies on fragmentDepth being supported.
 <div class="nameContainer">
 <h4 class="name" id="logarithmicDepthFarToNearRatio">
     <a href="#logarithmicDepthFarToNearRatio" class="doc-link"></a>
-    logarithmicDepthFarToNearRatio<span class="type-signature"> : number</span>
+    logarithmicDepthFarToNearRatio<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L359">engine/Source/Scene/Scene.js 359</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L393">Scene/Scene.js 393</a>
 </div>
 
 
@@ -3050,7 +2878,7 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1498">engine/Source/Scene/Scene.js 1498</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1469">Scene/Scene.js 1469</a>
 </div>
 
 
@@ -3110,7 +2938,7 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1080">engine/Source/Scene/Scene.js 1080</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1056">Scene/Scene.js 1056</a>
 </div>
 
 
@@ -3169,11 +2997,11 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
 <div class="nameContainer">
 <h4 class="name" id="maximumAliasedLineWidth">
     <a href="#maximumAliasedLineWidth" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> maximumAliasedLineWidth<span class="type-signature"> : number</span>
+    <span class="type-signature attribute-readonly">readonly</span> maximumAliasedLineWidth<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L836">engine/Source/Scene/Scene.js 836</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L825">Scene/Scene.js 825</a>
 </div>
 
 
@@ -3234,11 +3062,11 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
 <div class="nameContainer">
 <h4 class="name" id="maximumCubeMapSize">
     <a href="#maximumCubeMapSize" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> maximumCubeMapSize<span class="type-signature"> : number</span>
+    <span class="type-signature attribute-readonly">readonly</span> maximumCubeMapSize<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L851">engine/Source/Scene/Scene.js 851</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L840">Scene/Scene.js 840</a>
 </div>
 
 
@@ -3299,11 +3127,11 @@ when <a href="Scene.html#logarithmicDepthBuffer"><code>Scene#logarithmicDepthBuf
 <div class="nameContainer">
 <h4 class="name" id="maximumRenderTimeChange">
     <a href="#maximumRenderTimeChange" class="doc-link"></a>
-    maximumRenderTimeChange<span class="type-signature"> : number</span>
+    maximumRenderTimeChange<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L678">engine/Source/Scene/Scene.js 678</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L674">Scene/Scene.js 674</a>
 </div>
 
 
@@ -3374,11 +3202,11 @@ and animations.
 <div class="nameContainer">
 <h4 class="name" id="minimumDisableDepthTestDistance">
     <a href="#minimumDisableDepthTestDistance" class="doc-link"></a>
-    minimumDisableDepthTestDistance<span class="type-signature"> : number</span>
+    minimumDisableDepthTestDistance<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1528">engine/Source/Scene/Scene.js 1528</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1499">Scene/Scene.js 1499</a>
 </div>
 
 
@@ -3444,7 +3272,7 @@ property of a billboard, label or point will override this value.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1393">engine/Source/Scene/Scene.js 1393</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1364">Scene/Scene.js 1364</a>
 </div>
 
 
@@ -3507,7 +3335,7 @@ property of a billboard, label or point will override this value.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L308">engine/Source/Scene/Scene.js 308</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L342">Scene/Scene.js 342</a>
 </div>
 
 
@@ -3570,7 +3398,7 @@ property of a billboard, label or point will override this value.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L265">engine/Source/Scene/Scene.js 265</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L299">Scene/Scene.js 299</a>
 </div>
 
 
@@ -3633,7 +3461,7 @@ property of a billboard, label or point will override this value.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L258">engine/Source/Scene/Scene.js 258</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L292">Scene/Scene.js 292</a>
 </div>
 
 
@@ -3692,11 +3520,11 @@ property of a billboard, label or point will override this value.
 <div class="nameContainer">
 <h4 class="name" id="morphTime">
     <a href="#morphTime" class="doc-link"></a>
-    morphTime<span class="type-signature"> : number</span>
+    morphTime<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L333">engine/Source/Scene/Scene.js 333</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L367">Scene/Scene.js 367</a>
 </div>
 
 
@@ -3756,11 +3584,11 @@ with 0.0 being 2D or Columbus View and 1.0 being 3D.
 <div class="nameContainer">
 <h4 class="name" id="msaaSamples">
     <a href="#msaaSamples" class="doc-link"></a>
-    msaaSamples<span class="type-signature"> : number</span>
+    msaaSamples<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1635">engine/Source/Scene/Scene.js 1635</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1606">Scene/Scene.js 1606</a>
 </div>
 
 
@@ -3819,11 +3647,11 @@ with 0.0 being 2D or Columbus View and 1.0 being 3D.
 <div class="nameContainer">
 <h4 class="name" id="msaaSupported">
     <a href="#msaaSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> msaaSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> msaaSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1651">engine/Source/Scene/Scene.js 1651</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1622">Scene/Scene.js 1622</a>
 </div>
 
 
@@ -3879,11 +3707,11 @@ with 0.0 being 2D or Columbus View and 1.0 being 3D.
 <div class="nameContainer">
 <h4 class="name" id="nearToFarDistance2D">
     <a href="#nearToFarDistance2D" class="doc-link"></a>
-    nearToFarDistance2D<span class="type-signature"> : number</span>
+    nearToFarDistance2D<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L369">engine/Source/Scene/Scene.js 369</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L403">Scene/Scene.js 403</a>
 </div>
 
 
@@ -3944,11 +3772,11 @@ other hand, increasing this will increase performance but may cause z-fighting a
 <div class="nameContainer">
 <h4 class="name" id="orderIndependentTranslucency">
     <a href="#orderIndependentTranslucency" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> orderIndependentTranslucency<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> orderIndependentTranslucency<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1369">engine/Source/Scene/Scene.js 1369</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1340">Scene/Scene.js 1340</a>
 </div>
 
 
@@ -4006,11 +3834,11 @@ other factors that could prevent OIT from functioning on a given system configur
 <div class="nameContainer">
 <h4 class="name" id="pickPositionSupported">
     <a href="#pickPositionSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> pickPositionSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> pickPositionSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L866">engine/Source/Scene/Scene.js 866</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L855">Scene/Scene.js 855</a>
 </div>
 
 
@@ -4071,11 +3899,11 @@ other factors that could prevent OIT from functioning on a given system configur
 <div class="nameContainer">
 <h4 class="name" id="pickTranslucentDepth">
     <a href="#pickTranslucentDepth" class="doc-link"></a>
-    pickTranslucentDepth<span class="type-signature"> : boolean</span>
+    pickTranslucentDepth<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L517">engine/Source/Scene/Scene.js 517</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L533">Scene/Scene.js 533</a>
 </div>
 
 
@@ -4156,7 +3984,7 @@ viewer.screenSpaceEventHandler.setInputAction(function onLeftClick(movement) {
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L604">engine/Source/Scene/Scene.js 604</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L600">Scene/Scene.js 600</a>
 </div>
 
 
@@ -4216,7 +4044,7 @@ viewer.screenSpaceEventHandler.setInputAction(function onLeftClick(movement) {
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1294">engine/Source/Scene/Scene.js 1294</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1265">Scene/Scene.js 1265</a>
 </div>
 
 
@@ -4288,7 +4116,7 @@ receive the Scene instance as the first parameter and the current time as the se
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1239">engine/Source/Scene/Scene.js 1239</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1210">Scene/Scene.js 1210</a>
 </div>
 
 
@@ -4361,7 +4189,7 @@ parameter.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1275">engine/Source/Scene/Scene.js 1275</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1246">Scene/Scene.js 1246</a>
 </div>
 
 
@@ -4434,7 +4262,7 @@ parameter.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1219">engine/Source/Scene/Scene.js 1219</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1190">Scene/Scene.js 1190</a>
 </div>
 
 
@@ -4506,7 +4334,7 @@ receive the Scene instance as the first parameter and the current time as the se
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L973">engine/Source/Scene/Scene.js 973</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L949">Scene/Scene.js 949</a>
 </div>
 
 
@@ -4566,7 +4394,7 @@ receive the Scene instance as the first parameter and the current time as the se
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1255">engine/Source/Scene/Scene.js 1255</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1226">Scene/Scene.js 1226</a>
 </div>
 
 
@@ -4625,11 +4453,11 @@ the <code>rethrowRenderErrors</code> property.
 <div class="nameContainer">
 <h4 class="name" id="requestRenderMode">
     <a href="#requestRenderMode" class="doc-link"></a>
-    requestRenderMode<span class="type-signature"> : boolean</span>
+    requestRenderMode<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L661">engine/Source/Scene/Scene.js 661</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L657">Scene/Scene.js 657</a>
 </div>
 
 
@@ -4700,11 +4528,11 @@ to the scene in other parts of the API.
 <div class="nameContainer">
 <h4 class="name" id="rethrowRenderErrors">
     <a href="#rethrowRenderErrors" class="doc-link"></a>
-    rethrowRenderErrors<span class="type-signature"> : boolean</span>
+    rethrowRenderErrors<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L242">engine/Source/Scene/Scene.js 242</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L276">Scene/Scene.js 276</a>
 </div>
 
 
@@ -4766,11 +4594,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="sampleHeightSupported">
     <a href="#sampleHeightSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> sampleHeightSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> sampleHeightSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L882">engine/Source/Scene/Scene.js 882</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L871">Scene/Scene.js 871</a>
 </div>
 
 
@@ -4833,11 +4661,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="scene3DOnly">
     <a href="#scene3DOnly" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> scene3DOnly<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> scene3DOnly<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1355">engine/Source/Scene/Scene.js 1355</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1326">Scene/Scene.js 1326</a>
 </div>
 
 
@@ -4897,7 +4725,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1065">engine/Source/Scene/Scene.js 1065</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1041">Scene/Scene.js 1041</a>
 </div>
 
 
@@ -4957,7 +4785,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L560">engine/Source/Scene/Scene.js 560</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L556">Scene/Scene.js 556</a>
 </div>
 
 
@@ -5017,7 +4845,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L283">engine/Source/Scene/Scene.js 283</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L317">Scene/Scene.js 317</a>
 </div>
 
 
@@ -5080,7 +4908,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L275">engine/Source/Scene/Scene.js 275</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L309">Scene/Scene.js 309</a>
 </div>
 
 
@@ -5144,11 +4972,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="specularEnvironmentMaps">
     <a href="#specularEnvironmentMaps" class="doc-link"></a>
-    specularEnvironmentMaps<span class="type-signature"> : string</span>
+    specularEnvironmentMaps<span class="type-signature"> : String</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L740">engine/Source/Scene/Scene.js 740</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L735">Scene/Scene.js 735</a>
 </div>
 
 
@@ -5204,11 +5032,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="specularEnvironmentMapsSupported">
     <a href="#specularEnvironmentMapsSupported" class="doc-link"></a>
-    <span class="type-signature attribute-readonly">readonly</span> specularEnvironmentMapsSupported<span class="type-signature"> : boolean</span>
+    <span class="type-signature attribute-readonly">readonly</span> specularEnvironmentMapsSupported<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L928">engine/Source/Scene/Scene.js 928</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L917">Scene/Scene.js 917</a>
 </div>
 
 
@@ -5273,7 +5101,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L734">engine/Source/Scene/Scene.js 734</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L729">Scene/Scene.js 729</a>
 </div>
 
 
@@ -5329,11 +5157,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="splitPosition">
     <a href="#splitPosition" class="doc-link"></a>
-    splitPosition<span class="type-signature"> : number</span>
+    splitPosition<span class="type-signature"> : Number</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1510">engine/Source/Scene/Scene.js 1510</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1481">Scene/Scene.js 1481</a>
 </div>
 
 
@@ -5393,7 +5221,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L291">engine/Source/Scene/Scene.js 291</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L325">Scene/Scene.js 325</a>
 </div>
 
 
@@ -5452,11 +5280,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="sunBloom">
     <a href="#sunBloom" class="doc-link"></a>
-    sunBloom<span class="type-signature"> : boolean</span>
+    sunBloom<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L299">engine/Source/Scene/Scene.js 299</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L333">Scene/Scene.js 333</a>
 </div>
 
 
@@ -5519,7 +5347,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1169">engine/Source/Scene/Scene.js 1169</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1145">Scene/Scene.js 1145</a>
 </div>
 
 
@@ -5579,7 +5407,7 @@ returns normally after raising the event.
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1196">engine/Source/Scene/Scene.js 1196</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1167">Scene/Scene.js 1167</a>
 </div>
 
 
@@ -5635,11 +5463,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="useDepthPicking">
     <a href="#useDepthPicking" class="doc-link"></a>
-    useDepthPicking<span class="type-signature"> : boolean</span>
+    useDepthPicking<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L493">engine/Source/Scene/Scene.js 493</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L509">Scene/Scene.js 509</a>
 </div>
 
 
@@ -5698,11 +5526,11 @@ returns normally after raising the event.
 <div class="nameContainer">
 <h4 class="name" id="useWebVR">
     <a href="#useWebVR" class="doc-link"></a>
-    useWebVR<span class="type-signature"> : boolean</span>
+    useWebVR<span class="type-signature"> : Boolean</span>
     
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1455">engine/Source/Scene/Scene.js 1455</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1426">Scene/Scene.js 1426</a>
 </div>
 
 
@@ -5758,134 +5586,6 @@ Used for cardboard and WebVR.
 
 
         
-            
-<div class="nameContainer">
-<h4 class="name" id="verticalExaggeration">
-    <a href="#verticalExaggeration" class="doc-link"></a>
-    verticalExaggeration<span class="type-signature"> : number</span>
-    
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L378">engine/Source/Scene/Scene.js 378</a>
-</div>
-
-
-</h4>
-
-</div>
-
-
-
-<div class="description">
-    The vertical exaggeration of the scene.
-When set to 1.0, no exaggeration is applied.
-</div>
-
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <span class="details-header">Default Value:</span>
-    <code class="language-javascript">1.0</code>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-            
-<div class="nameContainer">
-<h4 class="name" id="verticalExaggerationRelativeHeight">
-    <a href="#verticalExaggerationRelativeHeight" class="doc-link"></a>
-    verticalExaggerationRelativeHeight<span class="type-signature"> : number</span>
-    
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L387">engine/Source/Scene/Scene.js 387</a>
-</div>
-
-
-</h4>
-
-</div>
-
-
-
-<div class="description">
-    The reference height for vertical exaggeration of the scene.
-When set to 0.0, the exaggeration is applied relative to the ellipsoid surface.
-</div>
-
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <span class="details-header">Default Value:</span>
-    <code class="language-javascript">0.0</code>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
     
 
     
@@ -5900,7 +5600,7 @@ When set to 0.0, the exaggeration is applied relative to the ellipsoid surface.
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4646">engine/Source/Scene/Scene.js 4646</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4349">Scene/Scene.js 4349</a>
 </div>
 
 
@@ -6053,6 +5753,7 @@ HTML element at the same screen position as an object in the scene.
         
     <pre><code class="language-javascript">// Output the canvas position of longitude/latitude (0, 0) every time the mouse moves.
 const scene = widget.scene;
+const ellipsoid = scene.globe.ellipsoid;
 const position = Cesium.Cartesian3.fromDegrees(0.0, 0.0);
 const handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
 handler.setInputAction(function(movement) {
@@ -6082,7 +5783,7 @@ handler.setInputAction(function(movement) {
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4533">engine/Source/Scene/Scene.js 4533</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4235">Scene/Scene.js 4235</a>
 </div>
 
 
@@ -6209,7 +5910,7 @@ all other primitives regardless of their visibility.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -6379,7 +6080,7 @@ entity.position = viewer.scene.clampToHeight(position);</code></pre>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4616">engine/Source/Scene/Scene.js 4616</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4318">Scene/Scene.js 4318</a>
 </div>
 
 
@@ -6503,7 +6204,7 @@ can be sampled at that location, or another error occurs, the element in the arr
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -6641,7 +6342,7 @@ promise.then(function(updatedCartesians) {
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4653">engine/Source/Scene/Scene.js 4653</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4356">Scene/Scene.js 4356</a>
 </div>
 
 
@@ -6722,7 +6423,7 @@ promise.then(function(updatedCartesians) {
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4769">engine/Source/Scene/Scene.js 4769</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4438">Scene/Scene.js 4438</a>
 </div>
 
 
@@ -6828,11 +6529,11 @@ assign the return value (<code>undefined</code>) to the object as done in the ex
     <div class="nameContainer">
     <h4 class="name" id="drillPick">
         <a href="#drillPick" class="doc-link"></a>
-        drillPick<span class="signature">(windowPosition, <span class="optional">limit</span>, <span class="optional">width</span>, <span class="optional">height</span>)</span> &rarr; <span class="type-signature returnType">Array.&lt;any></span>
+        drillPick<span class="signature">(windowPosition, <span class="optional">limit</span>, <span class="optional">width</span>, <span class="optional">height</span>)</span> &rarr; <span class="type-signature returnType">Array.&lt;*></span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4326">engine/Source/Scene/Scene.js 4326</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4028">Scene/Scene.js 4028</a>
 </div>
 
 
@@ -6922,7 +6623,7 @@ the list are ordered by their visual order in the scene (front to back).
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -6956,7 +6657,7 @@ the list are ordered by their visual order in the scene (front to back).
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -6992,7 +6693,7 @@ the list are ordered by their visual order in the scene (front to back).
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -7111,7 +6812,7 @@ the list are ordered by their visual order in the scene (front to back).
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L1699">engine/Source/Scene/Scene.js 1699</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L1670">Scene/Scene.js 1670</a>
 </div>
 
 
@@ -7164,7 +6865,7 @@ the list are ordered by their visual order in the scene (front to back).
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">String</span>
 
 
             
@@ -7242,11 +6943,11 @@ the list are ordered by their visual order in the scene (front to back).
     <div class="nameContainer">
     <h4 class="name" id="isDestroyed">
         <a href="#isDestroyed" class="doc-link"></a>
-        isDestroyed<span class="signature">()</span> &rarr; <span class="type-signature returnType">boolean</span>
+        isDestroyed<span class="signature">()</span> &rarr; <span class="type-signature returnType">Boolean</span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4749">engine/Source/Scene/Scene.js 4749</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4418">Scene/Scene.js 4418</a>
 </div>
 
 
@@ -7344,7 +7045,7 @@ If this object was destroyed, it should not be used; calling any function other 
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4661">engine/Source/Scene/Scene.js 4661</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4364">Scene/Scene.js 4364</a>
 </div>
 
 
@@ -7399,7 +7100,7 @@ If this object was destroyed, it should not be used; calling any function other 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -7485,7 +7186,7 @@ If this object was destroyed, it should not be used; calling any function other 
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4679">engine/Source/Scene/Scene.js 4679</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4396">Scene/Scene.js 4396</a>
 </div>
 
 
@@ -7540,7 +7241,7 @@ If this object was destroyed, it should not be used; calling any function other 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -7626,7 +7327,7 @@ If this object was destroyed, it should not be used; calling any function other 
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4670">engine/Source/Scene/Scene.js 4670</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4380">Scene/Scene.js 4380</a>
 </div>
 
 
@@ -7681,7 +7382,7 @@ If this object was destroyed, it should not be used; calling any function other 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -7763,11 +7464,11 @@ If this object was destroyed, it should not be used; calling any function other 
     <div class="nameContainer">
     <h4 class="name" id="pick">
         <a href="#pick" class="doc-link"></a>
-        pick<span class="signature">(windowPosition, <span class="optional">width</span>, <span class="optional">height</span>)</span> &rarr; <span class="type-signature returnType">object</span>
+        pick<span class="signature">(windowPosition, <span class="optional">width</span>, <span class="optional">height</span>)</span> &rarr; <span class="type-signature returnType">Object</span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4200">engine/Source/Scene/Scene.js 4200</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L3955">Scene/Scene.js 3955</a>
 </div>
 
 
@@ -7859,7 +7560,7 @@ When a feature of a 3D Tiles tileset is picked, <code>pick</code> returns a <a h
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -7895,7 +7596,7 @@ When a feature of a 3D Tiles tileset is picked, <code>pick</code> returns a <a h
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -8001,7 +7702,7 @@ handler.setInputAction(function(movement) {
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4303">engine/Source/Scene/Scene.js 4303</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4005">Scene/Scene.js 4005</a>
 </div>
 
 
@@ -8188,250 +7889,13 @@ translucent primitives; otherwise, this essentially picks through translucent pr
         
             
     <div class="nameContainer">
-    <h4 class="name" id="pickVoxel">
-        <a href="#pickVoxel" class="doc-link"></a>
-        pickVoxel<span class="signature">(windowPosition, <span class="optional">width</span>, <span class="optional">height</span>)</span> &rarr; <span class="type-signature returnType"><a href="VoxelCell.html">VoxelCell</a>|undefined</span>
-        
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4224">engine/Source/Scene/Scene.js 4224</a>
-</div>
-
-
-    </h4>
-
-    </div>
-
-    
-
-
-<div class="description">
-    Returns a <a href="VoxelCell.html"><code>VoxelCell</code></a> for the voxel sample rendered at a particular window coordinate,
-or undefined if no voxel is rendered at that position.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>windowPosition</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Cartesian2.html">Cartesian2</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">
-            
-                
-                
-
-                
-            
-                Window coordinates to perform picking on.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="default">
-                
-                    <code class="language-javascript">3</code>
-                
-                </td>
-            
-
-            <td class="description last">
-            
-                
-                        <span class="optional">optional</span>
-                
-                
-
-                
-            
-                Width of the pick rectangle.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>height</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="default">
-                
-                    <code class="language-javascript">3</code>
-                
-                </td>
-            
-
-            <td class="description last">
-            
-                
-                        <span class="optional">optional</span>
-                
-                
-
-                
-            
-                Height of the pick rectangle.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    Information about the voxel cell rendered at the picked position.
-</div>
-
-
-    
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h5>Example:</h5>
-        
-    <pre><code class="language-javascript">On left click, report the value of the "color" property at that voxel sample.
-handler.setInputAction(function(movement) {
-  const voxelCell = scene.pickVoxel(movement.position);
-  if (defined(voxelCell)) {
-    console.log(voxelCell.getProperty("color"));
-  }
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);</code></pre>
-
-    
-
-    
-
-    
-
-    
-    <div class="tag-experimental">
-        <h5>Experimental</h5>
-        
-            <p>This feature is not final and is subject to change without Cesium's standard deprecation policy.</p>
-        
-    </div>
-    
-
-    
-
-    
-</dl>
-
-
-        
-            
-    <div class="nameContainer">
     <h4 class="name" id="render">
         <a href="#render" class="doc-link"></a>
         render<span class="signature">(<span class="optional">time</span>)</span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4050">engine/Source/Scene/Scene.js 4050</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L3809">Scene/Scene.js 3809</a>
 </div>
 
 
@@ -8444,7 +7908,7 @@ handler.setInputAction(function(movement) {
 
 <div class="description">
     Update and render the scene. It is usually not necessary to call this function
-directly because <a href="CesiumWidget.html"><code>CesiumWidget</code></a> will do it automatically.
+directly because <a href="CesiumWidget.html"><code>CesiumWidget</code></a> or <a href="Viewer.html"><code>Viewer</code></a> do it automatically.
 </div>
 
 
@@ -8565,7 +8029,7 @@ directly because <a href="CesiumWidget.html"><code>CesiumWidget</code></a> will 
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4164">engine/Source/Scene/Scene.js 4164</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L3919">Scene/Scene.js 3919</a>
 </div>
 
 
@@ -8648,11 +8112,11 @@ The render rate will not exceed the <a href="CesiumWidget.html#targetFrameRate">
     <div class="nameContainer">
     <h4 class="name" id="sampleHeight">
         <a href="#sampleHeight" class="doc-link"></a>
-        sampleHeight<span class="signature">(position, <span class="optional">objectsToExclude</span>, <span class="optional">width</span>)</span> &rarr; <span class="type-signature returnType">number</span>
+        sampleHeight<span class="signature">(position, <span class="optional">objectsToExclude</span>, <span class="optional">width</span>)</span> &rarr; <span class="type-signature returnType">Number</span>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4502">engine/Source/Scene/Scene.js 4502</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4204">Scene/Scene.js 4204</a>
 </div>
 
 
@@ -8779,7 +8243,7 @@ from all other primitives regardless of their visibility.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -8915,7 +8379,7 @@ console.log(height);</code></pre>
         
 
 <div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4576">engine/Source/Scene/Scene.js 4576</a>
+    <a href="https://github.com/CesiumGS/cesium/blob/1.98/Source/Scene/Scene.js#L4278">Scene/Scene.js 4278</a>
 </div>
 
 
@@ -9040,7 +8504,7 @@ the height is set to undefined.
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Number</span>
 
 
             
@@ -9170,155 +8634,6 @@ promise.then(function(updatedPosition) {
 
 
         
-            
-    <div class="nameContainer">
-    <h4 class="name" id="setTerrain">
-        <a href="#setTerrain" class="doc-link"></a>
-        setTerrain<span class="signature">(terrain)</span> &rarr; <span class="type-signature returnType"><a href="Terrain.html">Terrain</a></span>
-        
-
-<div class="source-link rightLinks">
-    <a href="https://github.com/CesiumGS/cesium/blob/1.120/packages/engine/Source/Scene/Scene.js#L4729">engine/Source/Scene/Scene.js 4729</a>
-</div>
-
-
-    </h4>
-
-    </div>
-
-    
-
-
-<div class="description">
-    Update the terrain providing surface geometry for the globe.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>terrain</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Terrain.html">Terrain</a></span>
-
-
-            
-            </td>
-
-            
-
-            <td class="description last">
-            
-                The terrain provider async helper</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    terrain The terrain provider async helper
-</div>
-
-
-    
-
-
-
-
-<dl class="details">
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h5>Examples:</h5>
-        
-    <pre><code class="language-javascript">// Use Cesium World Terrain
-scene.setTerrain(Cesium.Terrain.fromWorldTerrain());</code></pre>
-
-    <pre><code class="language-javascript">// Use a custom terrain provider
-const terrain = new Cesium.Terrain(Cesium.CesiumTerrainProvider.fromUrl("https://myTestTerrain.com"));
-scene.setTerrain(terrain);
-
-terrain.errorEvent.addEventListener(error => {
-  alert(`Encountered an error while creating terrain! ${error}`);
-});</code></pre>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
     
 
     
@@ -9344,7 +8659,7 @@ terrain.errorEvent.addEventListener(error => {
 <div class="nav">
     <div class="menu">
         <input type="text" class="classFilter" id="ClassFilter" placeholder="Search">
-        <div id="ClassList"><h5>packages/engine</h5><ul><li data-name="Appearance"><a href="Appearance.html">Appearance</a></li><li data-name="ArcGisBaseMapType"><a href="global.html#ArcGisBaseMapType">ArcGisBaseMapType</a></li><li data-name="ArcGisMapServerImageryProvider"><a href="ArcGisMapServerImageryProvider.html">ArcGisMapServerImageryProvider</a></li><li data-name="ArcGisMapService"><a href="ArcGisMapService.html">ArcGisMapService</a></li><li data-name="ArcGISTiledElevationTerrainProvider"><a href="ArcGISTiledElevationTerrainProvider.html">ArcGISTiledElevationTerrainProvider</a></li><li data-name="ArcType"><a href="global.html#ArcType">ArcType</a></li><li data-name="AssociativeArray"><a href="AssociativeArray.html">AssociativeArray</a></li><li data-name="Atmosphere"><a href="Atmosphere.html">Atmosphere</a></li><li data-name="Axis"><a href="global.html#Axis">Axis</a></li><li data-name="AxisAlignedBoundingBox"><a href="AxisAlignedBoundingBox.html">AxisAlignedBoundingBox</a></li><li data-name="barycentricCoordinates"><a href="global.html#barycentricCoordinates">barycentricCoordinates</a></li><li data-name="Billboard"><a href="Billboard.html">Billboard</a></li><li data-name="BillboardCollection"><a href="BillboardCollection.html">BillboardCollection</a></li><li data-name="BillboardGraphics"><a href="BillboardGraphics.html">BillboardGraphics</a></li><li data-name="BillboardVisualizer"><a href="BillboardVisualizer.html">BillboardVisualizer</a></li><li data-name="binarySearch"><a href="global.html#binarySearch">binarySearch</a></li><li data-name="binarySearchComparator"><a href="global.html#binarySearchComparator">binarySearchComparator</a></li><li data-name="BingMapsGeocoderService"><a href="BingMapsGeocoderService.html">BingMapsGeocoderService</a></li><li data-name="BingMapsImageryProvider"><a href="BingMapsImageryProvider.html">BingMapsImageryProvider</a></li><li data-name="BingMapsStyle"><a href="global.html#BingMapsStyle">BingMapsStyle</a></li><li data-name="BlendEquation"><a href="global.html#BlendEquation">BlendEquation</a></li><li data-name="BlendFunction"><a href="global.html#BlendFunction">BlendFunction</a></li><li data-name="BlendingState"><a href="BlendingState.html">BlendingState</a></li><li data-name="BlendOption"><a href="global.html#BlendOption">BlendOption</a></li><li data-name="BoundingRectangle"><a href="BoundingRectangle.html">BoundingRectangle</a></li><li data-name="BoundingSphere"><a href="BoundingSphere.html">BoundingSphere</a></li><li data-name="BoxEmitter"><a href="BoxEmitter.html">BoxEmitter</a></li><li data-name="BoxGeometry"><a href="BoxGeometry.html">BoxGeometry</a></li><li data-name="BoxGeometryUpdater"><a href="BoxGeometryUpdater.html">BoxGeometryUpdater</a></li><li data-name="BoxGraphics"><a href="BoxGraphics.html">BoxGraphics</a></li><li data-name="BoxOutlineGeometry"><a href="BoxOutlineGeometry.html">BoxOutlineGeometry</a></li><li data-name="buildModuleUrl"><a href="global.html#buildModuleUrl">buildModuleUrl</a></li><li data-name="CallbackProperty"><a href="CallbackProperty.html">CallbackProperty</a></li><li data-name="Camera"><a href="Camera.html">Camera</a></li><li data-name="CameraEventAggregator"><a href="CameraEventAggregator.html">CameraEventAggregator</a></li><li data-name="CameraEventType"><a href="global.html#CameraEventType">CameraEventType</a></li><li data-name="Cartesian2"><a href="Cartesian2.html">Cartesian2</a></li><li data-name="Cartesian3"><a href="Cartesian3.html">Cartesian3</a></li><li data-name="Cartesian4"><a href="Cartesian4.html">Cartesian4</a></li><li data-name="Cartographic"><a href="Cartographic.html">Cartographic</a></li><li data-name="CartographicGeocoderService"><a href="CartographicGeocoderService.html">CartographicGeocoderService</a></li><li data-name="CatmullRomSpline"><a href="CatmullRomSpline.html">CatmullRomSpline</a></li><li data-name="Cesium3DTile"><a href="Cesium3DTile.html">Cesium3DTile</a></li><li data-name="Cesium3DTileColorBlendMode"><a href="global.html#Cesium3DTileColorBlendMode">Cesium3DTileColorBlendMode</a></li><li data-name="Cesium3DTileContent"><a href="Cesium3DTileContent.html">Cesium3DTileContent</a></li><li data-name="Cesium3DTileFeature"><a href="Cesium3DTileFeature.html">Cesium3DTileFeature</a></li><li data-name="Cesium3DTilePointFeature"><a href="Cesium3DTilePointFeature.html">Cesium3DTilePointFeature</a></li><li data-name="Cesium3DTileset"><a href="Cesium3DTileset.html">Cesium3DTileset</a></li><li data-name="Cesium3DTilesetGraphics"><a href="Cesium3DTilesetGraphics.html">Cesium3DTilesetGraphics</a></li><li data-name="Cesium3DTilesetVisualizer"><a href="Cesium3DTilesetVisualizer.html">Cesium3DTilesetVisualizer</a></li><li data-name="Cesium3DTileStyle"><a href="Cesium3DTileStyle.html">Cesium3DTileStyle</a></li><li data-name="Cesium3DTilesVoxelProvider"><a href="Cesium3DTilesVoxelProvider.html">Cesium3DTilesVoxelProvider</a></li><li data-name="CesiumTerrainProvider"><a href="CesiumTerrainProvider.html">CesiumTerrainProvider</a></li><li data-name="CesiumWidget"><a href="CesiumWidget.html">CesiumWidget</a></li><li data-name="Check"><a href="global.html#Check">Check</a></li><li data-name="CheckerboardMaterialProperty"><a href="CheckerboardMaterialProperty.html">CheckerboardMaterialProperty</a></li><li data-name="CircleEmitter"><a href="CircleEmitter.html">CircleEmitter</a></li><li data-name="CircleGeometry"><a href="CircleGeometry.html">CircleGeometry</a></li><li data-name="CircleOutlineGeometry"><a href="CircleOutlineGeometry.html">CircleOutlineGeometry</a></li><li data-name="ClassificationPrimitive"><a href="ClassificationPrimitive.html">ClassificationPrimitive</a></li><li data-name="ClassificationType"><a href="global.html#ClassificationType">ClassificationType</a></li><li data-name="ClippingPlane"><a href="ClippingPlane.html">ClippingPlane</a></li><li data-name="ClippingPlaneCollection"><a href="ClippingPlaneCollection.html">ClippingPlaneCollection</a></li><li data-name="ClippingPolygon"><a href="ClippingPolygon.html">ClippingPolygon</a></li><li data-name="ClippingPolygonCollection"><a href="ClippingPolygonCollection.html">ClippingPolygonCollection</a></li><li data-name="Clock"><a href="Clock.html">Clock</a></li><li data-name="ClockRange"><a href="global.html#ClockRange">ClockRange</a></li><li data-name="ClockStep"><a href="global.html#ClockStep">ClockStep</a></li><li data-name="clone"><a href="global.html#clone">clone</a></li><li data-name="CloudCollection"><a href="CloudCollection.html">CloudCollection</a></li><li data-name="CloudType"><a href="global.html#CloudType">CloudType</a></li><li data-name="Color"><a href="Color.html">Color</a></li><li data-name="ColorBlendMode"><a href="global.html#ColorBlendMode">ColorBlendMode</a></li><li data-name="ColorGeometryInstanceAttribute"><a href="ColorGeometryInstanceAttribute.html">ColorGeometryInstanceAttribute</a></li><li data-name="ColorMaterialProperty"><a href="ColorMaterialProperty.html">ColorMaterialProperty</a></li><li data-name="combine"><a href="global.html#combine">combine</a></li><li data-name="ComponentDatatype"><a href="global.html#ComponentDatatype">ComponentDatatype</a></li><li data-name="CompositeEntityCollection"><a href="CompositeEntityCollection.html">CompositeEntityCollection</a></li><li data-name="CompositeMaterialProperty"><a href="CompositeMaterialProperty.html">CompositeMaterialProperty</a></li><li data-name="CompositePositionProperty"><a href="CompositePositionProperty.html">CompositePositionProperty</a></li><li data-name="CompositeProperty"><a href="CompositeProperty.html">CompositeProperty</a></li><li data-name="CompressedTextureBuffer"><a href="CompressedTextureBuffer.html">CompressedTextureBuffer</a></li><li data-name="ConditionsExpression"><a href="ConditionsExpression.html">ConditionsExpression</a></li><li data-name="ConeEmitter"><a href="ConeEmitter.html">ConeEmitter</a></li><li data-name="ConstantPositionProperty"><a href="ConstantPositionProperty.html">ConstantPositionProperty</a></li><li data-name="ConstantProperty"><a href="ConstantProperty.html">ConstantProperty</a></li><li data-name="ConstantSpline"><a href="ConstantSpline.html">ConstantSpline</a></li><li data-name="ContextOptions"><a href="global.html#ContextOptions">ContextOptions</a></li><li data-name="CoplanarPolygonGeometry"><a href="CoplanarPolygonGeometry.html">CoplanarPolygonGeometry</a></li><li data-name="CoplanarPolygonOutlineGeometry"><a href="CoplanarPolygonOutlineGeometry.html">CoplanarPolygonOutlineGeometry</a></li><li data-name="CornerType"><a href="global.html#CornerType">CornerType</a></li><li data-name="CorridorGeometry"><a href="CorridorGeometry.html">CorridorGeometry</a></li><li data-name="CorridorGeometryUpdater"><a href="CorridorGeometryUpdater.html">CorridorGeometryUpdater</a></li><li data-name="CorridorGraphics"><a href="CorridorGraphics.html">CorridorGraphics</a></li><li data-name="CorridorOutlineGeometry"><a href="CorridorOutlineGeometry.html">CorridorOutlineGeometry</a></li><li data-name="createElevationBandMaterial"><a href="global.html#createElevationBandMaterial">createElevationBandMaterial</a></li><li data-name="createElevationBandMaterialBand"><a href="global.html#createElevationBandMaterialBand">createElevationBandMaterialBand</a></li><li data-name="createElevationBandMaterialEntry"><a href="global.html#createElevationBandMaterialEntry">createElevationBandMaterialEntry</a></li><li data-name="createGooglePhotorealistic3DTileset"><a href="global.html#createGooglePhotorealistic3DTileset">createGooglePhotorealistic3DTileset</a></li><li data-name="createGuid"><a href="global.html#createGuid">createGuid</a></li><li data-name="createOsmBuildingsAsync"><a href="global.html#createOsmBuildingsAsync">createOsmBuildingsAsync</a></li><li data-name="createTangentSpaceDebugPrimitive"><a href="global.html#createTangentSpaceDebugPrimitive">createTangentSpaceDebugPrimitive</a></li><li data-name="createWorldBathymetryAsync"><a href="global.html#createWorldBathymetryAsync">createWorldBathymetryAsync</a></li><li data-name="createWorldImageryAsync"><a href="global.html#createWorldImageryAsync">createWorldImageryAsync</a></li><li data-name="createWorldTerrainAsync"><a href="global.html#createWorldTerrainAsync">createWorldTerrainAsync</a></li><li data-name="Credit"><a href="Credit.html">Credit</a></li><li data-name="CreditDisplay"><a href="CreditDisplay.html">CreditDisplay</a></li><li data-name="CubicRealPolynomial"><a href="CubicRealPolynomial.html">CubicRealPolynomial</a></li><li data-name="CullFace"><a href="global.html#CullFace">CullFace</a></li><li data-name="CullingVolume"><a href="CullingVolume.html">CullingVolume</a></li><li data-name="CumulusCloud"><a href="CumulusCloud.html">CumulusCloud</a></li><li data-name="CustomDataSource"><a href="CustomDataSource.html">CustomDataSource</a></li><li data-name="CustomHeightmapTerrainProvider"><a href="CustomHeightmapTerrainProvider.html">CustomHeightmapTerrainProvider</a></li><li data-name="CustomShader"><a href="CustomShader.html">CustomShader</a></li><li data-name="CustomShaderMode"><a href="global.html#CustomShaderMode">CustomShaderMode</a></li><li data-name="CustomShaderTranslucencyMode"><a href="global.html#CustomShaderTranslucencyMode">CustomShaderTranslucencyMode</a></li><li data-name="CylinderGeometry"><a href="CylinderGeometry.html">CylinderGeometry</a></li><li data-name="CylinderGeometryUpdater"><a href="CylinderGeometryUpdater.html">CylinderGeometryUpdater</a></li><li data-name="CylinderGraphics"><a href="CylinderGraphics.html">CylinderGraphics</a></li><li data-name="CylinderOutlineGeometry"><a href="CylinderOutlineGeometry.html">CylinderOutlineGeometry</a></li><li data-name="CzmlDataSource"><a href="CzmlDataSource.html">CzmlDataSource</a></li><li data-name="DataSource"><a href="DataSource.html">DataSource</a></li><li data-name="DataSourceClock"><a href="DataSourceClock.html">DataSourceClock</a></li><li data-name="DataSourceCollection"><a href="DataSourceCollection.html">DataSourceCollection</a></li><li data-name="DataSourceDisplay"><a href="DataSourceDisplay.html">DataSourceDisplay</a></li><li data-name="DebugAppearance"><a href="DebugAppearance.html">DebugAppearance</a></li><li data-name="DebugCameraPrimitive"><a href="DebugCameraPrimitive.html">DebugCameraPrimitive</a></li><li data-name="DebugModelMatrixPrimitive"><a href="DebugModelMatrixPrimitive.html">DebugModelMatrixPrimitive</a></li><li data-name="DefaultProxy"><a href="DefaultProxy.html">DefaultProxy</a></li><li data-name="defaultValue"><a href="global.html#defaultValue">defaultValue</a></li><li data-name="defined"><a href="global.html#defined">defined</a></li><li data-name="DepthFunction"><a href="global.html#DepthFunction">DepthFunction</a></li><li data-name="destroyObject"><a href="global.html#destroyObject">destroyObject</a></li><li data-name="DeveloperError"><a href="DeveloperError.html">DeveloperError</a></li><li data-name="DirectionalLight"><a href="DirectionalLight.html">DirectionalLight</a></li><li data-name="DirectionUp"><a href="global.html#DirectionUp">DirectionUp</a></li><li data-name="DiscardEmptyTileImagePolicy"><a href="DiscardEmptyTileImagePolicy.html">DiscardEmptyTileImagePolicy</a></li><li data-name="DiscardMissingTileImagePolicy"><a href="DiscardMissingTileImagePolicy.html">DiscardMissingTileImagePolicy</a></li><li data-name="DistanceDisplayCondition"><a href="DistanceDisplayCondition.html">DistanceDisplayCondition</a></li><li data-name="DistanceDisplayConditionGeometryInstanceAttribute"><a href="DistanceDisplayConditionGeometryInstanceAttribute.html">DistanceDisplayConditionGeometryInstanceAttribute</a></li><li data-name="DynamicAtmosphereLightingType"><a href="global.html#DynamicAtmosphereLightingType">DynamicAtmosphereLightingType</a></li><li data-name="EasingFunction"><a href="EasingFunction.html">EasingFunction</a></li><li data-name="EllipseGeometry"><a href="EllipseGeometry.html">EllipseGeometry</a></li><li data-name="EllipseGeometryUpdater"><a href="EllipseGeometryUpdater.html">EllipseGeometryUpdater</a></li><li data-name="EllipseGraphics"><a href="EllipseGraphics.html">EllipseGraphics</a></li><li data-name="EllipseOutlineGeometry"><a href="EllipseOutlineGeometry.html">EllipseOutlineGeometry</a></li><li data-name="Ellipsoid"><a href="Ellipsoid.html">Ellipsoid</a></li><li data-name="EllipsoidGeodesic"><a href="EllipsoidGeodesic.html">EllipsoidGeodesic</a></li><li data-name="EllipsoidGeometry"><a href="EllipsoidGeometry.html">EllipsoidGeometry</a></li><li data-name="EllipsoidGeometryUpdater"><a href="EllipsoidGeometryUpdater.html">EllipsoidGeometryUpdater</a></li><li data-name="EllipsoidGraphics"><a href="EllipsoidGraphics.html">EllipsoidGraphics</a></li><li data-name="EllipsoidOutlineGeometry"><a href="EllipsoidOutlineGeometry.html">EllipsoidOutlineGeometry</a></li><li data-name="EllipsoidRhumbLine"><a href="EllipsoidRhumbLine.html">EllipsoidRhumbLine</a></li><li data-name="EllipsoidSurfaceAppearance"><a href="EllipsoidSurfaceAppearance.html">EllipsoidSurfaceAppearance</a></li><li data-name="EllipsoidTangentPlane"><a href="EllipsoidTangentPlane.html">EllipsoidTangentPlane</a></li><li data-name="EllipsoidTerrainProvider"><a href="EllipsoidTerrainProvider.html">EllipsoidTerrainProvider</a></li><li data-name="Entity"><a href="Entity.html">Entity</a></li><li data-name="EntityCluster"><a href="EntityCluster.html">EntityCluster</a></li><li data-name="EntityCollection"><a href="EntityCollection.html">EntityCollection</a></li><li data-name="EntityView"><a href="EntityView.html">EntityView</a></li><li data-name="Event"><a href="Event.html">Event</a></li><li data-name="EventHelper"><a href="EventHelper.html">EventHelper</a></li><li data-name="excludesReverseAxis"><a href="global.html#excludesReverseAxis">excludesReverseAxis</a></li><li data-name="exportKml"><a href="global.html#exportKml">exportKml</a></li><li data-name="exportKmlModelCallback"><a href="global.html#exportKmlModelCallback">exportKmlModelCallback</a></li><li data-name="exportKmlResultKml"><a href="global.html#exportKmlResultKml">exportKmlResultKml</a></li><li data-name="exportKmlResultKmz"><a href="global.html#exportKmlResultKmz">exportKmlResultKmz</a></li><li data-name="Expression"><a href="Expression.html">Expression</a></li><li data-name="ExtrapolationType"><a href="global.html#ExtrapolationType">ExtrapolationType</a></li><li data-name="FeatureDetection"><a href="FeatureDetection.html">FeatureDetection</a></li><li data-name="Fog"><a href="Fog.html">Fog</a></li><li data-name="formatError"><a href="global.html#formatError">formatError</a></li><li data-name="FrameRateMonitor"><a href="FrameRateMonitor.html">FrameRateMonitor</a></li><li data-name="FrustumGeometry"><a href="FrustumGeometry.html">FrustumGeometry</a></li><li data-name="FrustumOutlineGeometry"><a href="FrustumOutlineGeometry.html">FrustumOutlineGeometry</a></li><li data-name="Fullscreen"><a href="Fullscreen.html">Fullscreen</a></li><li data-name="GeocoderService"><a href="GeocoderService.html">GeocoderService</a></li><li data-name="GeocodeType"><a href="global.html#GeocodeType">GeocodeType</a></li><li data-name="GeographicProjection"><a href="GeographicProjection.html">GeographicProjection</a></li><li data-name="GeographicTilingScheme"><a href="GeographicTilingScheme.html">GeographicTilingScheme</a></li><li data-name="GeoJsonDataSource"><a href="GeoJsonDataSource.html">GeoJsonDataSource</a></li><li data-name="Geometry"><a href="Geometry.html">Geometry</a></li><li data-name="GeometryAttribute"><a href="GeometryAttribute.html">GeometryAttribute</a></li><li data-name="GeometryAttributes"><a href="GeometryAttributes.html">GeometryAttributes</a></li><li data-name="GeometryFactory"><a href="GeometryFactory.html">GeometryFactory</a></li><li data-name="GeometryInstance"><a href="GeometryInstance.html">GeometryInstance</a></li><li data-name="GeometryInstanceAttribute"><a href="GeometryInstanceAttribute.html">GeometryInstanceAttribute</a></li><li data-name="GeometryPipeline"><a href="GeometryPipeline.html">GeometryPipeline</a></li><li data-name="GeometryUpdater"><a href="GeometryUpdater.html">GeometryUpdater</a></li><li data-name="geometryUpdaters"><a href="global.html#geometryUpdaters">geometryUpdaters</a></li><li data-name="GeometryVisualizer"><a href="GeometryVisualizer.html">GeometryVisualizer</a></li><li data-name="getAbsoluteUri"><a href="global.html#getAbsoluteUri">getAbsoluteUri</a></li><li data-name="getBaseUri"><a href="global.html#getBaseUri">getBaseUri</a></li><li data-name="getExtensionFromUri"><a href="global.html#getExtensionFromUri">getExtensionFromUri</a></li><li data-name="GetFeatureInfoFormat"><a href="GetFeatureInfoFormat.html">GetFeatureInfoFormat</a></li><li data-name="getFilenameFromUri"><a href="global.html#getFilenameFromUri">getFilenameFromUri</a></li><li data-name="getImagePixels"><a href="global.html#getImagePixels">getImagePixels</a></li><li data-name="getTimestamp"><a href="global.html#getTimestamp">getTimestamp</a></li><li data-name="Globe"><a href="Globe.html">Globe</a></li><li data-name="GlobeTranslucency"><a href="GlobeTranslucency.html">GlobeTranslucency</a></li><li data-name="GoogleEarthEnterpriseImageryProvider"><a href="GoogleEarthEnterpriseImageryProvider.html">GoogleEarthEnterpriseImageryProvider</a></li><li data-name="GoogleEarthEnterpriseMapsProvider"><a href="GoogleEarthEnterpriseMapsProvider.html">GoogleEarthEnterpriseMapsProvider</a></li><li data-name="GoogleEarthEnterpriseMetadata"><a href="GoogleEarthEnterpriseMetadata.html">GoogleEarthEnterpriseMetadata</a></li><li data-name="GoogleEarthEnterpriseTerrainData"><a href="GoogleEarthEnterpriseTerrainData.html">GoogleEarthEnterpriseTerrainData</a></li><li data-name="GoogleEarthEnterpriseTerrainProvider"><a href="GoogleEarthEnterpriseTerrainProvider.html">GoogleEarthEnterpriseTerrainProvider</a></li><li data-name="GoogleMaps"><a href="GoogleMaps.html">GoogleMaps</a></li><li data-name="GpxDataSource"><a href="GpxDataSource.html">GpxDataSource</a></li><li data-name="GregorianDate"><a href="GregorianDate.html">GregorianDate</a></li><li data-name="GridImageryProvider"><a href="GridImageryProvider.html">GridImageryProvider</a></li><li data-name="GridMaterialProperty"><a href="GridMaterialProperty.html">GridMaterialProperty</a></li><li data-name="GroundGeometryUpdater"><a href="GroundGeometryUpdater.html">GroundGeometryUpdater</a></li><li data-name="GroundPolylineGeometry"><a href="GroundPolylineGeometry.html">GroundPolylineGeometry</a></li><li data-name="GroundPolylinePrimitive"><a href="GroundPolylinePrimitive.html">GroundPolylinePrimitive</a></li><li data-name="GroundPrimitive"><a href="GroundPrimitive.html">GroundPrimitive</a></li><li data-name="HeadingPitchRange"><a href="HeadingPitchRange.html">HeadingPitchRange</a></li><li data-name="HeadingPitchRoll"><a href="HeadingPitchRoll.html">HeadingPitchRoll</a></li><li data-name="HeadingPitchRollValues"><a href="global.html#HeadingPitchRollValues">HeadingPitchRollValues</a></li><li data-name="HeightmapEncoding"><a href="global.html#HeightmapEncoding">HeightmapEncoding</a></li><li data-name="HeightmapTerrainData"><a href="HeightmapTerrainData.html">HeightmapTerrainData</a></li><li data-name="HeightReference"><a href="global.html#HeightReference">HeightReference</a></li><li data-name="HermitePolynomialApproximation"><a href="HermitePolynomialApproximation.html">HermitePolynomialApproximation</a></li><li data-name="HermiteSpline"><a href="HermiteSpline.html">HermiteSpline</a></li><li data-name="HilbertOrder"><a href="HilbertOrder.html">HilbertOrder</a></li><li data-name="HorizontalOrigin"><a href="global.html#HorizontalOrigin">HorizontalOrigin</a></li><li data-name="I3SDataProvider"><a href="I3SDataProvider.html">I3SDataProvider</a></li><li data-name="I3SFeature"><a href="I3SFeature.html">I3SFeature</a></li><li data-name="I3SField"><a href="I3SField.html">I3SField</a></li><li data-name="I3SGeometry"><a href="I3SGeometry.html">I3SGeometry</a></li><li data-name="I3SLayer"><a href="I3SLayer.html">I3SLayer</a></li><li data-name="I3SNode"><a href="I3SNode.html">I3SNode</a></li><li data-name="I3SStatistics"><a href="I3SStatistics.html">I3SStatistics</a></li><li data-name="I3SSublayer"><a href="I3SSublayer.html">I3SSublayer</a></li><li data-name="I3SSymbology"><a href="I3SSymbology.html">I3SSymbology</a></li><li data-name="ImageBasedLighting"><a href="ImageBasedLighting.html">ImageBasedLighting</a></li><li data-name="ImageMaterialProperty"><a href="ImageMaterialProperty.html">ImageMaterialProperty</a></li><li data-name="ImageryLayer"><a href="ImageryLayer.html">ImageryLayer</a></li><li data-name="ImageryLayerCollection"><a href="ImageryLayerCollection.html">ImageryLayerCollection</a></li><li data-name="ImageryLayerFeatureInfo"><a href="ImageryLayerFeatureInfo.html">ImageryLayerFeatureInfo</a></li><li data-name="ImageryProvider"><a href="ImageryProvider.html">ImageryProvider</a></li><li data-name="ImageryTypes"><a href="global.html#ImageryTypes">ImageryTypes</a></li><li data-name="includesReverseAxis"><a href="global.html#includesReverseAxis">includesReverseAxis</a></li><li data-name="IndexDatatype"><a href="global.html#IndexDatatype">IndexDatatype</a></li><li data-name="Intersect"><a href="global.html#Intersect">Intersect</a></li><li data-name="Intersections2D"><a href="Intersections2D.html">Intersections2D</a></li><li data-name="IntersectionTests"><a href="IntersectionTests.html">IntersectionTests</a></li><li data-name="Interval"><a href="Interval.html">Interval</a></li><li data-name="Ion"><a href="Ion.html">Ion</a></li><li data-name="IonGeocoderService"><a href="IonGeocoderService.html">IonGeocoderService</a></li><li data-name="IonImageryProvider"><a href="IonImageryProvider.html">IonImageryProvider</a></li><li data-name="IonResource"><a href="IonResource.html">IonResource</a></li><li data-name="IonWorldImageryStyle"><a href="global.html#IonWorldImageryStyle">IonWorldImageryStyle</a></li><li data-name="isLeapYear"><a href="global.html#isLeapYear">isLeapYear</a></li><li data-name="Iso8601"><a href="Iso8601.html">Iso8601</a></li><li data-name="JulianDate"><a href="JulianDate.html">JulianDate</a></li><li data-name="KeyboardEventModifier"><a href="global.html#KeyboardEventModifier">KeyboardEventModifier</a></li><li data-name="KmlCamera"><a href="KmlCamera.html">KmlCamera</a></li><li data-name="KmlDataSource"><a href="KmlDataSource.html">KmlDataSource</a></li><li data-name="KmlFeatureData"><a href="KmlFeatureData.html">KmlFeatureData</a></li><li data-name="KmlLookAt"><a href="KmlLookAt.html">KmlLookAt</a></li><li data-name="KmlTour"><a href="KmlTour.html">KmlTour</a></li><li data-name="KmlTourFlyTo"><a href="KmlTourFlyTo.html">KmlTourFlyTo</a></li><li data-name="KmlTourWait"><a href="KmlTourWait.html">KmlTourWait</a></li><li data-name="Label"><a href="Label.html">Label</a></li><li data-name="LabelCollection"><a href="LabelCollection.html">LabelCollection</a></li><li data-name="LabelGraphics"><a href="LabelGraphics.html">LabelGraphics</a></li><li data-name="LabelStyle"><a href="global.html#LabelStyle">LabelStyle</a></li><li data-name="LabelVisualizer"><a href="LabelVisualizer.html">LabelVisualizer</a></li><li data-name="LagrangePolynomialApproximation"><a href="LagrangePolynomialApproximation.html">LagrangePolynomialApproximation</a></li><li data-name="LeapSecond"><a href="LeapSecond.html">LeapSecond</a></li><li data-name="Light"><a href="Light.html">Light</a></li><li data-name="LightingModel"><a href="global.html#LightingModel">LightingModel</a></li><li data-name="LinearApproximation"><a href="LinearApproximation.html">LinearApproximation</a></li><li data-name="LinearSpline"><a href="LinearSpline.html">LinearSpline</a></li><li data-name="loadGltfJson"><a href="global.html#loadGltfJson">loadGltfJson</a></li><li data-name="MapboxImageryProvider"><a href="MapboxImageryProvider.html">MapboxImageryProvider</a></li><li data-name="MapboxStyleImageryProvider"><a href="MapboxStyleImageryProvider.html">MapboxStyleImageryProvider</a></li><li data-name="MapMode2D"><a href="global.html#MapMode2D">MapMode2D</a></li><li data-name="MapProjection"><a href="MapProjection.html">MapProjection</a></li><li data-name="Material"><a href="Material.html">Material</a></li><li data-name="MaterialAppearance"><a href="MaterialAppearance.html">MaterialAppearance</a></li><li data-name="MaterialSupport"><a href="MaterialAppearance.MaterialSupport.html">MaterialSupport</a></li><li data-name="MaterialProperty"><a href="MaterialProperty.html">MaterialProperty</a></li><li data-name="Math"><a href="Math.html">Math</a></li><li data-name="Matrix2"><a href="Matrix2.html">Matrix2</a></li><li data-name="Matrix3"><a href="Matrix3.html">Matrix3</a></li><li data-name="Matrix4"><a href="Matrix4.html">Matrix4</a></li><li data-name="mergeSort"><a href="global.html#mergeSort">mergeSort</a></li><li data-name="mergeSortComparator"><a href="global.html#mergeSortComparator">mergeSortComparator</a></li><li data-name="MetadataClass"><a href="MetadataClass.html">MetadataClass</a></li><li data-name="MetadataClassProperty"><a href="MetadataClassProperty.html">MetadataClassProperty</a></li><li data-name="MetadataComponentType"><a href="global.html#MetadataComponentType">MetadataComponentType</a></li><li data-name="MetadataEnum"><a href="MetadataEnum.html">MetadataEnum</a></li><li data-name="MetadataEnumValue"><a href="MetadataEnumValue.html">MetadataEnumValue</a></li><li data-name="MetadataSchema"><a href="MetadataSchema.html">MetadataSchema</a></li><li data-name="MetadataType"><a href="global.html#MetadataType">MetadataType</a></li><li data-name="Model"><a href="Model.html">Model</a></li><li data-name="ModelAnimation"><a href="ModelAnimation.html">ModelAnimation</a></li><li data-name="ModelAnimationCollection"><a href="ModelAnimationCollection.html">ModelAnimationCollection</a></li><li data-name="ModelAnimationLoop"><a href="global.html#ModelAnimationLoop">ModelAnimationLoop</a></li><li data-name="ModelFeature"><a href="ModelFeature.html">ModelFeature</a></li><li data-name="ModelGraphics"><a href="ModelGraphics.html">ModelGraphics</a></li><li data-name="ModelNode"><a href="ModelNode.html">ModelNode</a></li><li data-name="ModelVisualizer"><a href="ModelVisualizer.html">ModelVisualizer</a></li><li data-name="Moon"><a href="Moon.html">Moon</a></li><li data-name="MorphWeightSpline"><a href="MorphWeightSpline.html">MorphWeightSpline</a></li><li data-name="NearFarScalar"><a href="NearFarScalar.html">NearFarScalar</a></li><li data-name="NeverTileDiscardPolicy"><a href="NeverTileDiscardPolicy.html">NeverTileDiscardPolicy</a></li><li data-name="NodeTransformationProperty"><a href="NodeTransformationProperty.html">NodeTransformationProperty</a></li><li data-name="objectToQuery"><a href="global.html#objectToQuery">objectToQuery</a></li><li data-name="Occluder"><a href="Occluder.html">Occluder</a></li><li data-name="OpenCageGeocoderService"><a href="OpenCageGeocoderService.html">OpenCageGeocoderService</a></li><li data-name="OpenStreetMapImageryProvider"><a href="OpenStreetMapImageryProvider.html">OpenStreetMapImageryProvider</a></li><li data-name="OrientedBoundingBox"><a href="OrientedBoundingBox.html">OrientedBoundingBox</a></li><li data-name="OrthographicFrustum"><a href="OrthographicFrustum.html">OrthographicFrustum</a></li><li data-name="OrthographicOffCenterFrustum"><a href="OrthographicOffCenterFrustum.html">OrthographicOffCenterFrustum</a></li><li data-name="PackableForInterpolation"><a href="PackableForInterpolation.html">PackableForInterpolation</a></li><li data-name="Particle"><a href="Particle.html">Particle</a></li><li data-name="ParticleBurst"><a href="ParticleBurst.html">ParticleBurst</a></li><li data-name="ParticleEmitter"><a href="ParticleEmitter.html">ParticleEmitter</a></li><li data-name="ParticleSystem"><a href="ParticleSystem.html">ParticleSystem</a></li><li data-name="PathGraphics"><a href="PathGraphics.html">PathGraphics</a></li><li data-name="PathVisualizer"><a href="PathVisualizer.html">PathVisualizer</a></li><li data-name="PeliasGeocoderService"><a href="PeliasGeocoderService.html">PeliasGeocoderService</a></li><li data-name="PerInstanceColorAppearance"><a href="PerInstanceColorAppearance.html">PerInstanceColorAppearance</a></li><li data-name="PerspectiveFrustum"><a href="PerspectiveFrustum.html">PerspectiveFrustum</a></li><li data-name="PerspectiveOffCenterFrustum"><a href="PerspectiveOffCenterFrustum.html">PerspectiveOffCenterFrustum</a></li><li data-name="PinBuilder"><a href="PinBuilder.html">PinBuilder</a></li><li data-name="PixelDatatype"><a href="global.html#PixelDatatype">PixelDatatype</a></li><li data-name="PixelFormat"><a href="global.html#PixelFormat">PixelFormat</a></li><li data-name="Plane"><a href="Plane.html">Plane</a></li><li data-name="PlaneGeometry"><a href="PlaneGeometry.html">PlaneGeometry</a></li><li data-name="PlaneGeometryUpdater"><a href="PlaneGeometryUpdater.html">PlaneGeometryUpdater</a></li><li data-name="PlaneGraphics"><a href="PlaneGraphics.html">PlaneGraphics</a></li><li data-name="PlaneOutlineGeometry"><a href="PlaneOutlineGeometry.html">PlaneOutlineGeometry</a></li><li data-name="PointCloudShading"><a href="PointCloudShading.html">PointCloudShading</a></li><li data-name="PointGraphics"><a href="PointGraphics.html">PointGraphics</a></li><li data-name="pointInsideTriangle"><a href="global.html#pointInsideTriangle">pointInsideTriangle</a></li><li data-name="PointPrimitive"><a href="PointPrimitive.html">PointPrimitive</a></li><li data-name="PointPrimitiveCollection"><a href="PointPrimitiveCollection.html">PointPrimitiveCollection</a></li><li data-name="PointVisualizer"><a href="PointVisualizer.html">PointVisualizer</a></li><li data-name="PolygonGeometry"><a href="PolygonGeometry.html">PolygonGeometry</a></li><li data-name="PolygonGeometryUpdater"><a href="PolygonGeometryUpdater.html">PolygonGeometryUpdater</a></li><li data-name="PolygonGraphics"><a href="PolygonGraphics.html">PolygonGraphics</a></li><li data-name="PolygonHierarchy"><a href="PolygonHierarchy.html">PolygonHierarchy</a></li><li data-name="PolygonOutlineGeometry"><a href="PolygonOutlineGeometry.html">PolygonOutlineGeometry</a></li><li data-name="Polyline"><a href="Polyline.html">Polyline</a></li><li data-name="PolylineArrowMaterialProperty"><a href="PolylineArrowMaterialProperty.html">PolylineArrowMaterialProperty</a></li><li data-name="PolylineCollection"><a href="PolylineCollection.html">PolylineCollection</a></li><li data-name="PolylineColorAppearance"><a href="PolylineColorAppearance.html">PolylineColorAppearance</a></li><li data-name="PolylineDashMaterialProperty"><a href="PolylineDashMaterialProperty.html">PolylineDashMaterialProperty</a></li><li data-name="PolylineGeometry"><a href="PolylineGeometry.html">PolylineGeometry</a></li><li data-name="PolylineGeometryUpdater"><a href="PolylineGeometryUpdater.html">PolylineGeometryUpdater</a></li><li data-name="PolylineGlowMaterialProperty"><a href="PolylineGlowMaterialProperty.html">PolylineGlowMaterialProperty</a></li><li data-name="PolylineGraphics"><a href="PolylineGraphics.html">PolylineGraphics</a></li><li data-name="PolylineMaterialAppearance"><a href="PolylineMaterialAppearance.html">PolylineMaterialAppearance</a></li><li data-name="PolylineOutlineMaterialProperty"><a href="PolylineOutlineMaterialProperty.html">PolylineOutlineMaterialProperty</a></li><li data-name="PolylineVisualizer"><a href="PolylineVisualizer.html">PolylineVisualizer</a></li><li data-name="PolylineVolumeGeometry"><a href="PolylineVolumeGeometry.html">PolylineVolumeGeometry</a></li><li data-name="PolylineVolumeGeometryUpdater"><a href="PolylineVolumeGeometryUpdater.html">PolylineVolumeGeometryUpdater</a></li><li data-name="PolylineVolumeGraphics"><a href="PolylineVolumeGraphics.html">PolylineVolumeGraphics</a></li><li data-name="PolylineVolumeOutlineGeometry"><a href="PolylineVolumeOutlineGeometry.html">PolylineVolumeOutlineGeometry</a></li><li data-name="PositionProperty"><a href="PositionProperty.html">PositionProperty</a></li><li data-name="PositionPropertyArray"><a href="PositionPropertyArray.html">PositionPropertyArray</a></li><li data-name="PostProcessStage"><a href="PostProcessStage.html">PostProcessStage</a></li><li data-name="PostProcessStageCollection"><a href="PostProcessStageCollection.html">PostProcessStageCollection</a></li><li data-name="PostProcessStageComposite"><a href="PostProcessStageComposite.html">PostProcessStageComposite</a></li><li data-name="PostProcessStageLibrary"><a href="PostProcessStageLibrary.html">PostProcessStageLibrary</a></li><li data-name="PostProcessStageSampleMode"><a href="global.html#PostProcessStageSampleMode">PostProcessStageSampleMode</a></li><li data-name="Primitive"><a href="Primitive.html">Primitive</a></li><li data-name="PrimitiveCollection"><a href="PrimitiveCollection.html">PrimitiveCollection</a></li><li data-name="PrimitiveType"><a href="global.html#PrimitiveType">PrimitiveType</a></li><li data-name="Property"><a href="Property.html">Property</a></li><li data-name="PropertyArray"><a href="PropertyArray.html">PropertyArray</a></li><li data-name="PropertyBag"><a href="PropertyBag.html">PropertyBag</a></li><li data-name="Proxy"><a href="Proxy.html">Proxy</a></li><li data-name="QuadraticRealPolynomial"><a href="QuadraticRealPolynomial.html">QuadraticRealPolynomial</a></li><li data-name="QuantizedMeshTerrainData"><a href="QuantizedMeshTerrainData.html">QuantizedMeshTerrainData</a></li><li data-name="QuarticRealPolynomial"><a href="QuarticRealPolynomial.html">QuarticRealPolynomial</a></li><li data-name="Quaternion"><a href="Quaternion.html">Quaternion</a></li><li data-name="QuaternionSpline"><a href="QuaternionSpline.html">QuaternionSpline</a></li><li data-name="queryToObject"><a href="global.html#queryToObject">queryToObject</a></li><li data-name="Queue"><a href="Queue.html">Queue</a></li><li data-name="Ray"><a href="Ray.html">Ray</a></li><li data-name="Rectangle"><a href="Rectangle.html">Rectangle</a></li><li data-name="RectangleGeometry"><a href="RectangleGeometry.html">RectangleGeometry</a></li><li data-name="RectangleGeometryUpdater"><a href="RectangleGeometryUpdater.html">RectangleGeometryUpdater</a></li><li data-name="RectangleGraphics"><a href="RectangleGraphics.html">RectangleGraphics</a></li><li data-name="RectangleOutlineGeometry"><a href="RectangleOutlineGeometry.html">RectangleOutlineGeometry</a></li><li data-name="ReferenceFrame"><a href="global.html#ReferenceFrame">ReferenceFrame</a></li><li data-name="ReferenceProperty"><a href="ReferenceProperty.html">ReferenceProperty</a></li><li data-name="removeExtension"><a href="global.html#removeExtension">removeExtension</a></li><li data-name="Request"><a href="Request.html">Request</a></li><li data-name="RequestErrorEvent"><a href="RequestErrorEvent.html">RequestErrorEvent</a></li><li data-name="RequestScheduler"><a href="RequestScheduler.html">RequestScheduler</a></li><li data-name="RequestState"><a href="global.html#RequestState">RequestState</a></li><li data-name="RequestType"><a href="global.html#RequestType">RequestType</a></li><li data-name="Resource"><a href="Resource.html">Resource</a></li><li data-name="RuntimeError"><a href="RuntimeError.html">RuntimeError</a></li><li data-name="SampledPositionProperty"><a href="SampledPositionProperty.html">SampledPositionProperty</a></li><li data-name="SampledProperty"><a href="SampledProperty.html">SampledProperty</a></li><li data-name="sampleTerrain"><a href="global.html#sampleTerrain">sampleTerrain</a></li><li data-name="sampleTerrainMostDetailed"><a href="global.html#sampleTerrainMostDetailed">sampleTerrainMostDetailed</a></li><li data-name="Scene"><a href="Scene.html">Scene</a></li><li data-name="SceneMode"><a href="global.html#SceneMode">SceneMode</a></li><li data-name="SceneTransforms"><a href="SceneTransforms.html">SceneTransforms</a></li><li data-name="ScreenSpaceCameraController"><a href="ScreenSpaceCameraController.html">ScreenSpaceCameraController</a></li><li data-name="ScreenSpaceEventHandler"><a href="ScreenSpaceEventHandler.html">ScreenSpaceEventHandler</a></li><li data-name="ScreenSpaceEventType"><a href="global.html#ScreenSpaceEventType">ScreenSpaceEventType</a></li><li data-name="SensorVolumePortionToDisplay"><a href="global.html#SensorVolumePortionToDisplay">SensorVolumePortionToDisplay</a></li><li data-name="shaderDefines"><a href="global.html#shaderDefines">shaderDefines</a></li><li data-name="shaderMaximumIntersectionsLength"><a href="global.html#shaderMaximumIntersectionsLength">shaderMaximumIntersectionsLength</a></li><li data-name="shaderUniforms"><a href="global.html#shaderUniforms">shaderUniforms</a></li><li data-name="ShadowMap"><a href="ShadowMap.html">ShadowMap</a></li><li data-name="ShadowMode"><a href="global.html#ShadowMode">ShadowMode</a></li><li data-name="ShowGeometryInstanceAttribute"><a href="ShowGeometryInstanceAttribute.html">ShowGeometryInstanceAttribute</a></li><li data-name="Simon1994PlanetaryPositions"><a href="Simon1994PlanetaryPositions.html">Simon1994PlanetaryPositions</a></li><li data-name="SimplePolylineGeometry"><a href="SimplePolylineGeometry.html">SimplePolylineGeometry</a></li><li data-name="SingleTileImageryProvider"><a href="SingleTileImageryProvider.html">SingleTileImageryProvider</a></li><li data-name="SkyAtmosphere"><a href="SkyAtmosphere.html">SkyAtmosphere</a></li><li data-name="SkyBox"><a href="SkyBox.html">SkyBox</a></li><li data-name="SphereEmitter"><a href="SphereEmitter.html">SphereEmitter</a></li><li data-name="SphereGeometry"><a href="SphereGeometry.html">SphereGeometry</a></li><li data-name="SphereOutlineGeometry"><a href="SphereOutlineGeometry.html">SphereOutlineGeometry</a></li><li data-name="Spherical"><a href="Spherical.html">Spherical</a></li><li data-name="Spline"><a href="Spline.html">Spline</a></li><li data-name="SplitDirection"><a href="global.html#SplitDirection">SplitDirection</a></li><li data-name="srgbToLinear"><a href="global.html#srgbToLinear">srgbToLinear</a></li><li data-name="StencilFunction"><a href="global.html#StencilFunction">StencilFunction</a></li><li data-name="StencilOperation"><a href="global.html#StencilOperation">StencilOperation</a></li><li data-name="SteppedSpline"><a href="SteppedSpline.html">SteppedSpline</a></li><li data-name="Stereographic"><a href="global.html#Stereographic">Stereographic</a></li><li data-name="StripeMaterialProperty"><a href="StripeMaterialProperty.html">StripeMaterialProperty</a></li><li data-name="StripeOrientation"><a href="global.html#StripeOrientation">StripeOrientation</a></li><li data-name="StyleExpression"><a href="StyleExpression.html">StyleExpression</a></li><li data-name="subdivideArray"><a href="global.html#subdivideArray">subdivideArray</a></li><li data-name="Sun"><a href="Sun.html">Sun</a></li><li data-name="SunLight"><a href="SunLight.html">SunLight</a></li><li data-name="TaskProcessor"><a href="TaskProcessor.html">TaskProcessor</a></li><li data-name="Terrain"><a href="Terrain.html">Terrain</a></li><li data-name="TerrainData"><a href="TerrainData.html">TerrainData</a></li><li data-name="TerrainProvider"><a href="TerrainProvider.html">TerrainProvider</a></li><li data-name="TextureMagnificationFilter"><a href="global.html#TextureMagnificationFilter">TextureMagnificationFilter</a></li><li data-name="TextureMinificationFilter"><a href="global.html#TextureMinificationFilter">TextureMinificationFilter</a></li><li data-name="TextureUniform"><a href="TextureUniform.html">TextureUniform</a></li><li data-name="TileAvailability"><a href="TileAvailability.html">TileAvailability</a></li><li data-name="TileCoordinatesImageryProvider"><a href="TileCoordinatesImageryProvider.html">TileCoordinatesImageryProvider</a></li><li data-name="TileDiscardPolicy"><a href="TileDiscardPolicy.html">TileDiscardPolicy</a></li><li data-name="TileMapServiceImageryProvider"><a href="TileMapServiceImageryProvider.html">TileMapServiceImageryProvider</a></li><li data-name="TileProviderError"><a href="TileProviderError.html">TileProviderError</a></li><li data-name="TilingScheme"><a href="TilingScheme.html">TilingScheme</a></li><li data-name="TimeDynamicImagery"><a href="TimeDynamicImagery.html">TimeDynamicImagery</a></li><li data-name="TimeDynamicPointCloud"><a href="TimeDynamicPointCloud.html">TimeDynamicPointCloud</a></li><li data-name="TimeInterval"><a href="TimeInterval.html">TimeInterval</a></li><li data-name="TimeIntervalCollection"><a href="TimeIntervalCollection.html">TimeIntervalCollection</a></li><li data-name="TimeIntervalCollectionPositionProperty"><a href="TimeIntervalCollectionPositionProperty.html">TimeIntervalCollectionPositionProperty</a></li><li data-name="TimeIntervalCollectionProperty"><a href="TimeIntervalCollectionProperty.html">TimeIntervalCollectionProperty</a></li><li data-name="TimeStandard"><a href="global.html#TimeStandard">TimeStandard</a></li><li data-name="Transforms"><a href="Transforms.html">Transforms</a></li><li data-name="TranslationRotationScale"><a href="TranslationRotationScale.html">TranslationRotationScale</a></li><li data-name="TridiagonalSystemSolver"><a href="TridiagonalSystemSolver.html">TridiagonalSystemSolver</a></li><li data-name="TrustedServers"><a href="TrustedServers.html">TrustedServers</a></li><li data-name="UniformSpecifier"><a href="global.html#UniformSpecifier">UniformSpecifier</a></li><li data-name="UniformType"><a href="global.html#UniformType">UniformType</a></li><li data-name="UrlTemplateImageryProvider"><a href="UrlTemplateImageryProvider.html">UrlTemplateImageryProvider</a></li><li data-name="VaryingType"><a href="global.html#VaryingType">VaryingType</a></li><li data-name="VelocityOrientationProperty"><a href="VelocityOrientationProperty.html">VelocityOrientationProperty</a></li><li data-name="VelocityVectorProperty"><a href="VelocityVectorProperty.html">VelocityVectorProperty</a></li><li data-name="VertexFormat"><a href="VertexFormat.html">VertexFormat</a></li><li data-name="VerticalOrigin"><a href="global.html#VerticalOrigin">VerticalOrigin</a></li><li data-name="VideoSynchronizer"><a href="VideoSynchronizer.html">VideoSynchronizer</a></li><li data-name="ViewportQuad"><a href="ViewportQuad.html">ViewportQuad</a></li><li data-name="Visibility"><a href="global.html#Visibility">Visibility</a></li><li data-name="Visualizer"><a href="Visualizer.html">Visualizer</a></li><li data-name="VoxelCell"><a href="VoxelCell.html">VoxelCell</a></li><li data-name="VoxelPrimitive"><a href="VoxelPrimitive.html">VoxelPrimitive</a></li><li data-name="VoxelProvider"><a href="VoxelProvider.html">VoxelProvider</a></li><li data-name="VoxelShapeType"><a href="global.html#VoxelShapeType">VoxelShapeType</a></li><li data-name="VRTheWorldTerrainProvider"><a href="VRTheWorldTerrainProvider.html">VRTheWorldTerrainProvider</a></li><li data-name="WallGeometry"><a href="WallGeometry.html">WallGeometry</a></li><li data-name="WallGeometryUpdater"><a href="WallGeometryUpdater.html">WallGeometryUpdater</a></li><li data-name="WallGraphics"><a href="WallGraphics.html">WallGraphics</a></li><li data-name="WallOutlineGeometry"><a href="WallOutlineGeometry.html">WallOutlineGeometry</a></li><li data-name="WebGLConstants"><a href="global.html#WebGLConstants">WebGLConstants</a></li><li data-name="WebGLOptions"><a href="global.html#WebGLOptions">WebGLOptions</a></li><li data-name="WebMapServiceImageryProvider"><a href="WebMapServiceImageryProvider.html">WebMapServiceImageryProvider</a></li><li data-name="WebMapTileServiceImageryProvider"><a href="WebMapTileServiceImageryProvider.html">WebMapTileServiceImageryProvider</a></li><li data-name="WebMercatorProjection"><a href="WebMercatorProjection.html">WebMercatorProjection</a></li><li data-name="WebMercatorTilingScheme"><a href="WebMercatorTilingScheme.html">WebMercatorTilingScheme</a></li><li data-name="WindingOrder"><a href="global.html#WindingOrder">WindingOrder</a></li><li data-name="writeTextToCanvas"><a href="global.html#writeTextToCanvas">writeTextToCanvas</a></li></ul><h5>packages/widgets</h5><ul><li data-name="Animation"><a href="Animation.html">Animation</a></li><li data-name="AnimationViewModel"><a href="AnimationViewModel.html">AnimationViewModel</a></li><li data-name="BaseLayerPicker"><a href="BaseLayerPicker.html">BaseLayerPicker</a></li><li data-name="BaseLayerPickerViewModel"><a href="BaseLayerPickerViewModel.html">BaseLayerPickerViewModel</a></li><li data-name="Cesium3DTilesInspector"><a href="Cesium3DTilesInspector.html">Cesium3DTilesInspector</a></li><li data-name="Cesium3DTilesInspectorViewModel"><a href="Cesium3DTilesInspectorViewModel.html">Cesium3DTilesInspectorViewModel</a></li><li data-name="CesiumInspector"><a href="CesiumInspector.html">CesiumInspector</a></li><li data-name="CesiumInspectorViewModel"><a href="CesiumInspectorViewModel.html">CesiumInspectorViewModel</a></li><li data-name="ClockViewModel"><a href="ClockViewModel.html">ClockViewModel</a></li><li data-name="Command"><a href="Command.html">Command</a></li><li data-name="createCommand"><a href="global.html#createCommand">createCommand</a></li><li data-name="FullscreenButton"><a href="FullscreenButton.html">FullscreenButton</a></li><li data-name="FullscreenButtonViewModel"><a href="FullscreenButtonViewModel.html">FullscreenButtonViewModel</a></li><li data-name="Geocoder"><a href="Geocoder.html">Geocoder</a></li><li data-name="GeocoderViewModel"><a href="GeocoderViewModel.html">GeocoderViewModel</a></li><li data-name="HomeButton"><a href="HomeButton.html">HomeButton</a></li><li data-name="HomeButtonViewModel"><a href="HomeButtonViewModel.html">HomeButtonViewModel</a></li><li data-name="I3sBslExplorerViewModel"><a href="I3sBslExplorerViewModel.html">I3sBslExplorerViewModel</a></li><li data-name="I3SBuildingSceneLayerExplorer"><a href="I3SBuildingSceneLayerExplorer.html">I3SBuildingSceneLayerExplorer</a></li><li data-name="InfoBox"><a href="InfoBox.html">InfoBox</a></li><li data-name="InfoBoxViewModel"><a href="InfoBoxViewModel.html">InfoBoxViewModel</a></li><li data-name="NavigationHelpButton"><a href="NavigationHelpButton.html">NavigationHelpButton</a></li><li data-name="NavigationHelpButtonViewModel"><a href="NavigationHelpButtonViewModel.html">NavigationHelpButtonViewModel</a></li><li data-name="PerformanceWatchdog"><a href="PerformanceWatchdog.html">PerformanceWatchdog</a></li><li data-name="PerformanceWatchdogViewModel"><a href="PerformanceWatchdogViewModel.html">PerformanceWatchdogViewModel</a></li><li data-name="ProjectionPicker"><a href="ProjectionPicker.html">ProjectionPicker</a></li><li data-name="ProjectionPickerViewModel"><a href="ProjectionPickerViewModel.html">ProjectionPickerViewModel</a></li><li data-name="ProviderViewModel"><a href="ProviderViewModel.html">ProviderViewModel</a></li><li data-name="SceneModePicker"><a href="SceneModePicker.html">SceneModePicker</a></li><li data-name="SceneModePickerViewModel"><a href="SceneModePickerViewModel.html">SceneModePickerViewModel</a></li><li data-name="SelectionIndicator"><a href="SelectionIndicator.html">SelectionIndicator</a></li><li data-name="SelectionIndicatorViewModel"><a href="SelectionIndicatorViewModel.html">SelectionIndicatorViewModel</a></li><li data-name="SvgPathBindingHandler"><a href="SvgPathBindingHandler.html">SvgPathBindingHandler</a></li><li data-name="Timeline"><a href="Timeline.html">Timeline</a></li><li data-name="ToggleButtonViewModel"><a href="ToggleButtonViewModel.html">ToggleButtonViewModel</a></li><li data-name="Viewer"><a href="Viewer.html">Viewer</a></li><li data-name="viewerCesium3DTilesInspectorMixin"><a href="global.html#viewerCesium3DTilesInspectorMixin">viewerCesium3DTilesInspectorMixin</a></li><li data-name="viewerCesiumInspectorMixin"><a href="global.html#viewerCesiumInspectorMixin">viewerCesiumInspectorMixin</a></li><li data-name="viewerDragDropMixin"><a href="global.html#viewerDragDropMixin">viewerDragDropMixin</a></li><li data-name="viewerPerformanceWatchdogMixin"><a href="global.html#viewerPerformanceWatchdogMixin">viewerPerformanceWatchdogMixin</a></li><li data-name="viewerVoxelInspectorMixin"><a href="global.html#viewerVoxelInspectorMixin">viewerVoxelInspectorMixin</a></li><li data-name="VoxelInspector"><a href="VoxelInspector.html">VoxelInspector</a></li><li data-name="VoxelInspectorViewModel"><a href="VoxelInspectorViewModel.html">VoxelInspectorViewModel</a></li><li data-name="VRButton"><a href="VRButton.html">VRButton</a></li><li data-name="VRButtonViewModel"><a href="VRButtonViewModel.html">VRButtonViewModel</a></li></ul></div>
+        <ul id="ClassList"><li data-name="Animation"><a href="Animation.html">Animation</a></li><li data-name="AnimationViewModel"><a href="AnimationViewModel.html">AnimationViewModel</a></li><li data-name="Appearance"><a href="Appearance.html">Appearance</a></li><li data-name="ArcGisMapServerImageryProvider"><a href="ArcGisMapServerImageryProvider.html">ArcGisMapServerImageryProvider</a></li><li data-name="ArcGISTiledElevationTerrainProvider"><a href="ArcGISTiledElevationTerrainProvider.html">ArcGISTiledElevationTerrainProvider</a></li><li data-name="ArcType"><a href="global.html#ArcType">ArcType</a></li><li data-name="AssociativeArray"><a href="AssociativeArray.html">AssociativeArray</a></li><li data-name="Axis"><a href="global.html#Axis">Axis</a></li><li data-name="AxisAlignedBoundingBox"><a href="AxisAlignedBoundingBox.html">AxisAlignedBoundingBox</a></li><li data-name="barycentricCoordinates"><a href="global.html#barycentricCoordinates">barycentricCoordinates</a></li><li data-name="BaseLayerPicker"><a href="BaseLayerPicker.html">BaseLayerPicker</a></li><li data-name="BaseLayerPickerViewModel"><a href="BaseLayerPickerViewModel.html">BaseLayerPickerViewModel</a></li><li data-name="Billboard"><a href="Billboard.html">Billboard</a></li><li data-name="BillboardCollection"><a href="BillboardCollection.html">BillboardCollection</a></li><li data-name="BillboardGraphics"><a href="BillboardGraphics.html">BillboardGraphics</a></li><li data-name="BillboardVisualizer"><a href="BillboardVisualizer.html">BillboardVisualizer</a></li><li data-name="binarySearch"><a href="global.html#binarySearch">binarySearch</a></li><li data-name="binarySearchComparator"><a href="global.html#binarySearchComparator">binarySearchComparator</a></li><li data-name="BingMapsGeocoderService"><a href="BingMapsGeocoderService.html">BingMapsGeocoderService</a></li><li data-name="BingMapsImageryProvider"><a href="BingMapsImageryProvider.html">BingMapsImageryProvider</a></li><li data-name="BingMapsStyle"><a href="global.html#BingMapsStyle">BingMapsStyle</a></li><li data-name="BlendEquation"><a href="global.html#BlendEquation">BlendEquation</a></li><li data-name="BlendFunction"><a href="global.html#BlendFunction">BlendFunction</a></li><li data-name="BlendingState"><a href="BlendingState.html">BlendingState</a></li><li data-name="BlendOption"><a href="global.html#BlendOption">BlendOption</a></li><li data-name="BoundingRectangle"><a href="BoundingRectangle.html">BoundingRectangle</a></li><li data-name="BoundingSphere"><a href="BoundingSphere.html">BoundingSphere</a></li><li data-name="BoxEmitter"><a href="BoxEmitter.html">BoxEmitter</a></li><li data-name="BoxGeometry"><a href="BoxGeometry.html">BoxGeometry</a></li><li data-name="BoxGeometryUpdater"><a href="BoxGeometryUpdater.html">BoxGeometryUpdater</a></li><li data-name="BoxGraphics"><a href="BoxGraphics.html">BoxGraphics</a></li><li data-name="BoxOutlineGeometry"><a href="BoxOutlineGeometry.html">BoxOutlineGeometry</a></li><li data-name="buildModuleUrl"><a href="global.html#buildModuleUrl">buildModuleUrl</a></li><li data-name="CallbackProperty"><a href="CallbackProperty.html">CallbackProperty</a></li><li data-name="Camera"><a href="Camera.html">Camera</a></li><li data-name="CameraEventAggregator"><a href="CameraEventAggregator.html">CameraEventAggregator</a></li><li data-name="CameraEventType"><a href="global.html#CameraEventType">CameraEventType</a></li><li data-name="cancelAnimationFrame"><a href="global.html#cancelAnimationFrame">cancelAnimationFrame</a></li><li data-name="Cartesian2"><a href="Cartesian2.html">Cartesian2</a></li><li data-name="Cartesian3"><a href="Cartesian3.html">Cartesian3</a></li><li data-name="Cartesian4"><a href="Cartesian4.html">Cartesian4</a></li><li data-name="Cartographic"><a href="Cartographic.html">Cartographic</a></li><li data-name="CartographicGeocoderService"><a href="CartographicGeocoderService.html">CartographicGeocoderService</a></li><li data-name="CatmullRomSpline"><a href="CatmullRomSpline.html">CatmullRomSpline</a></li><li data-name="Cesium3DTile"><a href="Cesium3DTile.html">Cesium3DTile</a></li><li data-name="Cesium3DTileColorBlendMode"><a href="global.html#Cesium3DTileColorBlendMode">Cesium3DTileColorBlendMode</a></li><li data-name="Cesium3DTileContent"><a href="Cesium3DTileContent.html">Cesium3DTileContent</a></li><li data-name="Cesium3DTileFeature"><a href="Cesium3DTileFeature.html">Cesium3DTileFeature</a></li><li data-name="Cesium3DTilePointFeature"><a href="Cesium3DTilePointFeature.html">Cesium3DTilePointFeature</a></li><li data-name="Cesium3DTileset"><a href="Cesium3DTileset.html">Cesium3DTileset</a></li><li data-name="Cesium3DTilesetGraphics"><a href="Cesium3DTilesetGraphics.html">Cesium3DTilesetGraphics</a></li><li data-name="Cesium3DTilesetVisualizer"><a href="Cesium3DTilesetVisualizer.html">Cesium3DTilesetVisualizer</a></li><li data-name="Cesium3DTilesInspector"><a href="Cesium3DTilesInspector.html">Cesium3DTilesInspector</a></li><li data-name="Cesium3DTilesInspectorViewModel"><a href="Cesium3DTilesInspectorViewModel.html">Cesium3DTilesInspectorViewModel</a></li><li data-name="Cesium3DTileStyle"><a href="Cesium3DTileStyle.html">Cesium3DTileStyle</a></li><li data-name="CesiumInspector"><a href="CesiumInspector.html">CesiumInspector</a></li><li data-name="CesiumInspectorViewModel"><a href="CesiumInspectorViewModel.html">CesiumInspectorViewModel</a></li><li data-name="CesiumTerrainProvider"><a href="CesiumTerrainProvider.html">CesiumTerrainProvider</a></li><li data-name="CesiumWidget"><a href="CesiumWidget.html">CesiumWidget</a></li><li data-name="CheckerboardMaterialProperty"><a href="CheckerboardMaterialProperty.html">CheckerboardMaterialProperty</a></li><li data-name="CircleEmitter"><a href="CircleEmitter.html">CircleEmitter</a></li><li data-name="CircleGeometry"><a href="CircleGeometry.html">CircleGeometry</a></li><li data-name="CircleOutlineGeometry"><a href="CircleOutlineGeometry.html">CircleOutlineGeometry</a></li><li data-name="ClassificationPrimitive"><a href="ClassificationPrimitive.html">ClassificationPrimitive</a></li><li data-name="ClassificationType"><a href="global.html#ClassificationType">ClassificationType</a></li><li data-name="ClippingPlane"><a href="ClippingPlane.html">ClippingPlane</a></li><li data-name="ClippingPlaneCollection"><a href="ClippingPlaneCollection.html">ClippingPlaneCollection</a></li><li data-name="Clock"><a href="Clock.html">Clock</a></li><li data-name="ClockRange"><a href="global.html#ClockRange">ClockRange</a></li><li data-name="ClockStep"><a href="global.html#ClockStep">ClockStep</a></li><li data-name="ClockViewModel"><a href="ClockViewModel.html">ClockViewModel</a></li><li data-name="clone"><a href="global.html#clone">clone</a></li><li data-name="CloudCollection"><a href="CloudCollection.html">CloudCollection</a></li><li data-name="CloudType"><a href="global.html#CloudType">CloudType</a></li><li data-name="Color"><a href="Color.html">Color</a></li><li data-name="ColorBlendMode"><a href="global.html#ColorBlendMode">ColorBlendMode</a></li><li data-name="ColorGeometryInstanceAttribute"><a href="ColorGeometryInstanceAttribute.html">ColorGeometryInstanceAttribute</a></li><li data-name="ColorMaterialProperty"><a href="ColorMaterialProperty.html">ColorMaterialProperty</a></li><li data-name="combine"><a href="global.html#combine">combine</a></li><li data-name="Command"><a href="Command.html">Command</a></li><li data-name="ComponentDatatype"><a href="global.html#ComponentDatatype">ComponentDatatype</a></li><li data-name="CompositeEntityCollection"><a href="CompositeEntityCollection.html">CompositeEntityCollection</a></li><li data-name="CompositeMaterialProperty"><a href="CompositeMaterialProperty.html">CompositeMaterialProperty</a></li><li data-name="CompositePositionProperty"><a href="CompositePositionProperty.html">CompositePositionProperty</a></li><li data-name="CompositeProperty"><a href="CompositeProperty.html">CompositeProperty</a></li><li data-name="CompressedTextureBuffer"><a href="CompressedTextureBuffer.html">CompressedTextureBuffer</a></li><li data-name="ConditionsExpression"><a href="ConditionsExpression.html">ConditionsExpression</a></li><li data-name="ConeEmitter"><a href="ConeEmitter.html">ConeEmitter</a></li><li data-name="ConstantPositionProperty"><a href="ConstantPositionProperty.html">ConstantPositionProperty</a></li><li data-name="ConstantProperty"><a href="ConstantProperty.html">ConstantProperty</a></li><li data-name="ConstantSpline"><a href="ConstantSpline.html">ConstantSpline</a></li><li data-name="CoplanarPolygonGeometry"><a href="CoplanarPolygonGeometry.html">CoplanarPolygonGeometry</a></li><li data-name="CoplanarPolygonOutlineGeometry"><a href="CoplanarPolygonOutlineGeometry.html">CoplanarPolygonOutlineGeometry</a></li><li data-name="CornerType"><a href="global.html#CornerType">CornerType</a></li><li data-name="CorridorGeometry"><a href="CorridorGeometry.html">CorridorGeometry</a></li><li data-name="CorridorGeometryUpdater"><a href="CorridorGeometryUpdater.html">CorridorGeometryUpdater</a></li><li data-name="CorridorGraphics"><a href="CorridorGraphics.html">CorridorGraphics</a></li><li data-name="CorridorOutlineGeometry"><a href="CorridorOutlineGeometry.html">CorridorOutlineGeometry</a></li><li data-name="createCommand"><a href="global.html#createCommand">createCommand</a></li><li data-name="createElevationBandMaterial"><a href="global.html#createElevationBandMaterial">createElevationBandMaterial</a></li><li data-name="createElevationBandMaterialBand"><a href="global.html#createElevationBandMaterialBand">createElevationBandMaterialBand</a></li><li data-name="createElevationBandMaterialEntry"><a href="global.html#createElevationBandMaterialEntry">createElevationBandMaterialEntry</a></li><li data-name="createGuid"><a href="global.html#createGuid">createGuid</a></li><li data-name="createOsmBuildings"><a href="global.html#createOsmBuildings">createOsmBuildings</a></li><li data-name="createTangentSpaceDebugPrimitive"><a href="global.html#createTangentSpaceDebugPrimitive">createTangentSpaceDebugPrimitive</a></li><li data-name="createWorldImagery"><a href="global.html#createWorldImagery">createWorldImagery</a></li><li data-name="createWorldTerrain"><a href="global.html#createWorldTerrain">createWorldTerrain</a></li><li data-name="Credit"><a href="Credit.html">Credit</a></li><li data-name="CreditDisplay"><a href="CreditDisplay.html">CreditDisplay</a></li><li data-name="CubicRealPolynomial"><a href="CubicRealPolynomial.html">CubicRealPolynomial</a></li><li data-name="CullFace"><a href="global.html#CullFace">CullFace</a></li><li data-name="CullingVolume"><a href="CullingVolume.html">CullingVolume</a></li><li data-name="CumulusCloud"><a href="CumulusCloud.html">CumulusCloud</a></li><li data-name="CustomDataSource"><a href="CustomDataSource.html">CustomDataSource</a></li><li data-name="CustomHeightmapTerrainProvider"><a href="CustomHeightmapTerrainProvider.html">CustomHeightmapTerrainProvider</a></li><li data-name="CustomShader"><a href="CustomShader.html">CustomShader</a></li><li data-name="CustomShaderMode"><a href="global.html#CustomShaderMode">CustomShaderMode</a></li><li data-name="CustomShaderTranslucencyMode"><a href="global.html#CustomShaderTranslucencyMode">CustomShaderTranslucencyMode</a></li><li data-name="CylinderGeometry"><a href="CylinderGeometry.html">CylinderGeometry</a></li><li data-name="CylinderGeometryUpdater"><a href="CylinderGeometryUpdater.html">CylinderGeometryUpdater</a></li><li data-name="CylinderGraphics"><a href="CylinderGraphics.html">CylinderGraphics</a></li><li data-name="CylinderOutlineGeometry"><a href="CylinderOutlineGeometry.html">CylinderOutlineGeometry</a></li><li data-name="CzmlDataSource"><a href="CzmlDataSource.html">CzmlDataSource</a></li><li data-name="DataSource"><a href="DataSource.html">DataSource</a></li><li data-name="DataSourceClock"><a href="DataSourceClock.html">DataSourceClock</a></li><li data-name="DataSourceCollection"><a href="DataSourceCollection.html">DataSourceCollection</a></li><li data-name="DataSourceDisplay"><a href="DataSourceDisplay.html">DataSourceDisplay</a></li><li data-name="DebugAppearance"><a href="DebugAppearance.html">DebugAppearance</a></li><li data-name="DebugCameraPrimitive"><a href="DebugCameraPrimitive.html">DebugCameraPrimitive</a></li><li data-name="DebugModelMatrixPrimitive"><a href="DebugModelMatrixPrimitive.html">DebugModelMatrixPrimitive</a></li><li data-name="DefaultProxy"><a href="DefaultProxy.html">DefaultProxy</a></li><li data-name="defaultValue"><a href="global.html#defaultValue">defaultValue</a></li><li data-name="defined"><a href="global.html#defined">defined</a></li><li data-name="DepthFunction"><a href="global.html#DepthFunction">DepthFunction</a></li><li data-name="destroyObject"><a href="global.html#destroyObject">destroyObject</a></li><li data-name="DeveloperError"><a href="DeveloperError.html">DeveloperError</a></li><li data-name="DirectionalLight"><a href="DirectionalLight.html">DirectionalLight</a></li><li data-name="DirectionUp"><a href="global.html#DirectionUp">DirectionUp</a></li><li data-name="DiscardEmptyTileImagePolicy"><a href="DiscardEmptyTileImagePolicy.html">DiscardEmptyTileImagePolicy</a></li><li data-name="DiscardMissingTileImagePolicy"><a href="DiscardMissingTileImagePolicy.html">DiscardMissingTileImagePolicy</a></li><li data-name="DistanceDisplayCondition"><a href="DistanceDisplayCondition.html">DistanceDisplayCondition</a></li><li data-name="DistanceDisplayConditionGeometryInstanceAttribute"><a href="DistanceDisplayConditionGeometryInstanceAttribute.html">DistanceDisplayConditionGeometryInstanceAttribute</a></li><li data-name="EasingFunction"><a href="EasingFunction.html">EasingFunction</a></li><li data-name="EllipseGeometry"><a href="EllipseGeometry.html">EllipseGeometry</a></li><li data-name="EllipseGeometryUpdater"><a href="EllipseGeometryUpdater.html">EllipseGeometryUpdater</a></li><li data-name="EllipseGraphics"><a href="EllipseGraphics.html">EllipseGraphics</a></li><li data-name="EllipseOutlineGeometry"><a href="EllipseOutlineGeometry.html">EllipseOutlineGeometry</a></li><li data-name="Ellipsoid"><a href="Ellipsoid.html">Ellipsoid</a></li><li data-name="EllipsoidGeodesic"><a href="EllipsoidGeodesic.html">EllipsoidGeodesic</a></li><li data-name="EllipsoidGeometry"><a href="EllipsoidGeometry.html">EllipsoidGeometry</a></li><li data-name="EllipsoidGeometryUpdater"><a href="EllipsoidGeometryUpdater.html">EllipsoidGeometryUpdater</a></li><li data-name="EllipsoidGraphics"><a href="EllipsoidGraphics.html">EllipsoidGraphics</a></li><li data-name="EllipsoidOutlineGeometry"><a href="EllipsoidOutlineGeometry.html">EllipsoidOutlineGeometry</a></li><li data-name="EllipsoidRhumbLine"><a href="EllipsoidRhumbLine.html">EllipsoidRhumbLine</a></li><li data-name="EllipsoidSurfaceAppearance"><a href="EllipsoidSurfaceAppearance.html">EllipsoidSurfaceAppearance</a></li><li data-name="EllipsoidTangentPlane"><a href="EllipsoidTangentPlane.html">EllipsoidTangentPlane</a></li><li data-name="EllipsoidTerrainProvider"><a href="EllipsoidTerrainProvider.html">EllipsoidTerrainProvider</a></li><li data-name="Entity"><a href="Entity.html">Entity</a></li><li data-name="EntityCluster"><a href="EntityCluster.html">EntityCluster</a></li><li data-name="EntityCollection"><a href="EntityCollection.html">EntityCollection</a></li><li data-name="EntityView"><a href="EntityView.html">EntityView</a></li><li data-name="Event"><a href="Event.html">Event</a></li><li data-name="EventHelper"><a href="EventHelper.html">EventHelper</a></li><li data-name="excludesReverseAxis"><a href="global.html#excludesReverseAxis">excludesReverseAxis</a></li><li data-name="exportKml"><a href="global.html#exportKml">exportKml</a></li><li data-name="exportKmlModelCallback"><a href="global.html#exportKmlModelCallback">exportKmlModelCallback</a></li><li data-name="exportKmlResultKml"><a href="global.html#exportKmlResultKml">exportKmlResultKml</a></li><li data-name="exportKmlResultKmz"><a href="global.html#exportKmlResultKmz">exportKmlResultKmz</a></li><li data-name="Expression"><a href="Expression.html">Expression</a></li><li data-name="ExtrapolationType"><a href="global.html#ExtrapolationType">ExtrapolationType</a></li><li data-name="FeatureDetection"><a href="FeatureDetection.html">FeatureDetection</a></li><li data-name="Fog"><a href="Fog.html">Fog</a></li><li data-name="formatError"><a href="global.html#formatError">formatError</a></li><li data-name="FrameRateMonitor"><a href="FrameRateMonitor.html">FrameRateMonitor</a></li><li data-name="FrustumGeometry"><a href="FrustumGeometry.html">FrustumGeometry</a></li><li data-name="FrustumOutlineGeometry"><a href="FrustumOutlineGeometry.html">FrustumOutlineGeometry</a></li><li data-name="Fullscreen"><a href="Fullscreen.html">Fullscreen</a></li><li data-name="FullscreenButton"><a href="FullscreenButton.html">FullscreenButton</a></li><li data-name="FullscreenButtonViewModel"><a href="FullscreenButtonViewModel.html">FullscreenButtonViewModel</a></li><li data-name="Geocoder"><a href="Geocoder.html">Geocoder</a></li><li data-name="GeocoderService"><a href="GeocoderService.html">GeocoderService</a></li><li data-name="GeocoderViewModel"><a href="GeocoderViewModel.html">GeocoderViewModel</a></li><li data-name="GeocodeType"><a href="global.html#GeocodeType">GeocodeType</a></li><li data-name="GeographicProjection"><a href="GeographicProjection.html">GeographicProjection</a></li><li data-name="GeographicTilingScheme"><a href="GeographicTilingScheme.html">GeographicTilingScheme</a></li><li data-name="GeoJsonDataSource"><a href="GeoJsonDataSource.html">GeoJsonDataSource</a></li><li data-name="Geometry"><a href="Geometry.html">Geometry</a></li><li data-name="GeometryAttribute"><a href="GeometryAttribute.html">GeometryAttribute</a></li><li data-name="GeometryAttributes"><a href="GeometryAttributes.html">GeometryAttributes</a></li><li data-name="GeometryFactory"><a href="GeometryFactory.html">GeometryFactory</a></li><li data-name="GeometryInstance"><a href="GeometryInstance.html">GeometryInstance</a></li><li data-name="GeometryInstanceAttribute"><a href="GeometryInstanceAttribute.html">GeometryInstanceAttribute</a></li><li data-name="GeometryPipeline"><a href="GeometryPipeline.html">GeometryPipeline</a></li><li data-name="GeometryUpdater"><a href="GeometryUpdater.html">GeometryUpdater</a></li><li data-name="GeometryVisualizer"><a href="GeometryVisualizer.html">GeometryVisualizer</a></li><li data-name="getAbsoluteUri"><a href="global.html#getAbsoluteUri">getAbsoluteUri</a></li><li data-name="getBaseUri"><a href="global.html#getBaseUri">getBaseUri</a></li><li data-name="getExtensionFromUri"><a href="global.html#getExtensionFromUri">getExtensionFromUri</a></li><li data-name="GetFeatureInfoFormat"><a href="GetFeatureInfoFormat.html">GetFeatureInfoFormat</a></li><li data-name="getFilenameFromUri"><a href="global.html#getFilenameFromUri">getFilenameFromUri</a></li><li data-name="getImagePixels"><a href="global.html#getImagePixels">getImagePixels</a></li><li data-name="getTimestamp"><a href="global.html#getTimestamp">getTimestamp</a></li><li data-name="Globe"><a href="Globe.html">Globe</a></li><li data-name="GlobeTranslucency"><a href="GlobeTranslucency.html">GlobeTranslucency</a></li><li data-name="GoogleEarthEnterpriseImageryProvider"><a href="GoogleEarthEnterpriseImageryProvider.html">GoogleEarthEnterpriseImageryProvider</a></li><li data-name="GoogleEarthEnterpriseMapsProvider"><a href="GoogleEarthEnterpriseMapsProvider.html">GoogleEarthEnterpriseMapsProvider</a></li><li data-name="GoogleEarthEnterpriseMetadata"><a href="GoogleEarthEnterpriseMetadata.html">GoogleEarthEnterpriseMetadata</a></li><li data-name="GoogleEarthEnterpriseTerrainData"><a href="GoogleEarthEnterpriseTerrainData.html">GoogleEarthEnterpriseTerrainData</a></li><li data-name="GoogleEarthEnterpriseTerrainProvider"><a href="GoogleEarthEnterpriseTerrainProvider.html">GoogleEarthEnterpriseTerrainProvider</a></li><li data-name="GpxDataSource"><a href="GpxDataSource.html">GpxDataSource</a></li><li data-name="GregorianDate"><a href="GregorianDate.html">GregorianDate</a></li><li data-name="GridImageryProvider"><a href="GridImageryProvider.html">GridImageryProvider</a></li><li data-name="GridMaterialProperty"><a href="GridMaterialProperty.html">GridMaterialProperty</a></li><li data-name="GroundGeometryUpdater"><a href="GroundGeometryUpdater.html">GroundGeometryUpdater</a></li><li data-name="GroundPolylineGeometry"><a href="GroundPolylineGeometry.html">GroundPolylineGeometry</a></li><li data-name="GroundPolylinePrimitive"><a href="GroundPolylinePrimitive.html">GroundPolylinePrimitive</a></li><li data-name="GroundPrimitive"><a href="GroundPrimitive.html">GroundPrimitive</a></li><li data-name="HeadingPitchRange"><a href="HeadingPitchRange.html">HeadingPitchRange</a></li><li data-name="HeadingPitchRoll"><a href="HeadingPitchRoll.html">HeadingPitchRoll</a></li><li data-name="HeadingPitchRollValues"><a href="global.html#HeadingPitchRollValues">HeadingPitchRollValues</a></li><li data-name="HeightmapEncoding"><a href="global.html#HeightmapEncoding">HeightmapEncoding</a></li><li data-name="HeightmapTerrainData"><a href="HeightmapTerrainData.html">HeightmapTerrainData</a></li><li data-name="HeightReference"><a href="global.html#HeightReference">HeightReference</a></li><li data-name="HermitePolynomialApproximation"><a href="HermitePolynomialApproximation.html">HermitePolynomialApproximation</a></li><li data-name="HermiteSpline"><a href="HermiteSpline.html">HermiteSpline</a></li><li data-name="HilbertOrder"><a href="HilbertOrder.html">HilbertOrder</a></li><li data-name="HomeButton"><a href="HomeButton.html">HomeButton</a></li><li data-name="HomeButtonViewModel"><a href="HomeButtonViewModel.html">HomeButtonViewModel</a></li><li data-name="HorizontalOrigin"><a href="global.html#HorizontalOrigin">HorizontalOrigin</a></li><li data-name="ImageBasedLighting"><a href="ImageBasedLighting.html">ImageBasedLighting</a></li><li data-name="ImageMaterialProperty"><a href="ImageMaterialProperty.html">ImageMaterialProperty</a></li><li data-name="ImageryLayer"><a href="ImageryLayer.html">ImageryLayer</a></li><li data-name="ImageryLayerCollection"><a href="ImageryLayerCollection.html">ImageryLayerCollection</a></li><li data-name="ImageryLayerFeatureInfo"><a href="ImageryLayerFeatureInfo.html">ImageryLayerFeatureInfo</a></li><li data-name="ImageryProvider"><a href="ImageryProvider.html">ImageryProvider</a></li><li data-name="ImageryTypes"><a href="global.html#ImageryTypes">ImageryTypes</a></li><li data-name="includesReverseAxis"><a href="global.html#includesReverseAxis">includesReverseAxis</a></li><li data-name="IndexDatatype"><a href="global.html#IndexDatatype">IndexDatatype</a></li><li data-name="InfoBox"><a href="InfoBox.html">InfoBox</a></li><li data-name="InfoBoxViewModel"><a href="InfoBoxViewModel.html">InfoBoxViewModel</a></li><li data-name="Intersect"><a href="global.html#Intersect">Intersect</a></li><li data-name="Intersections2D"><a href="Intersections2D.html">Intersections2D</a></li><li data-name="IntersectionTests"><a href="IntersectionTests.html">IntersectionTests</a></li><li data-name="Interval"><a href="Interval.html">Interval</a></li><li data-name="Ion"><a href="Ion.html">Ion</a></li><li data-name="IonGeocoderService"><a href="IonGeocoderService.html">IonGeocoderService</a></li><li data-name="IonImageryProvider"><a href="IonImageryProvider.html">IonImageryProvider</a></li><li data-name="IonResource"><a href="IonResource.html">IonResource</a></li><li data-name="IonWorldImageryStyle"><a href="global.html#IonWorldImageryStyle">IonWorldImageryStyle</a></li><li data-name="isLeapYear"><a href="global.html#isLeapYear">isLeapYear</a></li><li data-name="Iso8601"><a href="Iso8601.html">Iso8601</a></li><li data-name="JulianDate"><a href="JulianDate.html">JulianDate</a></li><li data-name="KeyboardEventModifier"><a href="global.html#KeyboardEventModifier">KeyboardEventModifier</a></li><li data-name="KmlCamera"><a href="KmlCamera.html">KmlCamera</a></li><li data-name="KmlDataSource"><a href="KmlDataSource.html">KmlDataSource</a></li><li data-name="KmlFeatureData"><a href="KmlFeatureData.html">KmlFeatureData</a></li><li data-name="KmlLookAt"><a href="KmlLookAt.html">KmlLookAt</a></li><li data-name="KmlTour"><a href="KmlTour.html">KmlTour</a></li><li data-name="KmlTourFlyTo"><a href="KmlTourFlyTo.html">KmlTourFlyTo</a></li><li data-name="KmlTourWait"><a href="KmlTourWait.html">KmlTourWait</a></li><li data-name="Label"><a href="Label.html">Label</a></li><li data-name="LabelCollection"><a href="LabelCollection.html">LabelCollection</a></li><li data-name="LabelGraphics"><a href="LabelGraphics.html">LabelGraphics</a></li><li data-name="LabelStyle"><a href="global.html#LabelStyle">LabelStyle</a></li><li data-name="LabelVisualizer"><a href="LabelVisualizer.html">LabelVisualizer</a></li><li data-name="LagrangePolynomialApproximation"><a href="LagrangePolynomialApproximation.html">LagrangePolynomialApproximation</a></li><li data-name="LeapSecond"><a href="LeapSecond.html">LeapSecond</a></li><li data-name="Light"><a href="Light.html">Light</a></li><li data-name="LightingModel"><a href="global.html#LightingModel">LightingModel</a></li><li data-name="LinearApproximation"><a href="LinearApproximation.html">LinearApproximation</a></li><li data-name="LinearSpline"><a href="LinearSpline.html">LinearSpline</a></li><li data-name="MapboxImageryProvider"><a href="MapboxImageryProvider.html">MapboxImageryProvider</a></li><li data-name="MapboxStyleImageryProvider"><a href="MapboxStyleImageryProvider.html">MapboxStyleImageryProvider</a></li><li data-name="MapMode2D"><a href="global.html#MapMode2D">MapMode2D</a></li><li data-name="MapProjection"><a href="MapProjection.html">MapProjection</a></li><li data-name="Material"><a href="Material.html">Material</a></li><li data-name="MaterialAppearance"><a href="MaterialAppearance.html">MaterialAppearance</a></li><li data-name="MaterialSupport"><a href="MaterialAppearance.MaterialSupport.html">MaterialSupport</a></li><li data-name="MaterialProperty"><a href="MaterialProperty.html">MaterialProperty</a></li><li data-name="Math"><a href="Math.html">Math</a></li><li data-name="Matrix2"><a href="Matrix2.html">Matrix2</a></li><li data-name="Matrix3"><a href="Matrix3.html">Matrix3</a></li><li data-name="Matrix4"><a href="Matrix4.html">Matrix4</a></li><li data-name="mergeSort"><a href="global.html#mergeSort">mergeSort</a></li><li data-name="mergeSortComparator"><a href="global.html#mergeSortComparator">mergeSortComparator</a></li><li data-name="Model"><a href="Model.html">Model</a></li><li data-name="ModelAnimation"><a href="ModelAnimation.html">ModelAnimation</a></li><li data-name="ModelAnimationCollection"><a href="ModelAnimationCollection.html">ModelAnimationCollection</a></li><li data-name="ModelAnimationLoop"><a href="global.html#ModelAnimationLoop">ModelAnimationLoop</a></li><li data-name="ModelFeature"><a href="ModelFeature.html">ModelFeature</a></li><li data-name="ModelGraphics"><a href="ModelGraphics.html">ModelGraphics</a></li><li data-name="ModelNode"><a href="ModelNode.html">ModelNode</a></li><li data-name="ModelVisualizer"><a href="ModelVisualizer.html">ModelVisualizer</a></li><li data-name="Moon"><a href="Moon.html">Moon</a></li><li data-name="MorphWeightSpline"><a href="MorphWeightSpline.html">MorphWeightSpline</a></li><li data-name="NavigationHelpButton"><a href="NavigationHelpButton.html">NavigationHelpButton</a></li><li data-name="NavigationHelpButtonViewModel"><a href="NavigationHelpButtonViewModel.html">NavigationHelpButtonViewModel</a></li><li data-name="NearFarScalar"><a href="NearFarScalar.html">NearFarScalar</a></li><li data-name="NeverTileDiscardPolicy"><a href="NeverTileDiscardPolicy.html">NeverTileDiscardPolicy</a></li><li data-name="NodeTransformationProperty"><a href="NodeTransformationProperty.html">NodeTransformationProperty</a></li><li data-name="objectToQuery"><a href="global.html#objectToQuery">objectToQuery</a></li><li data-name="Occluder"><a href="Occluder.html">Occluder</a></li><li data-name="OpenCageGeocoderService"><a href="OpenCageGeocoderService.html">OpenCageGeocoderService</a></li><li data-name="OpenStreetMapImageryProvider"><a href="OpenStreetMapImageryProvider.html">OpenStreetMapImageryProvider</a></li><li data-name="OrientedBoundingBox"><a href="OrientedBoundingBox.html">OrientedBoundingBox</a></li><li data-name="OrthographicFrustum"><a href="OrthographicFrustum.html">OrthographicFrustum</a></li><li data-name="OrthographicOffCenterFrustum"><a href="OrthographicOffCenterFrustum.html">OrthographicOffCenterFrustum</a></li><li data-name="PackableForInterpolation"><a href="PackableForInterpolation.html">PackableForInterpolation</a></li><li data-name="Particle"><a href="Particle.html">Particle</a></li><li data-name="ParticleBurst"><a href="ParticleBurst.html">ParticleBurst</a></li><li data-name="ParticleEmitter"><a href="ParticleEmitter.html">ParticleEmitter</a></li><li data-name="ParticleSystem"><a href="ParticleSystem.html">ParticleSystem</a></li><li data-name="PathGraphics"><a href="PathGraphics.html">PathGraphics</a></li><li data-name="PathVisualizer"><a href="PathVisualizer.html">PathVisualizer</a></li><li data-name="PeliasGeocoderService"><a href="PeliasGeocoderService.html">PeliasGeocoderService</a></li><li data-name="PerformanceWatchdog"><a href="PerformanceWatchdog.html">PerformanceWatchdog</a></li><li data-name="PerformanceWatchdogViewModel"><a href="PerformanceWatchdogViewModel.html">PerformanceWatchdogViewModel</a></li><li data-name="PerInstanceColorAppearance"><a href="PerInstanceColorAppearance.html">PerInstanceColorAppearance</a></li><li data-name="PerspectiveFrustum"><a href="PerspectiveFrustum.html">PerspectiveFrustum</a></li><li data-name="PerspectiveOffCenterFrustum"><a href="PerspectiveOffCenterFrustum.html">PerspectiveOffCenterFrustum</a></li><li data-name="PinBuilder"><a href="PinBuilder.html">PinBuilder</a></li><li data-name="PixelDatatype"><a href="global.html#PixelDatatype">PixelDatatype</a></li><li data-name="PixelFormat"><a href="global.html#PixelFormat">PixelFormat</a></li><li data-name="Plane"><a href="Plane.html">Plane</a></li><li data-name="PlaneGeometry"><a href="PlaneGeometry.html">PlaneGeometry</a></li><li data-name="PlaneGeometryUpdater"><a href="PlaneGeometryUpdater.html">PlaneGeometryUpdater</a></li><li data-name="PlaneGraphics"><a href="PlaneGraphics.html">PlaneGraphics</a></li><li data-name="PlaneOutlineGeometry"><a href="PlaneOutlineGeometry.html">PlaneOutlineGeometry</a></li><li data-name="PointCloudShading"><a href="PointCloudShading.html">PointCloudShading</a></li><li data-name="PointGraphics"><a href="PointGraphics.html">PointGraphics</a></li><li data-name="pointInsideTriangle"><a href="global.html#pointInsideTriangle">pointInsideTriangle</a></li><li data-name="PointPrimitive"><a href="PointPrimitive.html">PointPrimitive</a></li><li data-name="PointPrimitiveCollection"><a href="PointPrimitiveCollection.html">PointPrimitiveCollection</a></li><li data-name="PointVisualizer"><a href="PointVisualizer.html">PointVisualizer</a></li><li data-name="PolygonGeometry"><a href="PolygonGeometry.html">PolygonGeometry</a></li><li data-name="PolygonGeometryUpdater"><a href="PolygonGeometryUpdater.html">PolygonGeometryUpdater</a></li><li data-name="PolygonGraphics"><a href="PolygonGraphics.html">PolygonGraphics</a></li><li data-name="PolygonHierarchy"><a href="PolygonHierarchy.html">PolygonHierarchy</a></li><li data-name="PolygonOutlineGeometry"><a href="PolygonOutlineGeometry.html">PolygonOutlineGeometry</a></li><li data-name="Polyline"><a href="Polyline.html">Polyline</a></li><li data-name="PolylineArrowMaterialProperty"><a href="PolylineArrowMaterialProperty.html">PolylineArrowMaterialProperty</a></li><li data-name="PolylineCollection"><a href="PolylineCollection.html">PolylineCollection</a></li><li data-name="PolylineColorAppearance"><a href="PolylineColorAppearance.html">PolylineColorAppearance</a></li><li data-name="PolylineDashMaterialProperty"><a href="PolylineDashMaterialProperty.html">PolylineDashMaterialProperty</a></li><li data-name="PolylineGeometry"><a href="PolylineGeometry.html">PolylineGeometry</a></li><li data-name="PolylineGeometryUpdater"><a href="PolylineGeometryUpdater.html">PolylineGeometryUpdater</a></li><li data-name="PolylineGlowMaterialProperty"><a href="PolylineGlowMaterialProperty.html">PolylineGlowMaterialProperty</a></li><li data-name="PolylineGraphics"><a href="PolylineGraphics.html">PolylineGraphics</a></li><li data-name="PolylineMaterialAppearance"><a href="PolylineMaterialAppearance.html">PolylineMaterialAppearance</a></li><li data-name="PolylineOutlineMaterialProperty"><a href="PolylineOutlineMaterialProperty.html">PolylineOutlineMaterialProperty</a></li><li data-name="PolylineVisualizer"><a href="PolylineVisualizer.html">PolylineVisualizer</a></li><li data-name="PolylineVolumeGeometry"><a href="PolylineVolumeGeometry.html">PolylineVolumeGeometry</a></li><li data-name="PolylineVolumeGeometryUpdater"><a href="PolylineVolumeGeometryUpdater.html">PolylineVolumeGeometryUpdater</a></li><li data-name="PolylineVolumeGraphics"><a href="PolylineVolumeGraphics.html">PolylineVolumeGraphics</a></li><li data-name="PolylineVolumeOutlineGeometry"><a href="PolylineVolumeOutlineGeometry.html">PolylineVolumeOutlineGeometry</a></li><li data-name="PositionProperty"><a href="PositionProperty.html">PositionProperty</a></li><li data-name="PositionPropertyArray"><a href="PositionPropertyArray.html">PositionPropertyArray</a></li><li data-name="PostProcessStage"><a href="PostProcessStage.html">PostProcessStage</a></li><li data-name="PostProcessStageCollection"><a href="PostProcessStageCollection.html">PostProcessStageCollection</a></li><li data-name="PostProcessStageComposite"><a href="PostProcessStageComposite.html">PostProcessStageComposite</a></li><li data-name="PostProcessStageLibrary"><a href="PostProcessStageLibrary.html">PostProcessStageLibrary</a></li><li data-name="PostProcessStageSampleMode"><a href="global.html#PostProcessStageSampleMode">PostProcessStageSampleMode</a></li><li data-name="Primitive"><a href="Primitive.html">Primitive</a></li><li data-name="PrimitiveCollection"><a href="PrimitiveCollection.html">PrimitiveCollection</a></li><li data-name="PrimitiveType"><a href="global.html#PrimitiveType">PrimitiveType</a></li><li data-name="ProjectionPicker"><a href="ProjectionPicker.html">ProjectionPicker</a></li><li data-name="ProjectionPickerViewModel"><a href="ProjectionPickerViewModel.html">ProjectionPickerViewModel</a></li><li data-name="Property"><a href="Property.html">Property</a></li><li data-name="PropertyArray"><a href="PropertyArray.html">PropertyArray</a></li><li data-name="PropertyBag"><a href="PropertyBag.html">PropertyBag</a></li><li data-name="ProviderViewModel"><a href="ProviderViewModel.html">ProviderViewModel</a></li><li data-name="Proxy"><a href="Proxy.html">Proxy</a></li><li data-name="QuadraticRealPolynomial"><a href="QuadraticRealPolynomial.html">QuadraticRealPolynomial</a></li><li data-name="QuantizedMeshTerrainData"><a href="QuantizedMeshTerrainData.html">QuantizedMeshTerrainData</a></li><li data-name="QuarticRealPolynomial"><a href="QuarticRealPolynomial.html">QuarticRealPolynomial</a></li><li data-name="Quaternion"><a href="Quaternion.html">Quaternion</a></li><li data-name="QuaternionSpline"><a href="QuaternionSpline.html">QuaternionSpline</a></li><li data-name="queryToObject"><a href="global.html#queryToObject">queryToObject</a></li><li data-name="Queue"><a href="Queue.html">Queue</a></li><li data-name="Ray"><a href="Ray.html">Ray</a></li><li data-name="Rectangle"><a href="Rectangle.html">Rectangle</a></li><li data-name="RectangleGeometry"><a href="RectangleGeometry.html">RectangleGeometry</a></li><li data-name="RectangleGeometryUpdater"><a href="RectangleGeometryUpdater.html">RectangleGeometryUpdater</a></li><li data-name="RectangleGraphics"><a href="RectangleGraphics.html">RectangleGraphics</a></li><li data-name="RectangleOutlineGeometry"><a href="RectangleOutlineGeometry.html">RectangleOutlineGeometry</a></li><li data-name="ReferenceFrame"><a href="global.html#ReferenceFrame">ReferenceFrame</a></li><li data-name="ReferenceProperty"><a href="ReferenceProperty.html">ReferenceProperty</a></li><li data-name="removeExtension"><a href="global.html#removeExtension">removeExtension</a></li><li data-name="Request"><a href="Request.html">Request</a></li><li data-name="requestAnimationFrame"><a href="global.html#requestAnimationFrame">requestAnimationFrame</a></li><li data-name="requestAnimationFrameCallback"><a href="global.html#requestAnimationFrameCallback">requestAnimationFrameCallback</a></li><li data-name="RequestErrorEvent"><a href="RequestErrorEvent.html">RequestErrorEvent</a></li><li data-name="RequestScheduler"><a href="RequestScheduler.html">RequestScheduler</a></li><li data-name="RequestState"><a href="global.html#RequestState">RequestState</a></li><li data-name="RequestType"><a href="global.html#RequestType">RequestType</a></li><li data-name="Resource"><a href="Resource.html">Resource</a></li><li data-name="RuntimeError"><a href="RuntimeError.html">RuntimeError</a></li><li data-name="SampledPositionProperty"><a href="SampledPositionProperty.html">SampledPositionProperty</a></li><li data-name="SampledProperty"><a href="SampledProperty.html">SampledProperty</a></li><li data-name="sampleTerrain"><a href="global.html#sampleTerrain">sampleTerrain</a></li><li data-name="sampleTerrainMostDetailed"><a href="global.html#sampleTerrainMostDetailed">sampleTerrainMostDetailed</a></li><li data-name="Scene"><a href="Scene.html">Scene</a></li><li data-name="SceneMode"><a href="global.html#SceneMode">SceneMode</a></li><li data-name="SceneModePicker"><a href="SceneModePicker.html">SceneModePicker</a></li><li data-name="SceneModePickerViewModel"><a href="SceneModePickerViewModel.html">SceneModePickerViewModel</a></li><li data-name="SceneTransforms"><a href="SceneTransforms.html">SceneTransforms</a></li><li data-name="ScreenSpaceCameraController"><a href="ScreenSpaceCameraController.html">ScreenSpaceCameraController</a></li><li data-name="ScreenSpaceEventHandler"><a href="ScreenSpaceEventHandler.html">ScreenSpaceEventHandler</a></li><li data-name="ScreenSpaceEventType"><a href="global.html#ScreenSpaceEventType">ScreenSpaceEventType</a></li><li data-name="SelectionIndicator"><a href="SelectionIndicator.html">SelectionIndicator</a></li><li data-name="SelectionIndicatorViewModel"><a href="SelectionIndicatorViewModel.html">SelectionIndicatorViewModel</a></li><li data-name="ShadowMap"><a href="ShadowMap.html">ShadowMap</a></li><li data-name="ShadowMode"><a href="global.html#ShadowMode">ShadowMode</a></li><li data-name="ShowGeometryInstanceAttribute"><a href="ShowGeometryInstanceAttribute.html">ShowGeometryInstanceAttribute</a></li><li data-name="Simon1994PlanetaryPositions"><a href="Simon1994PlanetaryPositions.html">Simon1994PlanetaryPositions</a></li><li data-name="SimplePolylineGeometry"><a href="SimplePolylineGeometry.html">SimplePolylineGeometry</a></li><li data-name="SingleTileImageryProvider"><a href="SingleTileImageryProvider.html">SingleTileImageryProvider</a></li><li data-name="SkyAtmosphere"><a href="SkyAtmosphere.html">SkyAtmosphere</a></li><li data-name="SkyBox"><a href="SkyBox.html">SkyBox</a></li><li data-name="SphereEmitter"><a href="SphereEmitter.html">SphereEmitter</a></li><li data-name="SphereGeometry"><a href="SphereGeometry.html">SphereGeometry</a></li><li data-name="SphereOutlineGeometry"><a href="SphereOutlineGeometry.html">SphereOutlineGeometry</a></li><li data-name="Spherical"><a href="Spherical.html">Spherical</a></li><li data-name="Spline"><a href="Spline.html">Spline</a></li><li data-name="SplitDirection"><a href="global.html#SplitDirection">SplitDirection</a></li><li data-name="StencilFunction"><a href="global.html#StencilFunction">StencilFunction</a></li><li data-name="StencilOperation"><a href="global.html#StencilOperation">StencilOperation</a></li><li data-name="SteppedSpline"><a href="SteppedSpline.html">SteppedSpline</a></li><li data-name="StripeMaterialProperty"><a href="StripeMaterialProperty.html">StripeMaterialProperty</a></li><li data-name="StripeOrientation"><a href="global.html#StripeOrientation">StripeOrientation</a></li><li data-name="StyleExpression"><a href="StyleExpression.html">StyleExpression</a></li><li data-name="subdivideArray"><a href="global.html#subdivideArray">subdivideArray</a></li><li data-name="Sun"><a href="Sun.html">Sun</a></li><li data-name="SunLight"><a href="SunLight.html">SunLight</a></li><li data-name="SvgPathBindingHandler"><a href="SvgPathBindingHandler.html">SvgPathBindingHandler</a></li><li data-name="TaskProcessor"><a href="TaskProcessor.html">TaskProcessor</a></li><li data-name="TerrainData"><a href="TerrainData.html">TerrainData</a></li><li data-name="TerrainProvider"><a href="TerrainProvider.html">TerrainProvider</a></li><li data-name="TextureMagnificationFilter"><a href="global.html#TextureMagnificationFilter">TextureMagnificationFilter</a></li><li data-name="TextureMinificationFilter"><a href="global.html#TextureMinificationFilter">TextureMinificationFilter</a></li><li data-name="TextureUniform"><a href="TextureUniform.html">TextureUniform</a></li><li data-name="TileAvailability"><a href="TileAvailability.html">TileAvailability</a></li><li data-name="TileCoordinatesImageryProvider"><a href="TileCoordinatesImageryProvider.html">TileCoordinatesImageryProvider</a></li><li data-name="TileDiscardPolicy"><a href="TileDiscardPolicy.html">TileDiscardPolicy</a></li><li data-name="TileMapServiceImageryProvider"><a href="TileMapServiceImageryProvider.html">TileMapServiceImageryProvider</a></li><li data-name="TileProviderError"><a href="TileProviderError.html">TileProviderError</a></li><li data-name="TilingScheme"><a href="TilingScheme.html">TilingScheme</a></li><li data-name="TimeDynamicImagery"><a href="TimeDynamicImagery.html">TimeDynamicImagery</a></li><li data-name="TimeDynamicPointCloud"><a href="TimeDynamicPointCloud.html">TimeDynamicPointCloud</a></li><li data-name="TimeInterval"><a href="TimeInterval.html">TimeInterval</a></li><li data-name="TimeIntervalCollection"><a href="TimeIntervalCollection.html">TimeIntervalCollection</a></li><li data-name="TimeIntervalCollectionPositionProperty"><a href="TimeIntervalCollectionPositionProperty.html">TimeIntervalCollectionPositionProperty</a></li><li data-name="TimeIntervalCollectionProperty"><a href="TimeIntervalCollectionProperty.html">TimeIntervalCollectionProperty</a></li><li data-name="Timeline"><a href="Timeline.html">Timeline</a></li><li data-name="TimeStandard"><a href="global.html#TimeStandard">TimeStandard</a></li><li data-name="ToggleButtonViewModel"><a href="ToggleButtonViewModel.html">ToggleButtonViewModel</a></li><li data-name="Transforms"><a href="Transforms.html">Transforms</a></li><li data-name="TranslationRotationScale"><a href="TranslationRotationScale.html">TranslationRotationScale</a></li><li data-name="TridiagonalSystemSolver"><a href="TridiagonalSystemSolver.html">TridiagonalSystemSolver</a></li><li data-name="TrustedServers"><a href="TrustedServers.html">TrustedServers</a></li><li data-name="UniformSpecifier"><a href="global.html#UniformSpecifier">UniformSpecifier</a></li><li data-name="UniformType"><a href="global.html#UniformType">UniformType</a></li><li data-name="UrlTemplateImageryProvider"><a href="UrlTemplateImageryProvider.html">UrlTemplateImageryProvider</a></li><li data-name="VaryingType"><a href="global.html#VaryingType">VaryingType</a></li><li data-name="VelocityOrientationProperty"><a href="VelocityOrientationProperty.html">VelocityOrientationProperty</a></li><li data-name="VelocityVectorProperty"><a href="VelocityVectorProperty.html">VelocityVectorProperty</a></li><li data-name="VertexFormat"><a href="VertexFormat.html">VertexFormat</a></li><li data-name="VerticalOrigin"><a href="global.html#VerticalOrigin">VerticalOrigin</a></li><li data-name="VideoSynchronizer"><a href="VideoSynchronizer.html">VideoSynchronizer</a></li><li data-name="Viewer"><a href="Viewer.html">Viewer</a></li><li data-name="viewerCesium3DTilesInspectorMixin"><a href="global.html#viewerCesium3DTilesInspectorMixin">viewerCesium3DTilesInspectorMixin</a></li><li data-name="viewerCesiumInspectorMixin"><a href="global.html#viewerCesiumInspectorMixin">viewerCesiumInspectorMixin</a></li><li data-name="viewerDragDropMixin"><a href="global.html#viewerDragDropMixin">viewerDragDropMixin</a></li><li data-name="viewerPerformanceWatchdogMixin"><a href="global.html#viewerPerformanceWatchdogMixin">viewerPerformanceWatchdogMixin</a></li><li data-name="ViewportQuad"><a href="ViewportQuad.html">ViewportQuad</a></li><li data-name="Visibility"><a href="global.html#Visibility">Visibility</a></li><li data-name="Visualizer"><a href="Visualizer.html">Visualizer</a></li><li data-name="VRButton"><a href="VRButton.html">VRButton</a></li><li data-name="VRButtonViewModel"><a href="VRButtonViewModel.html">VRButtonViewModel</a></li><li data-name="VRTheWorldTerrainProvider"><a href="VRTheWorldTerrainProvider.html">VRTheWorldTerrainProvider</a></li><li data-name="WallGeometry"><a href="WallGeometry.html">WallGeometry</a></li><li data-name="WallGeometryUpdater"><a href="WallGeometryUpdater.html">WallGeometryUpdater</a></li><li data-name="WallGraphics"><a href="WallGraphics.html">WallGraphics</a></li><li data-name="WallOutlineGeometry"><a href="WallOutlineGeometry.html">WallOutlineGeometry</a></li><li data-name="WebGLConstants"><a href="global.html#WebGLConstants">WebGLConstants</a></li><li data-name="WebMapServiceImageryProvider"><a href="WebMapServiceImageryProvider.html">WebMapServiceImageryProvider</a></li><li data-name="WebMapTileServiceImageryProvider"><a href="WebMapTileServiceImageryProvider.html">WebMapTileServiceImageryProvider</a></li><li data-name="WebMercatorProjection"><a href="WebMercatorProjection.html">WebMercatorProjection</a></li><li data-name="WebMercatorTilingScheme"><a href="WebMercatorTilingScheme.html">WebMercatorTilingScheme</a></li><li data-name="WindingOrder"><a href="global.html#WindingOrder">WindingOrder</a></li><li data-name="writeTextToCanvas"><a href="global.html#writeTextToCanvas">writeTextToCanvas</a></li></ul>
     </div>
 </div>
 

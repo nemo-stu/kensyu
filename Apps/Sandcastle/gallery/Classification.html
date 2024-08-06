@@ -76,11 +76,11 @@
       </table>
     </div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
         const scene = viewer.scene;
@@ -311,12 +311,10 @@
           scene.invertClassificationColor.alpha = parseFloat(value);
         }
 
-        try {
-          const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(40866);
-          scene.primitives.add(tileset);
-        } catch (error) {
-          console.log(`Error loading tileset: ${error}`);
-        }
+        const tileset = new Cesium.Cesium3DTileset({
+          url: Cesium.IonResource.fromAssetId(40866),
+        });
+        scene.primitives.add(tileset);
 
         const viewModel = {
           inverted: viewer.scene.invertClassification,
@@ -390,15 +388,13 @@
             currentPrimitive = undefined;
             currentColor = undefined;
           }
-        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE); //Sandcastle_End
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

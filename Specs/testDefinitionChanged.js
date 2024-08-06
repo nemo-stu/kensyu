@@ -1,4 +1,4 @@
-import { ConstantProperty } from "@cesium/engine";
+import { ConstantProperty } from "../Source/Cesium.js";
 
 function testDefinitionChanged(property, name, value1, value2) {
   const listener = jasmine.createSpy("listener");

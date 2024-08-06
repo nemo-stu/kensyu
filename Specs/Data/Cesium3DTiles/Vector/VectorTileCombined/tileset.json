@@ -48,7 +48,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "tile.vctr"
+          "url": "tile.vctr"
         }
       }
     ]

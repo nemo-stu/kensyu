@@ -35,7 +35,7 @@
     "geometricError": 100,
     "refine": "REPLACE",
     "content": {
-      "uri": "parent.geom"
+      "url": "parent.geom"
     },
     "children": [
       {
@@ -51,7 +51,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "children.geom"
+          "url": "children.geom"
         }
       }
     ]

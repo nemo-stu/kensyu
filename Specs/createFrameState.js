@@ -1,5 +1,4 @@
 import {
-  Atmosphere,
   defaultValue,
   GeographicProjection,
   JulianDate,
@@ -7,7 +6,7 @@ import {
   CreditDisplay,
   FrameState,
   JobScheduler,
-} from "@cesium/engine";
+} from "../../Source/Cesium.js";
 
 function createFrameState(context, camera, frameNumber, time) {
   // Mock frame-state for testing.
@@ -44,15 +43,13 @@ function createFrameState(context, camera, frameNumber, time) {
     camera.up
   );
 
-  frameState.verticalExaggeration = 1.0;
-  frameState.verticalExaggerationRelativeHeight = 0.0;
+  frameState.terrainExaggeration = 1.0;
+  frameState.terrainExaggerationRelativeHeight = 0.0;
 
   frameState.passes.render = true;
   frameState.passes.pick = false;
 
   frameState.minimumDisableDepthTestDistance = 0.0;
-
-  frameState.atmosphere = new Atmosphere();
 
   return frameState;
 }

@@ -31,11 +31,11 @@
     <div id="toolbar"></div>
 
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
         const pinBuilder = new Cesium.PinBuilder();
@@ -55,7 +55,7 @@
                     )
                   )
                   .then(function (dataSource) {
-                    viewer.zoomTo(dataSource.entities);
+                    viewer.flyTo(dataSource.entities);
                   });
               },
             },
@@ -72,7 +72,7 @@
                     )
                   )
                   .then(function (dataSource) {
-                    viewer.zoomTo(dataSource.entities);
+                    viewer.flyTo(dataSource.entities);
                   });
               },
             },
@@ -86,7 +86,7 @@
                     })
                   )
                   .then(function (dataSource) {
-                    viewer.zoomTo(dataSource.entities);
+                    viewer.flyTo(dataSource.entities);
                   });
               },
             },
@@ -101,7 +101,7 @@
                     )
                   )
                   .then(function (dataSource) {
-                    viewer.zoomTo(dataSource.entities);
+                    viewer.flyTo(dataSource.entities);
                   });
               },
             },
@@ -124,7 +124,7 @@
                     )
                   )
                   .then(function (dataSource) {
-                    viewer.zoomTo(dataSource.entities);
+                    viewer.flyTo(dataSource.entities);
                   });
               },
             },
@@ -138,14 +138,11 @@
           viewer.clock.clockStep = Cesium.ClockStep.SYSTEM_CLOCK;
         };
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

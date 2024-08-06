@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -22,5 +22,4 @@
  * Portions licensed separately.
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
-
-import{a as r}from"./chunk-W5FWNHP7.js";import"./chunk-W2LU7RJ5.js";import"./chunk-6GG6EJBW.js";import"./chunk-TXLODGLR.js";import"./chunk-DBOVA5XH.js";import"./chunk-RHEGXTJ5.js";import"./chunk-CWBIOT2C.js";import"./chunk-PPN6SLYU.js";import"./chunk-SOWUYSYI.js";import"./chunk-I36V6CKP.js";import"./chunk-WG62ICZK.js";import"./chunk-EEN7GMYN.js";import"./chunk-SXYTVHGU.js";import"./chunk-RAWIUDJR.js";import"./chunk-KGKDCW56.js";import"./chunk-G4IO3CPJ.js";import{e as o}from"./chunk-GBRF7ES3.js";function i(e,t){return o(t)&&(e=r.unpack(e,t)),r.createGeometry(e)}var a=i;export{a as default};
+define(["./CylinderGeometry-c3ce44b9","./defaultValue-50f7432c","./Transforms-f305a473","./Matrix2-7dfd434a","./ComponentDatatype-9b23164a","./WebGLConstants-58abc51a","./RuntimeError-48e1f06d","./combine-8462e002","./CylinderGeometryLibrary-8bcf1a43","./GeometryAttribute-4d82fade","./GeometryAttributes-8bab1b25","./GeometryOffsetAttribute-490bc2c9","./IndexDatatype-ceed713e","./VertexFormat-fa0c27e8"],(function(e,t,r,a,n,o,i,c,d,f,y,b,m,u){"use strict";return function(r,a){return t.defined(a)&&(r=e.CylinderGeometry.unpack(r,a)),e.CylinderGeometry.createGeometry(r)}}));

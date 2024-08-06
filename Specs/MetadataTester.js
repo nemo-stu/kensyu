@@ -9,7 +9,7 @@ import {
   MetadataEnum,
   MetadataTable,
   MetadataType,
-} from "@cesium/engine";
+} from "../Source/Cesium.js";
 
 function MetadataTester() {}
 
@@ -60,14 +60,14 @@ function createProperties(options) {
   const enumDefinitions = {};
   for (const enumId in enums) {
     if (enums.hasOwnProperty(enumId)) {
-      enumDefinitions[enumId] = MetadataEnum.fromJson({
+      enumDefinitions[enumId] = new MetadataEnum({
         id: enumId,
         enum: enums[enumId],
       });
     }
   }
 
-  const classDefinition = MetadataClass.fromJson({
+  const classDefinition = new MetadataClass({
     id: classId,
     class: schema.classes[classId],
     enums: enumDefinitions,

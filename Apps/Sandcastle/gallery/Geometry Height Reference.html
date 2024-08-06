@@ -32,15 +32,15 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
+        const cesiumTerrainProvider = Cesium.createWorldTerrain();
         const ellipsoidTerrainProvider = new Cesium.EllipsoidTerrainProvider();
-        const worldTerrain = Cesium.Terrain.fromWorldTerrain();
 
         const viewer = new Cesium.Viewer("cesiumContainer", {
           baseLayerPicker: false,
-          terrain: worldTerrain,
+          terrainProvider: cesiumTerrainProvider,
         });
 
         // depth test against terrain is required to make the polygons clamp to terrain
@@ -68,7 +68,7 @@
           {
             text: "Terrain Enabled",
             onselect: function () {
-              viewer.scene.setTerrain(worldTerrain);
+              viewer.scene.terrainProvider = cesiumTerrainProvider;
             },
           },
           {
@@ -171,14 +171,11 @@
           viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
         }
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

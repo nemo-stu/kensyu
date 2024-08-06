@@ -4,7 +4,7 @@ import {
   GlobeSurfaceTile,
   TerrainState,
   Texture,
-} from "@cesium/engine";
+} from "../Source/Cesium.js";
 
 function TerrainTileProcessor(
   frameState,
@@ -62,23 +62,30 @@ TerrainTileProcessor.prototype.process = function (tiles, maxIterations) {
       ++that.frameState.frameNumber;
 
       // Keep going until all terrain and imagery provider are ready and states are no longer changing.
-      let changed = false;
+      let changed = !that.terrainProvider.ready;
 
-      tiles.forEach(function (tile) {
-        const beforeState = getState(tile);
-        GlobeSurfaceTile.processStateMachine(
-          tile,
-          that.frameState,
-          that.terrainProvider,
-          that.imageryLayerCollection
-        );
-        const afterState = getState(tile);
+      for (let i = 0; i < that.imageryLayerCollection.length; ++i) {
         changed =
-          changed ||
-          tile.data.terrainState === TerrainState.RECEIVING ||
-          tile.data.terrainState === TerrainState.TRANSFORMING ||
-          !statesAreSame(beforeState, afterState);
-      });
+          changed || !that.imageryLayerCollection.get(i).imageryProvider.ready;
+      }
+
+      if (that.terrainProvider.ready) {
+        tiles.forEach(function (tile) {
+          const beforeState = getState(tile);
+          GlobeSurfaceTile.processStateMachine(
+            tile,
+            that.frameState,
+            that.terrainProvider,
+            that.imageryLayerCollection
+          );
+          const afterState = getState(tile);
+          changed =
+            changed ||
+            tile.data.terrainState === TerrainState.RECEIVING ||
+            tile.data.terrainState === TerrainState.TRANSFORMING ||
+            !statesAreSame(beforeState, afterState);
+        });
+      }
 
       if (!changed || iterations >= maxIterations) {
         resolve(iterations);

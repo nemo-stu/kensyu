@@ -4,7 +4,7 @@ import {
   defined,
   DeveloperError,
   WebGLConstants,
-} from "@cesium/engine";
+} from "../Source/Cesium.js";
 
 function getWebGLStub(canvas, options) {
   const stub = clone(WebGLConstants);
@@ -210,11 +210,6 @@ function getExtensionStub(name) {
   // Many 3D Tiles tests rely on instanced arrays
   if (name === "ANGLE_instanced_arrays") {
     return instancedArraysStub;
-  }
-
-  // Voxel tests rely on floating point textures
-  if (name === "OES_texture_float") {
-    return {};
   }
 
   // No other extensions are stubbed.

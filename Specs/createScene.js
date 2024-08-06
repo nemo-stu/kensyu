@@ -4,7 +4,7 @@ import {
   defaultValue,
   defined,
   Scene,
-} from "@cesium/engine";
+} from "../../Source/Cesium.js";
 
 import createCanvas from "./createCanvas.js";
 import getWebGLStub from "./getWebGLStub.js";

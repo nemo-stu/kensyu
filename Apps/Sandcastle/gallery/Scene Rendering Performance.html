@@ -138,7 +138,7 @@
       </table>
     </div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         // Create a viewer that won't render a new frame unless
@@ -146,7 +146,7 @@
         const viewer = new Cesium.Viewer("cesiumContainer", {
           requestRenderMode: true,
           maximumRenderTimeChange: Infinity,
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
         const scene = viewer.scene;
@@ -167,7 +167,6 @@
 
         // Clear scene and set default view.
         let handler;
-        let loadingTileset = false;
         function resetScene() {
           viewer.trackedEntity = undefined;
           viewer.dataSources.removeAll();
@@ -181,26 +180,18 @@
           viewModel.showTimeOptions = false;
           viewModel.timeChangeEnabled = false;
           viewModel.maximumRenderTimeChange = 0;
-          loadingTileset = false;
         }
 
         // Load a tileset and set the view.
         // No need to call scene.requestRender()
-        async function loadTilesetScenario() {
+        function loadTilesetScenario() {
           resetScene();
 
-          loadingTileset = true;
-          try {
-            tileset = await Cesium.Cesium3DTileset.fromIonAssetId(40866);
-            if (!loadingTileset) {
-              // Scenario was changed. Discard result.
-              return;
-            }
-            viewer.scene.primitives.add(tileset);
-            viewer.zoomTo(tileset);
-          } catch (error) {
-            console.log(`Error loading tileset: ${error}`);
-          }
+          tileset = new Cesium.Cesium3DTileset({
+            url: Cesium.IonResource.fromAssetId(40866),
+          });
+          viewer.scene.primitives.add(tileset);
+          viewer.zoomTo(tileset);
         }
 
         // Load an animated model and set the view.
@@ -357,15 +348,13 @@
         ];
 
         Sandcastle.addToolbarMenu(scenarios);
+
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

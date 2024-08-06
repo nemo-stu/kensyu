@@ -3,7 +3,6 @@
     "version": "1.1"
   },
   "schema": {
-    "id": "ImplicitGroupMetadataSchemaId",
     "classes": {
       "layer": {
         "properties": {
@@ -35,7 +34,6 @@
       }
     }
   ],
-  "geometricError": 240,
   "root": {
     "boundingVolume": {
       "region": [

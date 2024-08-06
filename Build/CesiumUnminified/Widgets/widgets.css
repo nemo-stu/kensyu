@@ -1,4 +1,4 @@
-/* packages/widgets/Source/shared.css */
+/* Source/Widgets/shared.css */
 .cesium-svgPath-svg {
   position: absolute;
   top: 0;
@@ -102,7 +102,7 @@
   color: #de3;
 }
 
-/* packages/widgets/Source/Animation/Animation.css */
+/* Source/Widgets/Animation/Animation.css */
 .cesium-animation-theme {
   visibility: hidden;
   display: block;
@@ -230,7 +230,7 @@
   cursor: pointer;
 }
 
-/* packages/widgets/Source/BaseLayerPicker/BaseLayerPicker.css */
+/* Source/Widgets/BaseLayerPicker/BaseLayerPicker.css */
 .cesium-baseLayerPicker-selected {
   position: absolute;
   top: 0;
@@ -339,17 +339,9 @@
   border: double 4px rgb(189, 236, 248);
 }
 
-/* packages/engine/Source/Widget/CesiumWidget.css */
+/* Source/Widgets/CesiumWidget/CesiumWidget.css */
 .cesium-widget {
-  font-family: sans-serif;
-  font-size: 16px;
-  overflow: hidden;
-  display: block;
   position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 .cesium-widget,
 .cesium-widget canvas {
@@ -366,6 +358,10 @@
   font-size: 10px;
   text-shadow: 0px 0px 2px #000000;
   padding-right: 5px;
+}
+.cesium-widget-credits a,
+.cesium-widget-credits a:visited {
+  color: #fff;
 }
 .cesium-widget-errorPanel {
   position: absolute;
@@ -456,7 +452,7 @@
   color: #2b0700;
 }
 
-/* packages/widgets/Source/CesiumInspector/CesiumInspector.css */
+/* Source/Widgets/CesiumInspector/CesiumInspector.css */
 .cesium-cesiumInspector {
   border-radius: 5px;
   transition: width ease-in-out 0.25s;
@@ -570,7 +566,7 @@
   content: "+";
 }
 
-/* packages/widgets/Source/Cesium3DTilesInspector/Cesium3DTilesInspector.css */
+/* Source/Widgets/Cesium3DTilesInspector/Cesium3DTilesInspector.css */
 ul.cesium-cesiumInspector-statistics {
   margin: 0;
   padding-top: 3px;
@@ -673,24 +669,7 @@ input.cesium-cesiumInspector-url {
   width: 100%;
 }
 
-/* packages/widgets/Source/VoxelInspector/VoxelInspector.css */
-.cesium-VoxelInspector {
-  width: 300px;
-  pointer-events: all;
-}
-.cesium-VoxelInspector div,
-.cesium-VoxelInspector input[type=range] {
-  width: 100%;
-  box-sizing: border-box;
-}
-.cesium-VoxelInspector .cesium-cesiumInspector-section {
-  margin-top: 3px;
-}
-.cesium-VoxelInspector .cesium-cesiumInspector-sectionHeader + .cesium-cesiumInspector-show {
-  border-top: 1px solid white;
-}
-
-/* packages/widgets/Source/FullscreenButton/FullscreenButton.css */
+/* Source/Widgets/FullscreenButton/FullscreenButton.css */
 .cesium-button.cesium-fullscreenButton {
   display: block;
   width: 100%;
@@ -699,7 +678,7 @@ input.cesium-cesiumInspector-url {
   border-radius: 0;
 }
 
-/* packages/widgets/Source/VRButton/VRButton.css */
+/* Source/Widgets/VRButton/VRButton.css */
 .cesium-button.cesium-vrButton {
   display: block;
   width: 100%;
@@ -708,7 +687,7 @@ input.cesium-cesiumInspector-url {
   border-radius: 0;
 }
 
-/* packages/widgets/Source/Geocoder/Geocoder.css */
+/* Source/Widgets/Geocoder/Geocoder.css */
 .cesium-viewer-geocoderContainer .cesium-geocoder-input {
   border: solid 1px #444;
   background-color: rgba(40, 40, 40, 0.7);
@@ -779,7 +758,7 @@ input.cesium-cesiumInspector-url {
   background-color: #48b;
 }
 
-/* packages/widgets/Source/InfoBox/InfoBox.css */
+/* Source/Widgets/InfoBox/InfoBox.css */
 .cesium-infoBox {
   display: block;
   position: absolute;
@@ -872,7 +851,7 @@ button.cesium-infoBox-close:active {
   width: calc(100% - 2px);
 }
 
-/* packages/widgets/Source/SceneModePicker/SceneModePicker.css */
+/* Source/Widgets/SceneModePicker/SceneModePicker.css */
 span.cesium-sceneModePicker-wrapper {
   display: inline-block;
   position: relative;
@@ -929,7 +908,7 @@ span.cesium-sceneModePicker-wrapper {
   box-shadow: 0 0 8px #fff, 0 0 8px #fff;
 }
 
-/* packages/widgets/Source/ProjectionPicker/ProjectionPicker.css */
+/* Source/Widgets/ProjectionPicker/ProjectionPicker.css */
 span.cesium-projectionPicker-wrapper {
   display: inline-block;
   position: relative;
@@ -968,7 +947,7 @@ span.cesium-projectionPicker-wrapper {
   box-shadow: 0 0 8px #fff, 0 0 8px #fff;
 }
 
-/* packages/widgets/Source/PerformanceWatchdog/PerformanceWatchdog.css */
+/* Source/Widgets/PerformanceWatchdog/PerformanceWatchdog.css */
 .cesium-performance-watchdog-message-area {
   position: relative;
   background-color: yellow;
@@ -984,7 +963,7 @@ span.cesium-projectionPicker-wrapper {
   margin: 0 10px 0 0;
 }
 
-/* packages/widgets/Source/NavigationHelpButton/NavigationHelpButton.css */
+/* Source/Widgets/NavigationHelpButton/NavigationHelpButton.css */
 .cesium-navigationHelpButton-wrapper {
   position: relative;
   display: inline-block;
@@ -1078,7 +1057,7 @@ span.cesium-projectionPicker-wrapper {
   background-color: rgba(76, 76, 76, 0.75);
 }
 
-/* packages/widgets/Source/SelectionIndicator/SelectionIndicator.css */
+/* Source/Widgets/SelectionIndicator/SelectionIndicator.css */
 .cesium-selection-wrapper {
   position: absolute;
   width: 160px;
@@ -1099,7 +1078,7 @@ span.cesium-projectionPicker-wrapper {
   stroke-width: 1.1px;
 }
 
-/* packages/widgets/Source/Timeline/Timeline.css */
+/* Source/Widgets/Timeline/Timeline.css */
 .cesium-timeline-main {
   position: relative;
   left: 0;
@@ -1141,14 +1120,7 @@ span.cesium-projectionPicker-wrapper {
   cursor: pointer;
   width: 100%;
   height: 1.7em;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(116, 117, 119, 0.8) 0%,
-      rgba(58, 68, 82, 0.8) 11%,
-      rgba(46, 50, 56, 0.8) 46%,
-      rgba(53, 53, 53, 0.8) 81%,
-      rgba(53, 53, 53, 0.8) 100%);
+  background: linear-gradient(to bottom, rgba(116, 117, 119, 0.8) 0%, rgba(58, 68, 82, 0.8) 11%, rgba(46, 50, 56, 0.8) 46%, rgba(53, 53, 53, 0.8) 81%, rgba(53, 53, 53, 0.8) 100%);
 }
 .cesium-timeline-ruler {
   visibility: hidden;
@@ -1203,7 +1175,7 @@ span.cesium-projectionPicker-wrapper {
   background-repeat: no-repeat;
 }
 
-/* packages/widgets/Source/Viewer/Viewer.css */
+/* Source/Widgets/Viewer/Viewer.css */
 .cesium-viewer {
   font-family: sans-serif;
   font-size: 16px;
@@ -1300,43 +1272,5 @@ span.cesium-projectionPicker-wrapper {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.cesium-viewer-voxelInspectorContainer {
-  display: block;
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  max-height: calc(100% - 120px);
-  box-sizing: border-box;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
 
-/* packages/widgets/Source/I3SBuildingSceneLayerExplorer/I3SBuildingSceneLayerExplorer.css */
-.cesium-viewer-i3s-explorer ul {
-  list-style-type: none;
-}
-.cesium-viewer-i3s-explorer .layersList {
-  padding: 0;
-}
-.cesium-viewer-i3s-explorer input {
-  margin: 0 3px 0 0;
-}
-.cesium-viewer-i3s-explorer .expandItem {
-  cursor: pointer;
-  user-select: none;
-  width: 20px;
-}
-.cesium-viewer-i3s-explorer .nested,
-.cesium-viewer-i3s-explorer #bsl-wrapper {
-  display: none;
-}
-.cesium-viewer-i3s-explorer .active {
-  display: block;
-}
-.cesium-viewer-i3s-explorer .li-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-}
-
-/* packages/widgets/Source/widgets.css */
+/* Source/Widgets/widgets.css */

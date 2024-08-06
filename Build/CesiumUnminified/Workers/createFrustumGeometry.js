@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,34 +23,15 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  FrustumGeometry_default
-} from "./chunk-2GEAGYUY.js";
-import "./chunk-LSSWVB2X.js";
-import "./chunk-A5CODJ4M.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import "./chunk-BAVI3ZS2.js";
-import "./chunk-TGY6H6N6.js";
-import {
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./defaultValue-50f7432c', './FrustumGeometry-ccb10665', './Transforms-318b929f', './Matrix2-cae5ed62', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './combine-8462e002', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './Plane-a03160e2', './VertexFormat-29aad777'], (function (defaultValue, FrustumGeometry, Transforms, Matrix2, RuntimeError, ComponentDatatype, WebGLConstants, combine, GeometryAttribute, GeometryAttributes, Plane, VertexFormat) { 'use strict';
 
-// packages/engine/Source/Workers/createFrustumGeometry.js
-function createFrustumGeometry(frustumGeometry, offset) {
-  if (defined_default(offset)) {
-    frustumGeometry = FrustumGeometry_default.unpack(frustumGeometry, offset);
+  function createFrustumGeometry(frustumGeometry, offset) {
+    if (defaultValue.defined(offset)) {
+      frustumGeometry = FrustumGeometry.FrustumGeometry.unpack(frustumGeometry, offset);
+    }
+    return FrustumGeometry.FrustumGeometry.createGeometry(frustumGeometry);
   }
-  return FrustumGeometry_default.createGeometry(frustumGeometry);
-}
-var createFrustumGeometry_default = createFrustumGeometry;
-export {
-  createFrustumGeometry_default as default
-};
+
+  return createFrustumGeometry;
+
+}));

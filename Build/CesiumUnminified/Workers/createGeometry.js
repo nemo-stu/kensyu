@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,147 +23,58 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  PrimitivePipeline_default
-} from "./chunk-VRZ46QZ5.js";
-import {
-  createTaskProcessorWorker_default
-} from "./chunk-MMV6TO3P.js";
-import "./chunk-QYQIVZBU.js";
-import "./chunk-PNFHVBSF.js";
-import "./chunk-J7MQUQJY.js";
-import "./chunk-SAPFXU5X.js";
-import "./chunk-TF776XCO.js";
-import "./chunk-A5CODJ4M.js";
-import "./chunk-EB7PNZTK.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import {
-  defaultValue_default
-} from "./chunk-BAVI3ZS2.js";
-import {
-  DeveloperError_default
-} from "./chunk-TGY6H6N6.js";
-import {
-  __glob,
-  __require,
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./defaultValue-50f7432c', './PrimitivePipeline-100c2689', './createTaskProcessorWorker', './Transforms-318b929f', './Matrix2-cae5ed62', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './combine-8462e002', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './GeometryPipeline-58a6c637', './AttributeCompression-b61f6b08', './EncodedCartesian3-a8cb9052', './IndexDatatype-3480a65d', './IntersectionTests-77ed1e84', './Plane-a03160e2', './WebMercatorProjection-0197b2e8'], (function (defaultValue, PrimitivePipeline, createTaskProcessorWorker, Transforms, Matrix2, RuntimeError, ComponentDatatype, WebGLConstants, combine, GeometryAttribute, GeometryAttributes, GeometryPipeline, AttributeCompression, EncodedCartesian3, IndexDatatype, IntersectionTests, Plane, WebMercatorProjection) { 'use strict';
 
-// import("./**/*.js") in packages/engine/Source/Workers/createGeometry.js
-var globImport_js = __glob({
-  "./combineGeometry.js": () => import("./combineGeometry.js"),
-  "./createBoxGeometry.js": () => import("./createBoxGeometry.js"),
-  "./createBoxOutlineGeometry.js": () => import("./createBoxOutlineGeometry.js"),
-  "./createCircleGeometry.js": () => import("./createCircleGeometry.js"),
-  "./createCircleOutlineGeometry.js": () => import("./createCircleOutlineGeometry.js"),
-  "./createCoplanarPolygonGeometry.js": () => import("./createCoplanarPolygonGeometry.js"),
-  "./createCoplanarPolygonOutlineGeometry.js": () => import("./createCoplanarPolygonOutlineGeometry.js"),
-  "./createCorridorGeometry.js": () => import("./createCorridorGeometry.js"),
-  "./createCorridorOutlineGeometry.js": () => import("./createCorridorOutlineGeometry.js"),
-  "./createCylinderGeometry.js": () => import("./createCylinderGeometry.js"),
-  "./createCylinderOutlineGeometry.js": () => import("./createCylinderOutlineGeometry.js"),
-  "./createEllipseGeometry.js": () => import("./createEllipseGeometry.js"),
-  "./createEllipseOutlineGeometry.js": () => import("./createEllipseOutlineGeometry.js"),
-  "./createEllipsoidGeometry.js": () => import("./createEllipsoidGeometry.js"),
-  "./createEllipsoidOutlineGeometry.js": () => import("./createEllipsoidOutlineGeometry.js"),
-  "./createFrustumGeometry.js": () => import("./createFrustumGeometry.js"),
-  "./createFrustumOutlineGeometry.js": () => import("./createFrustumOutlineGeometry.js"),
-  "./createGeometry.js": () => import("./createGeometry.js"),
-  "./createGroundPolylineGeometry.js": () => import("./createGroundPolylineGeometry.js"),
-  "./createPlaneGeometry.js": () => import("./createPlaneGeometry.js"),
-  "./createPlaneOutlineGeometry.js": () => import("./createPlaneOutlineGeometry.js"),
-  "./createPolygonGeometry.js": () => import("./createPolygonGeometry.js"),
-  "./createPolygonOutlineGeometry.js": () => import("./createPolygonOutlineGeometry.js"),
-  "./createPolylineGeometry.js": () => import("./createPolylineGeometry.js"),
-  "./createPolylineVolumeGeometry.js": () => import("./createPolylineVolumeGeometry.js"),
-  "./createPolylineVolumeOutlineGeometry.js": () => import("./createPolylineVolumeOutlineGeometry.js"),
-  "./createRectangleGeometry.js": () => import("./createRectangleGeometry.js"),
-  "./createRectangleOutlineGeometry.js": () => import("./createRectangleOutlineGeometry.js"),
-  "./createSimplePolylineGeometry.js": () => import("./createSimplePolylineGeometry.js"),
-  "./createSphereGeometry.js": () => import("./createSphereGeometry.js"),
-  "./createSphereOutlineGeometry.js": () => import("./createSphereOutlineGeometry.js"),
-  "./createTaskProcessorWorker.js": () => import("./createTaskProcessorWorker.js"),
-  "./createVectorTileClampedPolylines.js": () => import("./createVectorTileClampedPolylines.js"),
-  "./createVectorTileGeometries.js": () => import("./createVectorTileGeometries.js"),
-  "./createVectorTilePoints.js": () => import("./createVectorTilePoints.js"),
-  "./createVectorTilePolygons.js": () => import("./createVectorTilePolygons.js"),
-  "./createVectorTilePolylines.js": () => import("./createVectorTilePolylines.js"),
-  "./createVerticesFromGoogleEarthEnterpriseBuffer.js": () => import("./createVerticesFromGoogleEarthEnterpriseBuffer.js"),
-  "./createVerticesFromHeightmap.js": () => import("./createVerticesFromHeightmap.js"),
-  "./createVerticesFromQuantizedTerrainMesh.js": () => import("./createVerticesFromQuantizedTerrainMesh.js"),
-  "./createWallGeometry.js": () => import("./createWallGeometry.js"),
-  "./createWallOutlineGeometry.js": () => import("./createWallOutlineGeometry.js"),
-  "./decodeDraco.js": () => import("./decodeDraco.js"),
-  "./decodeGoogleEarthEnterprisePacket.js": () => import("./decodeGoogleEarthEnterprisePacket.js"),
-  "./decodeI3S.js": () => import("./decodeI3S.js"),
-  "./transcodeKTX2.js": () => import("./transcodeKTX2.js"),
-  "./transferTypedArrayTest.js": () => import("./transferTypedArrayTest.js"),
-  "./upsampleQuantizedTerrainMesh.js": () => import("./upsampleQuantizedTerrainMesh.js")
-});
+  /* global require */
 
-// packages/engine/Source/Workers/createGeometry.js
-var moduleCache = {};
-async function getModule(moduleName, modulePath) {
-  let module = defaultValue_default(moduleCache[modulePath], moduleCache[moduleName]);
-  if (defined_default(module)) {
+  const moduleCache = {};
+
+  function getModule(moduleName) {
+    let module = moduleCache[moduleName];
+    if (!defaultValue.defined(module)) {
+      if (typeof exports === "object") {
+        // Use CommonJS-style require.
+        moduleCache[module] = module = require(`Workers/${moduleName}`);
+      } else {
+        // Use AMD-style require.
+        // in web workers, require is synchronous
+        require([`Workers/${moduleName}`], function (f) {
+          module = f;
+          moduleCache[module] = f;
+        });
+      }
+    }
     return module;
   }
-  if (defined_default(modulePath)) {
-    if (typeof exports === "object") {
-      module = __require(modulePath);
-    } else {
-      const result = await import(modulePath);
-      module = result.default;
+
+  function createGeometry(parameters, transferableObjects) {
+    const subTasks = parameters.subTasks;
+    const length = subTasks.length;
+    const resultsOrPromises = new Array(length);
+
+    for (let i = 0; i < length; i++) {
+      const task = subTasks[i];
+      const geometry = task.geometry;
+      const moduleName = task.moduleName;
+
+      if (defaultValue.defined(moduleName)) {
+        const createFunction = getModule(moduleName);
+        resultsOrPromises[i] = createFunction(geometry, task.offset);
+      } else {
+        //Already created geometry
+        resultsOrPromises[i] = geometry;
+      }
     }
-    moduleCache[modulePath] = module;
-    return module;
+
+    return Promise.all(resultsOrPromises).then(function (results) {
+      return PrimitivePipeline.PrimitivePipeline.packCreateGeometryResults(
+        results,
+        transferableObjects
+      );
+    });
   }
-  if (typeof exports === "object") {
-    module = __require(`Workers/${moduleName}`);
-  } else {
-    const result = defined_default(modulePath) ? await import(modulePath) : await globImport_js(`./${moduleName}.js`);
-    module = result.default;
-  }
-  moduleCache[moduleName] = module;
-  return module;
-}
-async function createGeometry(parameters, transferableObjects) {
-  const subTasks = parameters.subTasks;
-  const length = subTasks.length;
-  const resultsOrPromises = new Array(length);
-  for (let i = 0; i < length; i++) {
-    const task = subTasks[i];
-    const geometry = task.geometry;
-    const moduleName = task.moduleName;
-    const modulePath = task.modulePath;
-    if (defined_default(moduleName) && defined_default(modulePath)) {
-      throw new DeveloperError_default("Must only set moduleName or modulePath");
-    }
-    if (defined_default(moduleName) || defined_default(modulePath)) {
-      resultsOrPromises[i] = getModule(
-        moduleName,
-        modulePath
-      ).then((createFunction) => createFunction(geometry, task.offset));
-    } else {
-      resultsOrPromises[i] = geometry;
-    }
-  }
-  return Promise.all(resultsOrPromises).then(function(results) {
-    return PrimitivePipeline_default.packCreateGeometryResults(
-      results,
-      transferableObjects
-    );
-  });
-}
-var createGeometry_default = createTaskProcessorWorker_default(createGeometry);
-export {
-  createGeometry_default as default
-};
+  var createGeometry$1 = createTaskProcessorWorker(createGeometry);
+
+  return createGeometry$1;
+
+}));

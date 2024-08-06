@@ -33,11 +33,11 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
         const geocoder = viewer.geocoder.viewModel;
@@ -45,19 +45,17 @@
         geocoder.flightDuration = 0.0;
         geocoder.search();
 
-        try {
-          // Vector 3D Tiles are experimental and the format is subject to change in the future.
-          // For more details, see:
-          //    https://github.com/CesiumGS/3d-tiles/tree/vctr/TileFormats/VectorData
-          const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(5737);
-          viewer.scene.primitives.add(tileset);
+        // Vector 3D Tiles are experimental and the format is subject to change in the future.
+        // For more details, see:
+        //    https://github.com/CesiumGS/3d-tiles/tree/vctr/TileFormats/VectorData
+        const tileset = new Cesium.Cesium3DTileset({
+          url: Cesium.IonResource.fromAssetId(5737),
+        });
+        viewer.scene.primitives.add(tileset);
 
-          tileset.style = new Cesium.Cesium3DTileStyle({
-            color: "rgba(255, 255, 255, 0.5)",
-          });
-        } catch (error) {
-          console.log(`Error loading tileset: ${error}`);
-        }
+        tileset.style = new Cesium.Cesium3DTileStyle({
+          color: "rgba(255, 255, 255, 0.5)",
+        });
 
         // Information about the currently highlighted feature
         const highlighted = {
@@ -86,15 +84,13 @@
           Cesium.Color.clone(pickedFeature.color, highlighted.originalColor);
           pickedFeature.color = Cesium.Color.YELLOW;
         },
-        Cesium.ScreenSpaceEventType.MOUSE_MOVE); //Sandcastle_End
+        Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

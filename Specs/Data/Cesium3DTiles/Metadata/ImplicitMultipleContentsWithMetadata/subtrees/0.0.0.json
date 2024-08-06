@@ -52,7 +52,6 @@
   "propertyTables": [
     {
       "class": "building",
-      "count": 5,
       "properties": {
         "height": {
           "values": 1
@@ -64,7 +63,6 @@
     },
     {
       "class": "tree",
-      "count": 4,
       "properties": {
         "age": {
           "values": 3

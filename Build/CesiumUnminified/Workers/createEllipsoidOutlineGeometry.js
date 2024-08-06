@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,37 +23,18 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  EllipsoidOutlineGeometry_default
-} from "./chunk-BGE4QVG7.js";
-import "./chunk-GNHZH7HP.js";
-import "./chunk-EB7PNZTK.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import "./chunk-BAVI3ZS2.js";
-import "./chunk-TGY6H6N6.js";
-import {
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./defaultValue-50f7432c', './EllipsoidOutlineGeometry-8ae7e1d7', './Transforms-318b929f', './Matrix2-cae5ed62', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './combine-8462e002', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './GeometryOffsetAttribute-490bc2c9', './IndexDatatype-3480a65d'], (function (defaultValue, EllipsoidOutlineGeometry, Transforms, Matrix2, RuntimeError, ComponentDatatype, WebGLConstants, combine, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, IndexDatatype) { 'use strict';
 
-// packages/engine/Source/Workers/createEllipsoidOutlineGeometry.js
-function createEllipsoidOutlineGeometry(ellipsoidGeometry, offset) {
-  if (defined_default(ellipsoidGeometry.buffer, offset)) {
-    ellipsoidGeometry = EllipsoidOutlineGeometry_default.unpack(
-      ellipsoidGeometry,
-      offset
-    );
+  function createEllipsoidOutlineGeometry(ellipsoidGeometry, offset) {
+    if (defaultValue.defined(ellipsoidGeometry.buffer)) {
+      ellipsoidGeometry = EllipsoidOutlineGeometry.EllipsoidOutlineGeometry.unpack(
+        ellipsoidGeometry,
+        offset
+      );
+    }
+    return EllipsoidOutlineGeometry.EllipsoidOutlineGeometry.createGeometry(ellipsoidGeometry);
   }
-  return EllipsoidOutlineGeometry_default.createGeometry(ellipsoidGeometry);
-}
-var createEllipsoidOutlineGeometry_default = createEllipsoidOutlineGeometry;
-export {
-  createEllipsoidOutlineGeometry_default as default
-};
+
+  return createEllipsoidOutlineGeometry;
+
+}));

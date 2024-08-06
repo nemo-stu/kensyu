@@ -32,17 +32,19 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
-        try {
-          const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(40866);
-          viewer.scene.primitives.add(tileset);
+        const tileset = new Cesium.Cesium3DTileset({
+          url: Cesium.IonResource.fromAssetId(40866),
+        });
+        viewer.scene.primitives.add(tileset);
 
+        tileset.readyPromise.then(function () {
           const boundingSphere = tileset.boundingSphere;
           viewer.camera.viewBoundingSphere(
             boundingSphere,
@@ -53,9 +55,7 @@
             )
           );
           viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
-        } catch (error) {
-          console.log(`Error loading tileset: ${error}`);
-        }
+        });
 
         const polygon = viewer.entities.add({
           polygon: {
@@ -169,14 +169,11 @@
         Sandcastle.addToolbarMenu(classificationOptions);
         Sandcastle.addToolbarMenu(materialOptions);
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

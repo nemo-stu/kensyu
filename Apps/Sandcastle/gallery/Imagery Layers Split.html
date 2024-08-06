@@ -53,25 +53,23 @@
     <div id="toolbar"></div>
 
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          baseLayer: Cesium.ImageryLayer.fromProviderAsync(
-            Cesium.ArcGisMapServerImageryProvider.fromUrl(
-              "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
-            )
-          ),
+          imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+            url:
+              "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+          }),
           baseLayerPicker: false,
           infoBox: false,
         });
 
         const layers = viewer.imageryLayers;
-        const earthAtNight = Cesium.ImageryLayer.fromProviderAsync(
-          Cesium.IonImageryProvider.fromAssetId(3812)
+        const earthAtNight = layers.addImageryProvider(
+          new Cesium.IonImageryProvider({ assetId: 3812 })
         );
         earthAtNight.splitDirection = Cesium.SplitDirection.LEFT; // Only show to the left of the slider.
-        layers.add(earthAtNight);
 
         // Sync the position of the slider with the split position
         const slider = document.getElementById("slider");
@@ -113,14 +111,11 @@
         }, Cesium.ScreenSpaceEventType.PINCH_END);
 
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

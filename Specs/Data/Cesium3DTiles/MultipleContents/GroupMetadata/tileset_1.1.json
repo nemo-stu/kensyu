@@ -21,7 +21,6 @@
     }
   },
   "schema": {
-    "id": "GroupMetadataSchemaId",
     "classes": {
       "layer": {
         "properties": {

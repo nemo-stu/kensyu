@@ -53,7 +53,7 @@
     <div id="toolbar"></div>
 
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer");
@@ -64,19 +64,17 @@
         const layers = viewer.imageryLayers;
         layers.removeAll();
 
-        const layerLinear = Cesium.ImageryLayer.fromProviderAsync(
-          Cesium.TileMapServiceImageryProvider.fromUrl(
-            Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII")
-          )
+        const layerLinear = layers.addImageryProvider(
+          new Cesium.TileMapServiceImageryProvider({
+            url: Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII"),
+          })
         );
-        layers.add(layerLinear);
 
-        const layerNearest = Cesium.ImageryLayer.fromProviderAsync(
-          Cesium.TileMapServiceImageryProvider.fromUrl(
-            Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII")
-          )
+        const layerNearest = layers.addImageryProvider(
+          new Cesium.TileMapServiceImageryProvider({
+            url: Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII"),
+          })
         );
-        layers.add(layerNearest);
 
         // Set the texture minification and magnification filters of layerNearest. Default is LINEAR.
         layerNearest.minificationFilter =
@@ -117,14 +115,12 @@
           viewer.scene.splitPosition = splitPosition;
         }
         //Sandcastle_End
+
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

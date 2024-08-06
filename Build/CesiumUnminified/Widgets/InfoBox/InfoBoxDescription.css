@@ -1,4 +1,4 @@
-/* packages/widgets/Source/shared.css */
+/* Source/Widgets/shared.css */
 .cesium-svgPath-svg {
   position: absolute;
   top: 0;
@@ -102,7 +102,7 @@
   color: #de3;
 }
 
-/* packages/widgets/Source/InfoBox/InfoBoxDescription.css */
+/* Source/Widgets/InfoBox/InfoBoxDescription.css */
 body {
   margin: 0;
   padding: 0;

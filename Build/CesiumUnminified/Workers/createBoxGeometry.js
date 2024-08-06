@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,34 +23,15 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  BoxGeometry_default
-} from "./chunk-ACRTCBN5.js";
-import "./chunk-GNHZH7HP.js";
-import "./chunk-LSSWVB2X.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import "./chunk-BAVI3ZS2.js";
-import "./chunk-TGY6H6N6.js";
-import {
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./BoxGeometry-e586a0c5', './defaultValue-50f7432c', './Transforms-318b929f', './Matrix2-cae5ed62', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './combine-8462e002', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './GeometryOffsetAttribute-490bc2c9', './VertexFormat-29aad777'], (function (BoxGeometry, defaultValue, Transforms, Matrix2, RuntimeError, ComponentDatatype, WebGLConstants, combine, GeometryAttribute, GeometryAttributes, GeometryOffsetAttribute, VertexFormat) { 'use strict';
 
-// packages/engine/Source/Workers/createBoxGeometry.js
-function createBoxGeometry(boxGeometry, offset) {
-  if (defined_default(offset)) {
-    boxGeometry = BoxGeometry_default.unpack(boxGeometry, offset);
+  function createBoxGeometry(boxGeometry, offset) {
+    if (defaultValue.defined(offset)) {
+      boxGeometry = BoxGeometry.BoxGeometry.unpack(boxGeometry, offset);
+    }
+    return BoxGeometry.BoxGeometry.createGeometry(boxGeometry);
   }
-  return BoxGeometry_default.createGeometry(boxGeometry);
-}
-var createBoxGeometry_default = createBoxGeometry;
-export {
-  createBoxGeometry_default as default
-};
+
+  return createBoxGeometry;
+
+}));

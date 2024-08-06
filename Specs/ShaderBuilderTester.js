@@ -64,15 +64,13 @@ ShaderBuilderTester.expectHasVaryings = function (
   shaderBuilder,
   expectedVaryings
 ) {
-  expect(shaderBuilder._vertexShaderParts.varyingLines).toEqual(
-    jasmine.arrayWithExactContents(
-      expectedVaryings.map((varying) => jasmine.stringContaining(varying))
-    )
+  expectEqualUnordered(
+    shaderBuilder._vertexShaderParts.varyingLines,
+    expectedVaryings
   );
-  expect(shaderBuilder._fragmentShaderParts.varyingLines).toEqual(
-    jasmine.arrayWithExactContents(
-      expectedVaryings.map((varying) => jasmine.stringContaining(varying))
-    )
+  expectEqualUnordered(
+    shaderBuilder._fragmentShaderParts.varyingLines,
+    expectedVaryings
   );
 };
 

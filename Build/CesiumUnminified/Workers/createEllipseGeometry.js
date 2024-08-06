@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,47 +23,17 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-import {
-  EllipseGeometry_default
-} from "./chunk-R3TKLC6E.js";
-import "./chunk-D4K27X2M.js";
-import "./chunk-UOEUCKKU.js";
-import "./chunk-PNFHVBSF.js";
-import "./chunk-J7MQUQJY.js";
-import "./chunk-SAPFXU5X.js";
-import "./chunk-GNHZH7HP.js";
-import "./chunk-LSSWVB2X.js";
-import "./chunk-TF776XCO.js";
-import "./chunk-A5CODJ4M.js";
-import "./chunk-EB7PNZTK.js";
-import "./chunk-JYQNWIQQ.js";
-import "./chunk-IUROUBPA.js";
-import "./chunk-ELI4BUOT.js";
-import "./chunk-OXALEQPI.js";
-import "./chunk-FQPSOOPH.js";
-import {
-  Cartesian3_default,
-  Ellipsoid_default
-} from "./chunk-T6LPN7RI.js";
-import "./chunk-R4OIEIPE.js";
-import "./chunk-RHBWXX7C.js";
-import "./chunk-ZIKGV7EL.js";
-import "./chunk-BAVI3ZS2.js";
-import "./chunk-TGY6H6N6.js";
-import {
-  defined_default
-} from "./chunk-N4QEHO3U.js";
+define(['./Matrix2-cae5ed62', './defaultValue-50f7432c', './EllipseGeometry-700562a3', './RuntimeError-6b9130a9', './ComponentDatatype-0b8ce457', './WebGLConstants-58abc51a', './Transforms-318b929f', './combine-8462e002', './EllipseGeometryLibrary-9214016d', './GeometryAttribute-a14260ea', './GeometryAttributes-8bab1b25', './GeometryInstance-ef91d372', './GeometryOffsetAttribute-490bc2c9', './GeometryPipeline-58a6c637', './AttributeCompression-b61f6b08', './EncodedCartesian3-a8cb9052', './IndexDatatype-3480a65d', './IntersectionTests-77ed1e84', './Plane-a03160e2', './VertexFormat-29aad777'], (function (Matrix2, defaultValue, EllipseGeometry, RuntimeError, ComponentDatatype, WebGLConstants, Transforms, combine, EllipseGeometryLibrary, GeometryAttribute, GeometryAttributes, GeometryInstance, GeometryOffsetAttribute, GeometryPipeline, AttributeCompression, EncodedCartesian3, IndexDatatype, IntersectionTests, Plane, VertexFormat) { 'use strict';
 
-// packages/engine/Source/Workers/createEllipseGeometry.js
-function createEllipseGeometry(ellipseGeometry, offset) {
-  if (defined_default(offset)) {
-    ellipseGeometry = EllipseGeometry_default.unpack(ellipseGeometry, offset);
+  function createEllipseGeometry(ellipseGeometry, offset) {
+    if (defaultValue.defined(offset)) {
+      ellipseGeometry = EllipseGeometry.EllipseGeometry.unpack(ellipseGeometry, offset);
+    }
+    ellipseGeometry._center = Matrix2.Cartesian3.clone(ellipseGeometry._center);
+    ellipseGeometry._ellipsoid = Matrix2.Ellipsoid.clone(ellipseGeometry._ellipsoid);
+    return EllipseGeometry.EllipseGeometry.createGeometry(ellipseGeometry);
   }
-  ellipseGeometry._center = Cartesian3_default.clone(ellipseGeometry._center);
-  ellipseGeometry._ellipsoid = Ellipsoid_default.clone(ellipseGeometry._ellipsoid);
-  return EllipseGeometry_default.createGeometry(ellipseGeometry);
-}
-var createEllipseGeometry_default = createEllipseGeometry;
-export {
-  createEllipseGeometry_default as default
-};
+
+  return createEllipseGeometry;
+
+}));

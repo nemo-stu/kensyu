@@ -71,11 +71,11 @@
       </div>
     </div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
         });
 
         const scene = viewer.scene;
@@ -114,20 +114,16 @@
           endTransform: Cesium.Matrix4.IDENTITY,
         });
 
-        let style;
         // Load the NYC buildings tileset.
-        try {
-          const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(75343);
-          scene.primitives.add(tileset);
-          style = new Cesium.Cesium3DTileStyle({
-            meta: {
-              description: "'Building ${BIN} has height ${Height}.'",
-            },
-          });
-          tileset.style = style;
-        } catch (error) {
-          console.log(`Error loading tileset: ${error}`);
-        }
+        const tileset = new Cesium.Cesium3DTileset({
+          url: Cesium.IonResource.fromAssetId(75343),
+        });
+        scene.primitives.add(tileset);
+        tileset.style = new Cesium.Cesium3DTileStyle({
+          meta: {
+            description: "'Building ${BIN} has height ${Height}.'",
+          },
+        });
 
         const handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
 
@@ -189,11 +185,8 @@
           }
 
           // Evaluate feature description
-          if (!Cesium.defined(style)) {
-            return;
-          }
           console.log(
-            `Description : ${style.meta.description.evaluate(feature)}`
+            `Description : ${tileset.style.meta.description.evaluate(feature)}`
           );
         }
 
@@ -266,15 +259,14 @@
           Cesium.Cartesian3.negate(offset, offset);
           Cesium.Cartesian3.multiplyByScalar(offset, range, offset);
           return offset;
-        } //Sandcastle_End
+        }
+
+        //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

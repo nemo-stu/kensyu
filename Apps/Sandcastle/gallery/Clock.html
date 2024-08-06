@@ -29,7 +29,7 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         // Create a clock that loops on Christmas day 2013 and runs in 4000x real time.
@@ -62,13 +62,11 @@
         Sandcastle.addToolbarButton("Speed Up Clock", function () {
           viewer.clockViewModel.multiplier *= 2;
         }); //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
+        window.startup(Cesium);
       }
     </script>
   </body>

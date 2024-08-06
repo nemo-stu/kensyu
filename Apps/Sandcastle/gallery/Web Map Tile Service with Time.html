@@ -32,7 +32,7 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
@@ -76,33 +76,29 @@
           times: times,
           credit: "NASA Global Imagery Browse Services for EOSDIS",
         });
-        const layer = new Cesium.ImageryLayer(provider);
+        const imageryLayers = viewer.imageryLayers;
+        const layer = imageryLayers.addImageryProvider(provider);
+        provider.readyPromise.then(function () {
+          const start = Cesium.JulianDate.fromIso8601("2015-07-30");
+          const stop = Cesium.JulianDate.fromIso8601("2017-06-17");
 
-        // Make the weather layer semi-transparent to see the underlying geography.
-        layer.alpha = 0.5;
+          viewer.timeline.zoomTo(start, stop);
 
-        viewer.imageryLayers.add(layer);
-
-        const start = Cesium.JulianDate.fromIso8601("2015-07-30");
-        const stop = Cesium.JulianDate.fromIso8601("2017-06-17");
-
-        viewer.timeline.zoomTo(start, stop);
-
-        const clock = viewer.clock;
-        clock.startTime = start;
-        clock.stopTime = stop;
-        clock.currentTime = start;
-        clock.clockRange = Cesium.ClockRange.LOOP_STOP;
-        clock.multiplier = 7200;
+          const clock = viewer.clock;
+          clock.startTime = start;
+          clock.stopTime = stop;
+          clock.currentTime = start;
+          clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+          clock.multiplier = 7200;
+          // Make the weather layer semi-transparent to see the underlying geography.
+          layer.alpha = 0.5;
+        });
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

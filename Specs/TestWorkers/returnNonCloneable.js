@@ -1,7 +1,11 @@
-import { createTaskProcessorWorker } from "@cesium/engine";
+define(["Workers/createTaskProcessorWorker"], function (
+  createTaskProcessorWorker
+) {
+  "use strict";
 
-export default createTaskProcessorWorker(function () {
-  return function () {
-    //functions are not cloneable
-  };
+  return createTaskProcessorWorker(function (parameters, transferableObjects) {
+    return function () {
+      //functions are not cloneable
+    };
+  });
 });

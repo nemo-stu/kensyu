@@ -29,11 +29,14 @@
     <div id="loadingOverlay"><h1>Loading...</h1></div>
     <div id="toolbar"></div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer", {
-          terrain: Cesium.Terrain.fromWorldTerrain(),
+          terrainProvider: Cesium.createWorldTerrain(),
+          contextOptions: {
+            requestWebgl2: true,
+          },
         });
 
         viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(
@@ -44,7 +47,6 @@
         if (!scene.msaaSupported) {
           window.alert("This browser does not support MSAA.");
         }
-        scene.msaaSamples = 8;
 
         function createModel(url, height) {
           const position = Cesium.Cartesian3.fromDegrees(
@@ -80,26 +82,6 @@
           viewer.scene.camera.lookAt(target, offset);
         }
 
-        let currentAssetId;
-        async function createTileset(assetId) {
-          currentAssetId = assetId;
-
-          try {
-            const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(
-              assetId
-            );
-
-            if (currentAssetId !== assetId) {
-              // Another scenario was loaded. Discard the result.
-              return;
-            }
-
-            scene.primitives.add(tileset);
-          } catch (error) {
-            console.log(`Error loading tileset: ${error}`);
-          }
-        }
-
         const options = [
           {
             text: "Statue of Liberty",
@@ -119,7 +101,12 @@
                 ),
                 endTransform: Cesium.Matrix4.IDENTITY,
               });
-              createTileset(75343);
+
+              scene.primitives.add(
+                new Cesium.Cesium3DTileset({
+                  url: Cesium.IonResource.fromAssetId(75343),
+                })
+              );
             },
           },
           {
@@ -127,6 +114,11 @@
             onselect: function () {
               viewer.entities.removeAll();
               scene.primitives.removeAll();
+              const tileset = scene.primitives.add(
+                new Cesium.Cesium3DTileset({
+                  url: Cesium.IonResource.fromAssetId(1240402),
+                })
+              );
               viewer.camera.setView({
                 destination: new Cesium.Cartesian3(
                   1234138.7804841248,
@@ -139,13 +131,11 @@
                   roll: 6.283184816241989,
                 },
               });
-              createTileset(2464651);
             },
           },
           {
             text: "Hot Air Balloon",
             onselect: function () {
-              currentAssetId = undefined;
               viewer.entities.removeAll();
               scene.primitives.removeAll();
               createModel(
@@ -158,15 +148,9 @@
 
         const samplingOptions = [
           {
-            text: "MSAA 8x",
+            text: "MSAA off",
             onselect: function () {
-              scene.msaaSamples = 8;
-            },
-          },
-          {
-            text: "MSAA 4x",
-            onselect: function () {
-              scene.msaaSamples = 4;
+              scene.msaaSamples = 1;
             },
           },
           {
@@ -176,23 +160,27 @@
             },
           },
           {
-            text: "MSAA off",
+            text: "MSAA 4x",
             onselect: function () {
-              scene.msaaSamples = 1;
+              scene.msaaSamples = 4;
+            },
+          },
+          {
+            text: "MSAA 8x",
+            onselect: function () {
+              scene.msaaSamples = 8;
             },
           },
         ];
+
         Sandcastle.addToolbarMenu(options);
         Sandcastle.addToolbarMenu(samplingOptions);
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

@@ -1,7 +1,7 @@
 /**
  * @license
  * Cesium - https://github.com/CesiumGS/cesium
- * Version 1.120
+ * Version 1.98
  *
  * Copyright 2011-2022 Cesium Contributors
  *
@@ -23,8 +23,9 @@
  * See https://github.com/CesiumGS/cesium/blob/main/LICENSE.md for full licensing details.
  */
 
-
-// packages/engine/Source/Workers/transferTypedArrayTest.js
+if (typeof self === "undefined") {
+  self = {};
+}
 self.onmessage = function(event) {
   const array = event.data.array;
   const postMessage = self.webkitPostMessage || self.postMessage;

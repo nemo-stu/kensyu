@@ -30,7 +30,6 @@
   "extensions": {
     "3DTILES_metadata": {
       "schema": {
-        "id": "MultipleContentsWithMetadataSchemaId",
         "classes": {
           "batched": {
             "properties": {

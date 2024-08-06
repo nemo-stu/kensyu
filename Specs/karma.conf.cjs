@@ -1,3 +1,4 @@
+/*eslint-env node*/
 "use strict";
 
 module.exports = function (config) {
@@ -72,16 +73,17 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ["Chrome"],
 
-    //During CI, we need to run with the no-sandbox flag
+    //In Travis, we need to run with the no-sandbox flag
     customLaunchers: {
-      ChromeDebugging: {
-        base: "Chrome",
-        flags: ["--remote-debugging-port=9333"],
+      ChromeCI: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox"],
       },
     },
 
-    // Ridiculous large values because CI can be slow.
+    // Ridiculous large values because travis is slow.
     captureTimeout: 120000,
     browserDisconnectTolerance: 3,
     browserDisconnectTimeout: 120000,
@@ -90,8 +92,6 @@ module.exports = function (config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
-
-    browsers: ["Chrome"],
   };
 
   config.set(options);

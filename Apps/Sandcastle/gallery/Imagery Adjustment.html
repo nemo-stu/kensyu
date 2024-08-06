@@ -112,7 +112,7 @@
       </table>
     </div>
     <script id="cesium_sandcastle_script">
-      window.startup = async function (Cesium) {
+      window.startup = function (Cesium) {
         "use strict";
         //Sandcastle_Begin
         const viewer = new Cesium.Viewer("cesiumContainer");
@@ -150,8 +150,6 @@
         subscribeLayerParameter("saturation");
         subscribeLayerParameter("gamma");
 
-        imageryLayers.get(0).saturation = 3.0;
-
         // Make the viewModel react to base layer changes.
         function updateViewModel() {
           if (imageryLayers.length > 0) {
@@ -168,14 +166,11 @@
         imageryLayers.layerMoved.addEventListener(updateViewModel);
         updateViewModel();
         //Sandcastle_End
+        Sandcastle.finishedLoading();
       };
       if (typeof Cesium !== "undefined") {
         window.startupCalled = true;
-        window.startup(Cesium).catch((error) => {
-          "use strict";
-          console.error(error);
-        });
-        Sandcastle.finishedLoading();
+        window.startup(Cesium);
       }
     </script>
   </body>

@@ -1,6 +1,6 @@
 // This file is automatically rebuilt by the Cesium build process.
-const hello_world_index = 116;
-const VERSION = '1.120';
+const hello_world_index = 107;
+const VERSION = '1.98';
 const gallery_demos = [{
   "name": "3D Models",
   "isNew": false,
@@ -9,22 +9,6 @@ const gallery_demos = [{
   "name": "3D Models Coloring",
   "isNew": false,
   "img": "3D Models Coloring.jpg"
-}, {
-  "name": "3D Tiles 1.1 CDB Yemen",
-  "isNew": false,
-  "img": "3D Tiles 1.1 CDB Yemen.jpg"
-}, {
-  "name": "3D Tiles 1.1 Photogrammetry",
-  "isNew": false,
-  "img": "3D Tiles 1.1 Photogrammetry.jpg"
-}, {
-  "name": "3D Tiles 1.1 Photogrammetry Classification",
-  "isNew": false,
-  "img": "3D Tiles 1.1 Photogrammetry Classification.jpg"
-}, {
-  "name": "3D Tiles 1.1 S2 Globe",
-  "isNew": false,
-  "img": "3D Tiles 1.1 S2 Globe.jpg"
 }, {
   "name": "3D Tiles Adjust Height",
   "isNew": false,
@@ -70,6 +54,18 @@ const gallery_demos = [{
   "isNew": false,
   "img": "3D Tiles Interior.jpg"
 }, {
+  "name": "3D Tiles Next CDB Yemen",
+  "isNew": false,
+  "img": "3D Tiles Next CDB Yemen.jpg"
+}, {
+  "name": "3D Tiles Next Photogrammetry Classification",
+  "isNew": false,
+  "img": "3D Tiles Next Photogrammetry Classification.jpg"
+}, {
+  "name": "3D Tiles Next S2 Globe",
+  "isNew": false,
+  "img": "3D Tiles Next S2 Globe.jpg"
+}, {
   "name": "3D Tiles Photogrammetry",
   "isNew": false,
   "img": "3D Tiles Photogrammetry.jpg"
@@ -98,18 +94,6 @@ const gallery_demos = [{
   "isNew": false,
   "img": "3D Tiles Terrain Classification.jpg"
 }, {
-  "name": "3D Tiles Vertical Exaggeration",
-  "isNew": false,
-  "img": "3D Tiles Vertical Exaggeration.jpg"
-}, {
-  "name": "AEC Clipping",
-  "isNew": false,
-  "img": "AEC Clipping.jpg"
-}, {
-  "name": "Aerometrex San Francisco",
-  "isNew": false,
-  "img": "Aerometrex San Francisco.jpg"
-}, {
   "name": "Ambient Occlusion",
   "isNew": false,
   "img": "Ambient Occlusion.jpg"
@@ -130,17 +114,9 @@ const gallery_demos = [{
   "isNew": false,
   "img": "Atmosphere.jpg"
 }, {
-  "name": "Bathymetry",
-  "isNew": false,
-  "img": "Bathymetry.jpg"
-}, {
   "name": "Billboards",
   "isNew": false,
   "img": "Billboards.jpg"
-}, {
-  "name": "Bing Maps Labels Only",
-  "isNew": false,
-  "img": "Bing Maps Labels Only.jpg"
 }, {
   "name": "Bloom",
   "isNew": false,
@@ -302,17 +278,17 @@ const gallery_demos = [{
   "isNew": false,
   "img": "Circles and Ellipses.jpg"
 }, {
-  "name": "Clamp Entities to Ground",
-  "isNew": false,
-  "img": "Clamp Entities to Ground.jpg"
-}, {
-  "name": "Clamp Model to Ground",
-  "isNew": false,
-  "img": "Clamp Model to Ground.jpg"
-}, {
   "name": "Clamp to 3D Model",
   "isNew": false,
   "img": "Clamp to 3D Model.jpg"
+}, {
+  "name": "Clamp to 3D Tiles",
+  "isNew": false,
+  "img": "Clamp to 3D Tiles.jpg"
+}, {
+  "name": "Clamp to Terrain",
+  "isNew": false,
+  "img": "Clamp to Terrain.jpg"
 }, {
   "name": "Classification",
   "isNew": false,
@@ -321,10 +297,6 @@ const gallery_demos = [{
   "name": "Classification Types",
   "isNew": false,
   "img": "Classification Types.jpg"
-}, {
-  "name": "Clipping Regions",
-  "isNew": false,
-  "img": "Clipping Regions.jpg"
 }, {
   "name": "Clock",
   "isNew": false,
@@ -450,14 +422,6 @@ const gallery_demos = [{
   "isNew": false,
   "img": "Google Earth Enterprise.jpg"
 }, {
-  "name": "Google Photorealistic 3D Tiles",
-  "isNew": false,
-  "img": "Google Photorealistic 3D Tiles.jpg"
-}, {
-  "name": "Google Photorealistic 3D Tiles with Building Insert",
-  "isNew": false,
-  "img": "Google Photorealistic 3D Tiles with Building Insert.jpg"
-}, {
   "name": "HTML Overlays",
   "isNew": false,
   "img": "HTML Overlays.jpg"
@@ -473,22 +437,6 @@ const gallery_demos = [{
   "name": "High Dynamic Range",
   "isNew": false,
   "img": "High Dynamic Range.jpg"
-}, {
-  "name": "I3S 3D Object Layer",
-  "isNew": false,
-  "img": "I3S 3D Object Layer.jpg"
-}, {
-  "name": "I3S Building Scene Layer",
-  "isNew": false,
-  "img": "I3S Building Scene Layer.jpg"
-}, {
-  "name": "I3S Feature Picking",
-  "isNew": false,
-  "img": "I3S Feature Picking.jpg"
-}, {
-  "name": "I3S IntegratedMesh Layer",
-  "isNew": false,
-  "img": "I3S IntegratedMesh Layer.jpg"
 }, {
   "name": "Image-Based Lighting",
   "isNew": false,
@@ -525,10 +473,6 @@ const gallery_demos = [{
   "name": "Interpolation",
   "isNew": false,
   "img": "Interpolation.jpg"
-}, {
-  "name": "Japan Buildings",
-  "isNew": false,
-  "img": "Japan Buildings.jpg"
 }, {
   "name": "KML",
   "isNew": false,
@@ -573,10 +517,6 @@ const gallery_demos = [{
   "name": "Montreal Point Cloud",
   "isNew": false,
   "img": "Montreal Point Cloud.jpg"
-}, {
-  "name": "Moon",
-  "isNew": true,
-  "img": "Moon.jpg"
 }, {
   "name": "Multi-part CZML",
   "isNew": false,
@@ -710,10 +650,6 @@ const gallery_demos = [{
   "isNew": false,
   "img": "Spheres and Ellipsoids.jpg"
 }, {
-  "name": "SplitDirection",
-  "isNew": true,
-  "img": "SplitDirection.jpg"
-}, {
   "name": "Star Burst",
   "isNew": false,
   "img": "Star Burst.jpg"
@@ -746,14 +682,6 @@ const gallery_demos = [{
   "isNew": false,
   "img": "Video.jpg"
 }, {
-  "name": "Voxel Picking",
-  "isNew": false,
-  "img": "Voxel Picking.jpg"
-}, {
-  "name": "Voxels",
-  "isNew": false,
-  "img": "Voxels.jpg"
-}, {
   "name": "Wall",
   "isNew": false,
   "img": "Wall.jpg"
@@ -773,9 +701,5 @@ const gallery_demos = [{
   "name": "Z-Indexing Geometry",
   "isNew": false,
   "img": "Z-Indexing Geometry.jpg"
-}, {
-  "name": "glTF PBR Extensions",
-  "isNew": false,
-  "img": "glTF PBR Extensions.jpg"
 }];
 const has_new_gallery_demos = true;

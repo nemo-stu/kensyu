@@ -9,7 +9,6 @@
   "extensions": {
     "3DTILES_metadata": {
       "schema": {
-        "id": "GroupMetadataSchemaId",
         "classes": {
           "residential": {
             "properties": {

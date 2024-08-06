@@ -1,5 +1,9 @@
-import { createTaskProcessorWorker } from "@cesium/engine";
+define(["Workers/createTaskProcessorWorker"], function (
+  createTaskProcessorWorker
+) {
+  "use strict";
 
-export default createTaskProcessorWorker(function (parameters) {
-  return parameters.byteLength;
+  return createTaskProcessorWorker(function (parameters, transferableObjects) {
+    return parameters.byteLength;
+  });
 });

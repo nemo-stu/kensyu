@@ -35,7 +35,7 @@
     "geometricError": 100,
     "refine": "REPLACE",
     "content": {
-      "uri": "parent.geom"
+      "url": "parent.geom"
     },
     "children": [
       {
@@ -51,7 +51,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "ul.geom"
+          "url": "ul.geom"
         }
       },
       {
@@ -67,7 +67,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "ur.geom"
+          "url": "ur.geom"
         }
       },
       {
@@ -83,7 +83,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "ll.geom"
+          "url": "ll.geom"
         }
       },
       {
@@ -99,7 +99,7 @@
         },
         "geometricError": 0,
         "content": {
-          "uri": "lr.geom"
+          "url": "lr.geom"
         }
       }
     ]
